@@ -3,78 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eureka - Vertical</title>
+    <title>Eureka - Océano Científico</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body, html { margin: 0; background: #1a1a1a; color: white; font-family: sans-serif; }
-        .card { height: 50vh; border-bottom: 2px solid rgba(255,255,255,0.1); position: relative; overflow: hidden; display: flex; flex-direction: column; }
-        .img-container { height: 40%; width: 100%; position: relative; background: #000; overflow: hidden; }
-        .img-main { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-        .content { height: 60%; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; }
+        body, html { margin: 0; background: #121212; color: white; font-family: sans-serif; }
+        .card { height: 50vh; border-bottom: 1px solid #333; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+        .img-box { height: 45%; width: 100%; background: #000; position: relative; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+        .info { height: 55%; padding: 1.2rem; display: flex; flex-direction: column; justify-content: space-between; background: #1a1a1a; }
         #reset-btn { position: fixed; bottom: 20px; right: 20px; z-index: 100; display: none; }
     </style>
 </head>
 <body>
-    <div id="loader" class="p-10 text-center text-white">Cargando el océano de noticias...</div>
-    <button id="reset-btn" onclick="mostrarTodo()" class="bg-white text-black px-6 py-3 rounded-full font-bold shadow-2xl border-2 border-black">← Volver al Océano</button>
+    <div id="status" class="p-10 text-center text-gray-400">Sincronizando con el océano de noticias...</div>
+    <button id="reset-btn" onclick="mostrarTodo()" class="bg-blue-600 text-white px-6 py-2 rounded-full font-bold shadow-lg">Ver todo</button>
     <div id="container"></div>
 
     <script>
-        let todasLasNoticias = [];
-        const coloresAreas = {
+        let noticias = [];
+        const colores = {
             "CIENCIAS NATURALES": "#1e40af", "CIENCIAS SOCIALES": "#b91c1c", 
             "CIENCIAS FORMALES": "#15803d", "HUMANIDADES": "#a16207",
             "CIENCIAS APLICADAS": "#4338ca"
         };
 
-        async function load() {
+        async function iniciar() {
             try {
-                const res = await fetch('noticias.json');
-                todasLasNoticias = await res.json();
-                document.getElementById('loader').style.display = 'none';
-                render(todasLasNoticias);
+                const r = await fetch('noticias.json');
+                noticias = await r.json();
+                document.getElementById('status').style.display = 'none';
+                dibujar(noticias);
             } catch (e) {
-                document.getElementById('loader').innerHTML = "El robot aún está preparando las noticias. Vuelve en 2 minutos.";
+                document.getElementById('status').innerHTML = "El robot está recolectando noticias nuevas. Refresca en 2 minutos.";
             }
         }
 
-        function render(data) {
-            const div = document.getElementById('container');
-            div.innerHTML = '';
-            data.forEach(n => {
-                const section = document.createElement('div');
-                section.className = "card";
-                section.style.backgroundColor = coloresAreas[n.tema] || "#262626";
-                
-                // Corrección del link de traducción
-                const linkTraducido = `https://translate.google.com/translate?sl=auto&tl=es&u=${encodeURIComponent(n.link)}`;
-
-                section.innerHTML = `
-                    <div class="img-container">
-                        <img src="${n.imagen || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500'}" class="img-main">
-                        <div class="absolute top-2 left-2 flex gap-2">
-                            <span onclick="filtrar('${n.tema}')" class="cursor-pointer bg-black/70 text-[10px] px-2 py-1 rounded border border-white/30 uppercase font-bold">${n.tema}</span>
-                        </div>
+        function dibujar(lista) {
+            const c = document.getElementById('container');
+            c.innerHTML = '';
+            lista.forEach(n => {
+                const linkEs = `https://translate.google.com/translate?sl=auto&tl=es&u=${encodeURIComponent(n.link)}`;
+                const div = document.createElement('div');
+                div.className = "card";
+                div.innerHTML = `
+                    <div class="img-box" style="border-top: 4px solid ${colores[n.tema] || '#444'}">
+                        <img src="${n.imagen || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500'}" onerror="this.src='https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=500'">
+                        <span onclick="filtrar('${n.tema}')" class="absolute top-2 left-2 bg-black/80 text-[10px] px-2 py-1 rounded font-bold uppercase cursor-pointer">${n.tema}</span>
                     </div>
-                    <div class="content">
+                    <div class="info">
                         <div>
-                            <h2 class="text-lg font-black leading-tight line-clamp-3 mb-1 uppercase">${n.titulo}</h2>
-                            <p onclick="filtrarSub('${n.subtema}')" class="cursor-pointer text-white/80 text-[11px] font-mono italic underline">${n.subtema}</p>
+                            <h2 class="text-base font-bold leading-tight uppercase line-clamp-3">${n.titulo}</h2>
+                            <p onclick="filtrarSub('${n.subtema}')" class="text-blue-400 text-[10px] mt-1 font-mono cursor-pointer italic">${n.subtema}</p>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-[9px] text-white/60 font-bold">${n.fuente}</span>
-                            <a href="${linkTraducido}" target="_blank" class="bg-white text-black px-5 py-2 rounded-md font-black text-xs">ABRIR EN ESPAÑOL</a>
+                            <span class="text-[9px] text-gray-500 font-bold">${n.fuente}</span>
+                            <a href="${linkEs}" target="_blank" class="bg-white text-black px-4 py-2 rounded font-black text-[10px]">ABRIR EN ESPAÑOL</a>
                         </div>
                     </div>
                 `;
-                div.appendChild(section);
+                c.appendChild(div);
             });
         }
 
-        function filtrar(tema) { render(todasLasNoticias.filter(n => n.tema === tema)); document.getElementById('reset-btn').style.display = 'block'; window.scrollTo(0,0); }
-        function filtrarSub(sub) { render(todasLasNoticias.filter(n => n.subtema === sub)); document.getElementById('reset-btn').style.display = 'block'; window.scrollTo(0,0); }
-        function mostrarTodo() { render(todasLasNoticias); document.getElementById('reset-btn').style.display = 'none'; }
-        load();
+        function filtrar(t) { dibujar(noticias.filter(n => n.tema === t)); document.getElementById('reset-btn').style.display = 'block'; window.scrollTo(0,0); }
+        function filtrarSub(s) { dibujar(noticias.filter(n => n.subtema === s)); document.getElementById('reset-btn').style.display = 'block'; window.scrollTo(0,0); }
+        function mostrarTodo() { dibujar(noticias); document.getElementById('reset-btn').style.display = 'none'; }
+        iniciar();
     </script>
 </body>
 </html>
