@@ -5,95 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SCIENCE WORLD NEWS</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Roboto:wght@300;400;900&display=swap" rel="stylesheet">
     <style>
-        /* Estética de Periódico Moderno */
-        body { background: #ffffff; color: #000000; font-family: 'Roboto', sans-serif; }
-        h1 { font-family: 'Playfair Display', serif; letter-spacing: -1px; }
+        body { background: #ffffff; color: #000; font-family: 'Roboto', sans-serif; }
+        h1 { font-family: 'Playfair Display', serif; }
         
         .masonry-grid {
-            column-count: 1;
-            column-gap: 20px;
-            padding: 20px;
+            column-count: 1; column-gap: 20px; padding: 20px;
         }
         @media (min-width: 768px) { .masonry-grid { column-count: 2; } }
-        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } } /* 3 a 4 columnas máximo */
-        @media (min-width: 1440px) { .masonry-grid { column-count: 4; } }
+        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
 
         .news-card {
-            break-inside: avoid;
-            margin-bottom: 30px;
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            break-inside: avoid; margin-bottom: 25px;
+            border-radius: 12px; overflow: hidden;
+            transition: all 0.3s ease; border: 1px solid #ddd;
+            display: flex; flex-direction: column;
         }
-        .news-card:hover { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); transform: translateY(-2px); }
         
-        .headline { font-family: 'Roboto', sans-serif; font-weight: 900; line-height: 1.2; color: #000; }
-        .summary { font-family: 'Roboto', sans-serif; font-weight: 300; color: #4b5563; font-size: 1.05rem; }
+        .headline { font-weight: 900; line-height: 1.1; font-size: 1.6rem; color: #000; text-transform: uppercase; }
+        .summary-text { font-weight: 400; color: #333; font-size: 1rem; line-height: 1.4; }
         
-        .keyword-tag {
-            display: inline-block;
-            background: #f3f4f6;
-            color: #2563eb;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            margin-right: 5px;
-            margin-top: 5px;
-            cursor: pointer;
-        }
-        .keyword-tag:hover { background: #dbeafe; }
+        .label-box { font-size: 0.65rem; font-weight: 900; padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 5px; cursor: pointer; }
+        .keyword-tag { color: #2563eb; font-weight: bold; cursor: pointer; margin-right: 8px; font-size: 0.8rem; }
+        .keyword-tag:hover { text-decoration: underline; }
+
+        /* Colores pastel suaves para los fondos de las noticias */
+        .bg-color-1 { background-color: #f0f7ff; }
+        .bg-color-2 { background-color: #fff1f2; }
+        .bg-color-3 { background-color: #f0fdf4; }
+        .bg-color-4 { background-color: #fefce8; }
+        .bg-color-5 { background-color: #faf5ff; }
     </style>
 </head>
 <body>
-    <header class="py-10 border-b-4 border-black mb-8 mx-5">
-        <h1 class="text-5xl md:text-7xl text-center font-black">SCIENCE WORLD NEWS</h1>
-        <p class="text-center text-sm font-mono mt-2 uppercase tracking-widest text-gray-600">Edición Digital para Mentes Curiosas</p>
+    <header class="py-10 border-b-8 border-black mb-8 mx-5">
+        <h1 class="text-6xl text-center font-black uppercase italic">SCIENCE WORLD NEWS</h1>
+        <p class="text-center text-sm font-bold mt-2 uppercase tracking-widest text-gray-500">Edición Digital para Mentes Curiosas</p>
     </header>
 
-    <div id="filter-info" class="px-8 mb-4 hidden">
-        <button onclick="mostrarTodo()" class="text-blue-600 font-bold underline text-sm">← Ver todas las noticias</button>
+    <div id="filter-bar" class="px-8 mb-4 hidden flex justify-between items-center">
+        <span id="active-filter" class="font-bold text-blue-600 italic"></span>
+        <button onclick="reset()" class="bg-black text-white px-4 py-1 rounded-full text-xs">Mostrar todo</button>
     </div>
 
     <div id="container" class="masonry-grid"></div>
 
     <script>
-        let noticiasBase = [];
+        let rawData = [];
+        const bgClasses = ['bg-color-1', 'bg-color-2', 'bg-color-3', 'bg-color-4', 'bg-color-5'];
 
-        async function cargar() {
+        async function init() {
             try {
                 const r = await fetch('noticias.json');
-                noticiasBase = await r.json();
-                renderizar(noticiasBase.sort(() => Math.random() - 0.5));
-            } catch (e) { console.error("Error al conectar con la base de datos."); }
+                rawData = await r.json();
+                render(rawData.sort(() => Math.random() - 0.5));
+            } catch (e) { console.error("Error al cargar datos."); }
         }
 
-        function renderizar(data) {
+        function render(data) {
             const c = document.getElementById('container');
             c.innerHTML = '';
-            data.forEach(n => {
+            data.forEach((n, index) => {
+                const randomBg = bgClasses[index % bgClasses.length];
                 const div = document.createElement('div');
-                div.className = "news-card";
+                div.className = `news-card ${randomBg}`;
                 
-                // Generar tags aleatorios (simulados basados en el subtema)
-                const keywords = [n.subtema, n.tema.split(' ')[1], "Investigación"];
-                const tagsHtml = keywords.map(k => `<span class="keyword-tag" onclick="filtrar('${k}')">#${k}</span>`).join('');
+                // Limpiamos y preparamos palabras clave (Tags)
+                const tags = [n.subtema, "Descubrimiento", n.fuente.split(' ')[0]];
+                const tagsHtml = tags.map(t => `<span class="keyword-tag" onclick="filtrar('${t}')">#${t}</span>`).join('');
 
                 div.innerHTML = `
-                    <img src="${n.imagen || 'https://images.unsplash.com/photo-1518152006812-edab29b069ac?w=500'}" class="w-full h-auto">
+                    <div class="relative">
+                        <img src="${n.imagen || 'https://source.unsplash.com/featured/?science,technology&sig=' + index}" 
+                             class="w-full h-48 object-cover border-b border-black/10" 
+                             onerror="this.src='https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=500'">
+                    </div>
                     <div class="p-5">
-                        <h2 class="headline text-2xl mb-3 uppercase font-black">${n.titulo}</h2>
-                        <p class="summary mb-4 line-clamp-4">${n.resumen || 'Explora los detalles de este avance científico que está cambiando nuestra forma de entender el mundo actual.'}</p>
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="https://www.google.com/s2/favicons?domain=${n.link}&sz=32" class="w-4 h-4">
-                            <span class="text-[10px] font-bold text-gray-400 uppercase">${n.fuente}</span>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span onclick="filtrar('${n.tema}')" class="label-box bg-black text-white">ÁREA: ${n.tema}</span>
+                            <span onclick="filtrar('${n.subtema}')" class="label-box border border-black text-black">CATEGORÍA: ${n.subtema}</span>
                         </div>
-                        <div class="mb-5">${tagsHtml}</div>
-                        <button onclick="lanzarEureka('${n.link}')" class="w-full bg-black text-white py-3 font-black tracking-tighter hover:bg-blue-700 transition-colors">
+                        
+                        <h2 class="headline mb-3">${n.titulo}</h2>
+                        
+                        <p class="summary-text mb-4 italic">
+                            ${n.resumen || n.titulo + ". Un avance significativo reportado por " + n.fuente + " que expande las fronteras del conocimiento actual."}
+                        </p>
+
+                        <div class="flex items-center gap-2 mb-4 border-t border-black/5 pt-3">
+                            <img src="https://www.google.com/s2/favicons?domain=${n.link}&sz=32" class="w-4 h-4 grayscale">
+                            <span class="text-[9px] font-bold text-gray-500 uppercase tracking-tighter">${n.fuente}</span>
+                        </div>
+
+                        <div class="mb-5 flex flex-wrap italic">${tagsHtml}</div>
+                        
+                        <button onclick="go('${n.link}')" class="w-full border-2 border-black py-2 font-black hover:bg-black hover:text-white transition-all text-sm">
                             ¡EUREKA!
                         </button>
                     </div>
@@ -102,28 +109,28 @@
             });
         }
 
-        function lanzarEureka(url) {
-            if(confirm("¡Momento Eureka detectado!\n\n¿Quieres profundizar en esta investigación en su fuente original?")) {
+        function filtrar(val) {
+            const f = rawData.filter(n => 
+                n.tema.includes(val) || n.subtema.includes(val) || n.titulo.includes(val)
+            );
+            document.getElementById('filter-bar').classList.remove('hidden');
+            document.getElementById('active-filter').innerText = "Viendo: " + val;
+            render(f);
+            window.scrollTo(0,0);
+        }
+
+        function reset() {
+            document.getElementById('filter-bar').classList.add('hidden');
+            render(rawData);
+        }
+
+        function go(url) {
+            if(confirm("Tu curiosidad te ha llevado a un momento Eureka. ¿Deseas explorar la fuente completa?")) {
                 window.open(url, '_blank');
             }
         }
 
-        function filtrar(palabra) {
-            const filtradas = noticiasBase.filter(n => 
-                n.titulo.toLowerCase().includes(palabra.toLowerCase()) || 
-                n.subtema.toLowerCase().includes(palabra.toLowerCase())
-            );
-            document.getElementById('filter-info').classList.remove('hidden');
-            renderizar(filtradas);
-            window.scrollTo(0,0);
-        }
-
-        function mostrarTodo() {
-            document.getElementById('filter-info').classList.add('hidden');
-            renderizar(noticiasBase);
-        }
-
-        cargar();
+        init();
     </script>
 </body>
 </html>
