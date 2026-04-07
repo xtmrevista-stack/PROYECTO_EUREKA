@@ -3,24 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eureka - Filtros e Imágenes</title>
+    <title>Eureka - Vertical</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body, html { margin: 0; background: #000; color: white; font-family: sans-serif; }
-        .card { height: 50vh; border-bottom: 1px solid #333; position: relative; overflow: hidden; }
-        .img-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.4; z-index: 0; }
-        .content { position: relative; z-index: 10; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 1.5rem; background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); }
-        .filter-btn { cursor: pointer; transition: 0.3s; }
-        .filter-btn:hover { text-decoration: underline; color: #fff; }
+        body, html { margin: 0; background: #1a1a1a; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        /* Diseño Vertical: Cada noticia ocupa el 50% del alto para mostrar 2 por pantalla */
+        .card { height: 50vh; border-bottom: 2px solid rgba(255,255,255,0.1); position: relative; overflow: hidden; display: flex; flex-direction: column; }
+        .img-container { height: 40%; width: 100%; position: relative; background: #000; overflow: hidden; }
+        .img-main { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .content { height: 60%; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; }
         #reset-btn { position: fixed; bottom: 20px; right: 20px; z-index: 100; display: none; }
     </style>
 </head>
 <body>
-    <button id="reset-btn" onclick="mostrarTodo()" class="bg-red-600 text-white px-4 py-2 rounded-full font-bold shadow-lg">Ver todo de nuevo</button>
+    <button id="reset-btn" onclick="mostrarTodo()" class="bg-white text-black px-6 py-3 rounded-full font-bold shadow-2xl border-2 border-black">← Volver al Océano</button>
     <div id="container"></div>
 
     <script>
         let todasLasNoticias = [];
+
+        // Paleta de colores primarios en tonos profesionales
+        const coloresAreas = {
+            "CIENCIAS NATURALES": "#1e40af", // Azul fuerte
+            "CIENCIAS SOCIALES": "#b91c1c",  // Rojo profundo
+            "CIENCIAS FORMALES": "#15803d",  // Verde bosque
+            "HUMANIDADES": "#a16207",       // Amarillo/Dorado oscuro
+            "CIENCIAS APLICADAS": "#4338ca", // Azul/Violeta
+            "PSICOLOGÍA Y MENTE": "#be185d"  // Rosa/Rojo
+        };
 
         async function load() {
             const res = await fetch('noticias.json');
@@ -35,21 +45,28 @@
                 const section = document.createElement('div');
                 section.className = "card";
                 
-                // Si no hay imagen, ponemos un color oscuro aleatorio
-                const fallbackColor = ['#1e1b4b', '#164e63', '#4c1d95', '#701a75'][Math.floor(Math.random() * 4)];
-                section.style.backgroundColor = fallbackColor;
+                // Color de fondo basado en el área o negro por defecto
+                const colorBase = coloresAreas[n.tema] || "#262626";
+                section.style.backgroundColor = colorBase;
+
+                // TRUCO DE TRADUCCIÓN: Pasamos el link por Google Translate
+                const linkTraducido = `https://translate.google.com/translate?sl=auto&tl=es&u=${encodeURIComponent(n.link)}`;
 
                 section.innerHTML = `
-                    ${n.imagen ? `<img src="${n.imagen}" class="img-bg">` : ''}
+                    <div class="img-container">
+                        <img src="${n.imagen || 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=500'}" class="img-main" onerror="this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=500'">
+                        <div class="absolute top-2 left-2 flex gap-2">
+                            <span onclick="filtrar('${n.tema}')" class="cursor-pointer bg-black/70 text-[10px] px-2 py-1 rounded border border-white/30 uppercase font-bold text-white">${n.tema}</span>
+                        </div>
+                    </div>
                     <div class="content">
                         <div>
-                            <span onclick="filtrar('${n.tema}')" class="filter-btn bg-white/20 py-1 px-2 rounded text-[10px] font-bold uppercase tracking-tighter">${n.tema}</span>
-                            <span onclick="filtrarSub('${n.subtema}')" class="filter-btn text-blue-300 text-xs font-mono ml-2 italic">${n.subtema}</span>
+                            <h2 class="text-lg font-black leading-tight line-clamp-3 mb-1 uppercase">${n.titulo}</h2>
+                            <p onclick="filtrarSub('${n.subtema}')" class="cursor-pointer text-white/80 text-[11px] font-mono italic underline decoration-white/30">${n.subtema}</p>
                         </div>
-                        <h1 class="text-lg md:text-xl font-bold leading-tight mt-2 line-clamp-3">${n.titulo}</h1>
-                        <div class="flex justify-between items-end mt-4">
-                            <p class="text-white/50 text-[10px]">${n.fuente}</p>
-                            <a href="${n.link}" target="_blank" class="bg-white text-black px-4 py-2 rounded-lg font-black text-xs">ABRIR</a>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="text-[9px] text-white/60 font-bold">${n.fuente}</span>
+                            <a href="${linkTraducid}" target="_blank" class="bg-white text-black px-5 py-2 rounded-md font-black text-xs shadow-lg uppercase">Abrir en Español</a>
                         </div>
                     </div>
                 `;
@@ -57,6 +74,7 @@
             });
         }
 
+        // --- FUNCIONES DE FILTRADO ---
         function filtrar(tema) {
             const filtradas = todasLasNoticias.filter(n => n.tema === tema);
             render(filtradas);
