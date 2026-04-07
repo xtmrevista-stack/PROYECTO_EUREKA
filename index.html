@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eureka - Océano de Conocimiento</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body, html { margin: 0; height: 100%; overflow: hidden; background: #000; font-family: sans-serif; }
+        .feed { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scrollbar-width: none; }
+        .feed::-webkit-scrollbar { display: none; }
+        .card { height: 100vh; scroll-snap-align: start; display: flex; align-items: center; padding: 2rem; position: relative; }
+    </style>
+</head>
+<body>
+    <div id="container" class="feed"></div>
+
+    <script>
+        // Función para colores aleatorios vibrantes
+        function randomGradient() {
+            const colors = [
+                ['#1e3a8a', '#1e40af'], ['#312e81', '#3730a3'], ['#14532d', '#166534'],
+                ['#701a75', '#86198f'], ['#7c2d12', '#9a3412'], ['#064e3b', '#065f46'],
+                ['#1e1b4b', '#4338ca'], ['#4c1d95', '#6d28d9'], ['#831843', '#9d174d']
+            ];
+            const p = colors[Math.floor(Math.random() * colors.length)];
+            return `linear-gradient(135deg, ${p[0]} 0%, ${p[1]} 100%)`;
+        }
+
+        async function load() {
+            try {
+                const res = await fetch('noticias.json');
+                const news = await res.json();
+                const div = document.getElementById('container');
+
+                news.forEach(n => {
+                    const section = document.createElement('div');
+                    section.className = "card";
+                    section.style.background = randomGradient();
+                    section.innerHTML = `
+                        <div class="max-w-xl mx-auto w-full">
+                            <span class="bg-white/20 py-1 px-3 rounded-full text-xs font-bold uppercase tracking-widest text-white">${n.tema}</span>
+                            <p class="text-blue-200 text-sm font-mono mt-6">${n.subtema}</p>
+                            <h1 class="text-3xl md:text-5xl font-black text-white leading-tight mt-2">${n.titulo}</h1>
+                            <p class="text-white/60 text-xs mt-6">${n.fecha} | ${n.fuente}</p>
+                            <div class="mt-12">
+                                <a href="${n.link}" target="_blank" class="bg-white text-black px-10 py-5 rounded-2xl font-black text-lg shadow-2xl inline-block hover:scale-105 transition-transform active:scale-95">
+                                    ABRIR EUREKA
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                    div.appendChild(section);
+                });
+            } catch (e) {
+                document.getElementById('container').innerHTML = "<div class='p-10 text-white'>Cargando el océano de noticias... si tarda mucho, es que el robot aún está trabajando en el archivo.</div>";
+            }
+        }
+        load();
+    </script>
+</body>
+</html>
