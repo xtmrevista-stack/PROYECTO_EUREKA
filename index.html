@@ -3,61 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eureka - Océano Científico</title>
+    <title>Eureka - Panel Científico</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body, html { margin: 0; background: #121212; color: white; font-family: sans-serif; }
-        .card { height: 50vh; border-bottom: 1px solid #333; position: relative; overflow: hidden; display: flex; flex-direction: column; }
-        .img-box { height: 45%; width: 100%; background: #000; position: relative; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
-        .info { height: 55%; padding: 1.2rem; display: flex; flex-direction: column; justify-content: space-between; background: #1a1a1a; }
-        #reset-btn { position: fixed; bottom: 20px; right: 20px; z-index: 100; display: none; }
+        body { background: #0f0f0f; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        /* Lógica Pinterest */
+        .masonry-grid {
+            column-count: 2; /* Móvil */
+            column-gap: 12px;
+            padding: 12px;
+        }
+        @media (min-width: 768px) { .masonry-grid { column-count: 4; } }
+        @media (min-width: 1200px) { .masonry-grid { column-count: 6; } }
+
+        .news-card {
+            break-inside: avoid;
+            margin-bottom: 12px;
+            background: #1e1e1e;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .news-card:hover { transform: scale(1.02); }
+        .category-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 0.6rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            background: rgba(0,0,0,0.7);
+        }
+        .source-logo {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            display: inline-block;
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
-    <div id="status" class="p-10 text-center text-gray-400">Sincronizando con el océano de noticias...</div>
-    <button id="reset-btn" onclick="mostrarTodo()" class="bg-blue-600 text-white px-6 py-2 rounded-full font-bold shadow-lg">Ver todo</button>
-    <div id="container"></div>
+    <header class="p-6 text-center">
+        <h1 class="text-3xl font-black bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent italic">EUREKA</h1>
+        <p class="text-gray-500 text-xs mt-1">Explora el conocimiento aleatorio</p>
+    </header>
+
+    <div id="container" class="masonry-grid"></div>
 
     <script>
-        let noticias = [];
         const colores = {
-            "CIENCIAS NATURALES": "#1e40af", "CIENCIAS SOCIALES": "#b91c1c", 
-            "CIENCIAS FORMALES": "#15803d", "HUMANIDADES": "#a16207",
-            "CIENCIAS APLICADAS": "#4338ca"
+            "CIENCIAS NATURALES": "#4ade80", "CIENCIAS SOCIALES": "#f87171", 
+            "CIENCIAS FORMALES": "#60a5fa", "HUMANIDADES": "#fbbf24",
+            "CIENCIAS APLICADAS": "#a78bfa"
         };
 
-        async function iniciar() {
+        async function cargarNoticias() {
             try {
                 const r = await fetch('noticias.json');
-                noticias = await r.json();
-                document.getElementById('status').style.display = 'none';
-                dibujar(noticias);
-            } catch (e) {
-                document.getElementById('status').innerHTML = "El robot está recolectando noticias nuevas. Refresca en 2 minutos.";
-            }
+                let datos = await r.json();
+                // Lógica TikTok: Mezclar noticias aleatoriamente
+                datos = datos.sort(() => Math.random() - 0.5);
+                dibujar(datos);
+            } catch (e) { console.error("Error cargando el océano de noticias"); }
+        }
+
+        function abrirNoticia(url) {
+            const confirmar = confirm("Estás por abrir un sitio externo.\n\nTip: Si el sitio está en inglés, haz clic derecho en cualquier parte de la página y selecciona 'Traducir a español'.\n\n¿Deseas continuar?");
+            if (confirmar) window.open(url, '_blank');
         }
 
         function dibujar(lista) {
             const c = document.getElementById('container');
             c.innerHTML = '';
             lista.forEach(n => {
-                const linkEs = `https://translate.google.com/translate?sl=auto&tl=es&u=${encodeURIComponent(n.link)}`;
                 const div = document.createElement('div');
-                div.className = "card";
+                div.className = "news-card";
+                div.onclick = () => abrirNoticia(n.link);
                 div.innerHTML = `
-                    <div class="img-box" style="border-top: 4px solid ${colores[n.tema] || '#444'}">
-                        <img src="${n.imagen || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500'}" onerror="this.src='https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=500'">
-                        <span onclick="filtrar('${n.tema}')" class="absolute top-2 left-2 bg-black/80 text-[10px] px-2 py-1 rounded font-bold uppercase cursor-pointer">${n.tema}</span>
-                    </div>
-                    <div class="info">
-                        <div>
-                            <h2 class="text-base font-bold leading-tight uppercase line-clamp-3">${n.titulo}</h2>
-                            <p onclick="filtrarSub('${n.subtema}')" class="text-blue-400 text-[10px] mt-1 font-mono cursor-pointer italic">${n.subtema}</p>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-[9px] text-gray-500 font-bold">${n.fuente}</span>
-                            <a href="${linkEs}" target="_blank" class="bg-white text-black px-4 py-2 rounded font-black text-[10px]">ABRIR EN ESPAÑOL</a>
+                    <div class="category-tag" style="color: ${colores[n.tema] || '#fff'}">${n.tema}</div>
+                    <img src="${n.imagen || 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400'}" class="w-full h-auto block opacity-80">
+                    <div class="p-3">
+                        <h2 class="text-xs font-bold leading-tight line-clamp-3 mb-2">${n.titulo}</h2>
+                        <div class="flex items-center text-[9px] text-gray-400 font-mono">
+                            <img src="https://www.google.com/s2/favicons?domain=${n.link}&sz=32" class="source-logo" onerror="this.style.display='none'">
+                            <span>${n.fuente}</span>
                         </div>
                     </div>
                 `;
@@ -65,10 +100,7 @@
             });
         }
 
-        function filtrar(t) { dibujar(noticias.filter(n => n.tema === t)); document.getElementById('reset-btn').style.display = 'block'; window.scrollTo(0,0); }
-        function filtrarSub(s) { dibujar(noticias.filter(n => n.subtema === s)); document.getElementById('reset-btn').style.display = 'block'; window.scrollTo(0,0); }
-        function mostrarTodo() { dibujar(noticias); document.getElementById('reset-btn').style.display = 'none'; }
-        iniciar();
+        cargarNoticias();
     </script>
 </body>
 </html>
