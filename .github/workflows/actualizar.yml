@@ -1,0 +1,34 @@
+name: Actualizar Océano de Noticias
+
+on:
+  schedule:
+    # Se ejecuta cada 24 horas para mantener el feed fresco
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Esto permite que tú lo actives manualmente cuando quieras
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Instalar herramientas necesarias
+        run: |
+          pip install feedparser googletrans==4.0.0-rc1
+
+      - name: Ejecutar el Buscador de Noticias
+        run: python generador_noticias.py
+
+      - name: Guardar cambios automáticamente
+        run: |
+          git config --global user.name 'Robot-Eureka'
+          git config --global user.email 'robot@eureka.com'
+          git add noticias.json
+          git commit -m "Actualización automática del océano de noticias" || exit 0
+          git push
