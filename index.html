@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SCIENCE WORLD NEWS</title>
+    <title>SCIENCE WORLD NEWS - Cerebro Clasificador</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Roboto:wght@300;400;900&display=swap" rel="stylesheet">
     <style>
@@ -11,126 +11,148 @@
         h1 { font-family: 'Playfair Display', serif; }
         
         .masonry-grid {
-            column-count: 1; column-gap: 20px; padding: 20px;
+            column-count: 1; column-gap: 24px; padding: 20px;
         }
         @media (min-width: 768px) { .masonry-grid { column-count: 2; } }
-        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+        @media (min-width: 1200px) { .masonry-grid { column-count: 3; } }
 
         .news-card {
-            break-inside: avoid; margin-bottom: 25px;
-            border-radius: 12px; overflow: hidden;
-            transition: all 0.3s ease; border: 1px solid #ddd;
+            break-inside: avoid; margin-bottom: 30px;
+            border-radius: 16px; overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid #000;
             display: flex; flex-direction: column;
+            background: #fff;
         }
+        .news-card:hover { transform: translateY(-8px); box-shadow: 10px 10px 0px #000; }
         
-        .headline { font-weight: 900; line-height: 1.1; font-size: 1.6rem; color: #000; text-transform: uppercase; }
-        .summary-text { font-weight: 400; color: #333; font-size: 1rem; line-height: 1.4; }
+        .headline { font-weight: 900; line-height: 1.1; font-size: 1.7rem; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 10px; }
+        .summary-text { font-weight: 300; color: #222; font-size: 1.1rem; line-height: 1.5; }
         
-        .label-box { font-size: 0.65rem; font-weight: 900; padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 5px; cursor: pointer; }
-        .keyword-tag { color: #2563eb; font-weight: bold; cursor: pointer; margin-right: 8px; font-size: 0.8rem; }
-        .keyword-tag:hover { text-decoration: underline; }
+        .badge { font-size: 0.7rem; font-weight: 900; padding: 4px 10px; border-radius: 99px; cursor: pointer; border: 1px solid #000; }
+        .tag { color: #2563eb; font-weight: bold; cursor: pointer; font-size: 0.85rem; background: #eff6ff; padding: 2px 6px; border-radius: 4px; }
 
-        /* Colores pastel suaves para los fondos de las noticias */
-        .bg-color-1 { background-color: #f0f7ff; }
-        .bg-color-2 { background-color: #fff1f2; }
-        .bg-color-3 { background-color: #f0fdf4; }
-        .bg-color-4 { background-color: #fefce8; }
-        .bg-color-5 { background-color: #faf5ff; }
+        /* Colores según tu Mapa Maestro */
+        .cat-naturales { background: #dcfce7; } /* Verde */
+        .cat-formales { background: #dbeafe; }  /* Azul */
+        .cat-sociales { background: #fee2e2; }  /* Rojo */
+        .cat-humanidades { background: #fefce8; } /* Amarillo */
+        .cat-aplicadas { background: #f3e8ff; }  /* Púrpura */
     </style>
 </head>
 <body>
-    <header class="py-10 border-b-8 border-black mb-8 mx-5">
-        <h1 class="text-6xl text-center font-black uppercase italic">SCIENCE WORLD NEWS</h1>
-        <p class="text-center text-sm font-bold mt-2 uppercase tracking-widest text-gray-500">Edición Digital para Mentes Curiosas</p>
+    <header class="py-12 border-b-[12px] border-black mb-10 mx-5 text-center">
+        <h1 class="text-6xl md:text-8xl font-black uppercase italic tracking-tighter">SCIENCE WORLD NEWS</h1>
+        <div class="flex justify-center gap-4 mt-4">
+            <span class="font-black text-xs bg-black text-white px-3 py-1">INTELIGENCIA ARTIFICIAL</span>
+            <span class="font-black text-xs border-2 border-black px-3 py-1">CLASIFICACIÓN SEMÁNTICA</span>
+        </div>
     </header>
 
-    <div id="filter-bar" class="px-8 mb-4 hidden flex justify-between items-center">
-        <span id="active-filter" class="font-bold text-blue-600 italic"></span>
-        <button onclick="reset()" class="bg-black text-white px-4 py-1 rounded-full text-xs">Mostrar todo</button>
+    <div id="filter-display" class="px-8 mb-6 hidden flex items-center gap-4">
+        <span class="text-sm font-bold uppercase">Filtrado por:</span>
+        <span id="tag-name" class="bg-blue-600 text-white px-4 py-1 rounded-full text-xs font-black"></span>
+        <button onclick="limpiarFiltros()" class="text-xs underline font-bold">Ver todo el Océano</button>
     </div>
 
     <div id="container" class="masonry-grid"></div>
 
     <script>
-        let rawData = [];
-        const bgClasses = ['bg-color-1', 'bg-color-2', 'bg-color-3', 'bg-color-4', 'bg-color-5'];
+        let noticiasRaw = [];
 
-        async function init() {
+        async function iniciarCerebro() {
             try {
-                const r = await fetch('noticias.json');
-                rawData = await r.json();
-                render(rawData.sort(() => Math.random() - 0.5));
-            } catch (e) { console.error("Error al cargar datos."); }
+                // El archivo 'noticias.json' es el que genera tu script de Python
+                const respuesta = await fetch('noticias.json');
+                noticiasRaw = await respuesta.json();
+                renderizar(noticiasRaw.sort(() => Math.random() - 0.5));
+            } catch (e) {
+                document.getElementById('container').innerHTML = "<p class='text-center p-20 font-bold'>Sincronizando el Cerebro Clasificador... Vuelve en un momento.</p>";
+            }
         }
 
-        function render(data) {
-            const c = document.getElementById('container');
-            c.innerHTML = '';
-            data.forEach((n, index) => {
-                const randomBg = bgClasses[index % bgClasses.length];
-                const div = document.createElement('div');
-                div.className = `news-card ${randomBg}`;
+        function renderizar(data) {
+            const contenedor = document.getElementById('container');
+            contenedor.innerHTML = '';
+            
+            data.forEach((n, i) => {
+                const card = document.createElement('div');
                 
-                // Limpiamos y preparamos palabras clave (Tags)
-                const tags = [n.subtema, "Descubrimiento", n.fuente.split(' ')[0]];
-                const tagsHtml = tags.map(t => `<span class="keyword-tag" onclick="filtrar('${t}')">#${t}</span>`).join('');
+                // Lógica de color según la macro-categoría de tu mapa maestro
+                let claseColor = "bg-white";
+                if(n.categorias && n.categorias[0]) {
+                    if(n.categorias[0].includes("Naturales")) claseColor = "cat-naturales";
+                    if(n.categorias[0].includes("Formales")) claseColor = "cat-formales";
+                    if(n.categorias[0].includes("Sociales")) claseColor = "cat-sociales";
+                    if(n.categorias[0].includes("Humanidades")) claseColor = "cat-humanidades";
+                    if(n.categorias[0].includes("Aplicadas")) claseColor = "cat-aplicadas";
+                }
 
-                div.innerHTML = `
-                    <div class="relative">
-                        <img src="${n.imagen || 'https://source.unsplash.com/featured/?science,technology&sig=' + index}" 
-                             class="w-full h-48 object-cover border-b border-black/10" 
-                             onerror="this.src='https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=500'">
+                card.className = `news-card ${claseColor}`;
+                
+                // Procesar entidades (las organizaciones que detecta tu script)
+                const entidadesHtml = (n.entidades || []).slice(0, 3).map(ent => 
+                    `<span class="tag" onclick="filtrar('${ent}')">#${ent.split(' ')[0]}</span>`
+                ).join(' ');
+
+                card.innerHTML = `
+                    <div class="relative group">
+                        <img src="${n.imagen || 'https://source.unsplash.com/featured/?science,research&sig=' + i}" 
+                             class="w-full h-56 object-cover grayscale hover:grayscale-0 transition-all duration-500">
                     </div>
-                    <div class="p-5">
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            <span onclick="filtrar('${n.tema}')" class="label-box bg-black text-white">ÁREA: ${n.tema}</span>
-                            <span onclick="filtrar('${n.subtema}')" class="label-box border border-black text-black">CATEGORÍA: ${n.subtema}</span>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="badge bg-black text-white" onclick="filtrar('${n.categorias[0]}')">
+                                ${n.categorias[0] || 'GENERAL'}
+                            </span>
                         </div>
                         
-                        <h2 class="headline mb-3">${n.titulo}</h2>
+                        <h2 class="headline mb-4">${n.titulo}</h2>
                         
-                        <p class="summary-text mb-4 italic">
-                            ${n.resumen || n.titulo + ". Un avance significativo reportado por " + n.fuente + " que expande las fronteras del conocimiento actual."}
+                        <p class="summary-text mb-6">
+                            ${n.resumen || "Análisis científico profundo detectado por nuestro sistema de procesamiento de lenguaje natural."}
                         </p>
 
-                        <div class="flex items-center gap-2 mb-4 border-t border-black/5 pt-3">
-                            <img src="https://www.google.com/s2/favicons?domain=${n.link}&sz=32" class="w-4 h-4 grayscale">
-                            <span class="text-[9px] font-bold text-gray-500 uppercase tracking-tighter">${n.fuente}</span>
-                        </div>
+                        <div class="flex flex-wrap gap-2 mb-6">${entidadesHtml}</div>
 
-                        <div class="mb-5 flex flex-wrap italic">${tagsHtml}</div>
-                        
-                        <button onclick="go('${n.link}')" class="w-full border-2 border-black py-2 font-black hover:bg-black hover:text-white transition-all text-sm">
-                            ¡EUREKA!
-                        </button>
+                        <div class="flex justify-between items-center border-t-2 border-black pt-4">
+                            <div class="flex items-center gap-2">
+                                <img src="https://www.google.com/s2/favicons?domain=${n.link}&sz=32" class="w-4 h-4">
+                                <span class="text-[10px] font-black uppercase tracking-widest">${n.fuente || 'Fuente Académica'}</span>
+                            </div>
+                            <button onclick="eureka('${n.link}')" class="bg-black text-white px-6 py-2 font-black text-xs hover:bg-blue-700 transition-colors">
+                                ¡EUREKA!
+                            </button>
+                        </div>
                     </div>
                 `;
-                c.appendChild(div);
+                contenedor.appendChild(card);
             });
         }
 
-        function filtrar(val) {
-            const f = rawData.filter(n => 
-                n.tema.includes(val) || n.subtema.includes(val) || n.titulo.includes(val)
+        function filtrar(termino) {
+            const terminoLimpio = termino.split(' (')[0]; // Quita el (ORG) o (LOC) del NLP
+            const filtradas = noticiasRaw.filter(n => 
+                JSON.stringify(n).toLowerCase().includes(terminoLimpio.toLowerCase())
             );
-            document.getElementById('filter-bar').classList.remove('hidden');
-            document.getElementById('active-filter').innerText = "Viendo: " + val;
-            render(f);
+            document.getElementById('filter-display').classList.remove('hidden');
+            document.getElementById('tag-name').innerText = terminoLimpio;
+            renderizar(filtradas);
             window.scrollTo(0,0);
         }
 
-        function reset() {
-            document.getElementById('filter-bar').classList.add('hidden');
-            render(rawData);
+        function limpiarFiltros() {
+            document.getElementById('filter-display').classList.add('hidden');
+            renderizar(noticiasRaw);
         }
 
-        function go(url) {
-            if(confirm("Tu curiosidad te ha llevado a un momento Eureka. ¿Deseas explorar la fuente completa?")) {
+        function eureka(url) {
+            if(confirm("Tu curiosidad académica te ha llevado a un momento Eureka. ¿Deseas profundizar en la fuente original?")) {
                 window.open(url, '_blank');
             }
         }
 
-        init();
+        iniciarCerebro();
     </script>
 </body>
 </html>
