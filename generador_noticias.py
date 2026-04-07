@@ -5,46 +5,45 @@ import urllib.parse
 from datetime import datetime
 from googletrans import Translator
 
-# TAXONOMÍA COMPLETA (Basada en Outline of Academic Disciplines)
-DICCIONARIO_MAESTRO = {
-    "HUMANIDADES": ["Artes visuales", "Literatura", "Filosofía", "Religión", "Musicología", "Teatro", "Lingüística", "Ética"],
-    "CIENCIAS SOCIALES": ["Antropología", "Arqueología", "Economía", "Geografía", "Ciencia política", "Psicología", "Sociología", "Psicoanálisis", "Derecho", "Etnología"],
-    "CIENCIAS NATURALES": ["Astronomía", "Biología", "Química", "Ciencias de la Tierra", "Física", "Ecología", "Oceanografía", "Paleontología"],
-    "CIENCIAS FORMALES": ["Lógica", "Matemáticas", "Estadística", "Ciencia de la computación", "Teoría de sistemas", "Teoría de juegos"],
-    "CIENCIAS APLICADAS": ["Agricultura", "Arquitectura", "Diseño", "Educación", "Ingeniería", "Medicina", "Oncología", "Farmacología", "Nanotecnología", "Robótica", "Inteligencia Artificial", "Ciberseguridad"]
+# TAXONOMÍA MASIVA (Basada en Outline of Academic Disciplines)
+MAPA_MAESTRO = {
+    "HUMANIDADES": ["Literature", "Philosophy", "Ethics", "Religion", "Art History", "Musicology", "Linguistics", "Philology"],
+    "CIENCIAS SOCIALES": ["Anthropology", "Archaeology", "Economics", "Geography", "Political Science", "Psychology", "Sociology", "Psychoanalysis", "Law", "Ethnology", "Demography"],
+    "CIENCIAS NATURALES": ["Astronomy", "Biology", "Chemistry", "Earth Sciences", "Physics", "Ecology", "Oceanography", "Paleontology", "Genetics", "Botany", "Zoology"],
+    "CIENCIAS FORMALES": ["Logic", "Mathematics", "Statistics", "Theoretical Computer Science", "Systems Theory", "Game Theory", "Topology", "Number Theory"],
+    "CIENCIAS APLICADAS": ["Agriculture", "Architecture", "Engineering", "Medicine", "Oncology", "Pharmacology", "Nanotechnology", "Robotics", "Artificial Intelligence", "Cybersecurity", "Econophysics", "Bionics"]
 }
 
-def traducir_texto(texto):
+def traducir(texto):
     try:
         translator = Translator()
         return translator.translate(texto, dest='es').text
     except: return texto
 
-def ejecutar_oceano_eureka():
+def ejecutar_oceano():
     biblioteca = []
-    # Fecha exacta: Lunes 06 de Abril de 2026
+    ahora = datetime.now()
+    # Formato: Lunes 06 de Abril de 2026
     dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
     meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
-    ahora = datetime.now()
     fecha_hoy = f"{dias[ahora.weekday()]} {ahora.day:02d} de {meses[ahora.month-1]} de {ahora.year}"
 
-    # Recorremos cada disciplina para asegurar volumen masivo
-    todas_las_ramas = [(cat, sub) for cat, subs in DICCIONARIO_MAESTRO.items() for sub in subs]
+    todas = [(cat, sub) for cat, subs in MAPA_MAESTRO.items() for sub in subs]
     
-    for categoria, disciplina in todas_las_ramas:
-        query = urllib.parse.quote(f'"{disciplina}" research discovery')
+    # Buscamos en todas las subcategorías (esto genera cientos de noticias)
+    for cat, sub in todas:
+        query = urllib.parse.quote(f'"{sub}" university research breakthrough')
         url = f"https://news.google.com/rss/search?q={query}&hl=en-US&gl=US&ceid=US:en"
-        
         try:
             feed = feedparser.parse(url)
-            for entrada in feed.entries[:8]: # 8 noticias por disciplina = Miles de noticias
+            for entrada in feed.entries[:10]: # 10 por tema para volumen masivo
                 biblioteca.append({
-                    "tema": categoria,
-                    "subtema": disciplina.upper(),
+                    "tema": cat,
+                    "subtema": sub.upper(),
                     "fecha": fecha_hoy,
-                    "titulo": traducir_texto(entrada.title),
-                    "fuente": entrada.source.get('title', 'Global Research'),
-                    "link": entrada.link
+                    "titulo": traducir(entrada.title),
+                    "link": entrada.link,
+                    "fuente": entrada.source.get('title', 'Global Research')
                 })
         except: continue
 
@@ -53,4 +52,4 @@ def ejecutar_oceano_eureka():
         json.dump(biblioteca, f, indent=4, ensure_ascii=False)
 
 if __name__ == "__main__":
-    ejecutar_oceano_eureka()
+    ejecutar_oceano()
