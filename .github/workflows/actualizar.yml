@@ -1,27 +1,33 @@
 name: Actualización SWN
 on:
   schedule:
-    - cron: '0 12 * * *'
-  workflow_dispatch:
+    - cron: '0 12 * * *' # Se ejecuta automáticamente cada mediodía
+  workflow_dispatch: # Esto te permite picar el botón de "Run workflow" manualmente
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Descargando el repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurando Python 3.10
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      - name: Instalar dependencias
+
+      - name: Instalando todas las librerías necesarias
         run: |
           pip install feedparser googletrans==4.0.0-rc1 spacy requests
           python -m spacy download es_core_news_lg
-      - name: Ejecutar Cerebro
+
+      - name: Ejecutando el Cerebro Maestro
         run: python generador_noticias.py
-      - name: Subir cambios
+
+      - name: Guardando y subiendo noticias.json a GitHub
         run: |
           git config --global user.name "Cerebro SWN"
           git config --global user.email "swn@github.com"
           git add noticias.json
-          git commit -m "Actualización masiva de Tesauros" || echo "No hay cambios"
+          git commit -m "Sincronización de Tesauros y Noticias" || echo "Sin cambios"
           git push
