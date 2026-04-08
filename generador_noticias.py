@@ -26,10 +26,10 @@ def obtener_tesauro_universal():
     url = "https://query.wikidata.org/sparql"
     query = """
     SELECT ?itemLabel WHERE {
-      { ?item wdt:P31/wdt:P279* wd:Q193627. } UNION # Áreas UNESCO / ArXiv
-      { ?item wdt:P31 wd:Q11344. } UNION           # Elementos Químicos (Tabla Periódica)
+      { ?item wdt:P31/wdt:P279* wd:Q193627. } UNION # Áreas UNESCO
+      { ?item wdt:P31 wd:Q11344. } UNION           # Elementos Químicos
       { ?item wdt:P31 wd:Q11173. } UNION           # Compuestos Químicos
-      { ?item wdt:P31/wdt:P279* wd:Q41630. } UNION # Psicoanálisis (Lacan/Freud)
+      { ?item wdt:P31/wdt:P279* wd:Q41630. } UNION # Psicoanálisis
       { ?item wdt:P31/wdt:P279* wd:Q8134. } UNION  # Economía
       { ?item wdt:P31/wdt:P279* wd:Q12136. }       # Salud (PubMed)
       SERVICE wikibase:label { bd:serviceParam wikibase:language "es". }
@@ -39,12 +39,11 @@ def obtener_tesauro_universal():
         r = requests.get(url, params={'format': 'json', 'query': query}, timeout=20)
         return set(row['itemLabel']['value'].lower() for row in r.json()['results']['bindings'])
     except:
-        return {"química", "psicoanálisis", "goce", "economía", "puzolana", "antropología"}
+        return {"química", "psicoanálisis", "goce", "economía", "antropología", "nitruro"}
 
 TESAURO = obtener_tesauro_universal()
 
 def ejecutar_cerebro():
-    # Usamos urllib.parse para asegurar que las URLs sean válidas
     fuentes = [
         "https://rss.sciencedaily.com/top.xml", 
         "https://arxiv.org/rss/econ",
@@ -53,13 +52,12 @@ def ejecutar_cerebro():
     
     noticias_finales = []
     for url_raw in fuentes:
+        # Uso de urllib.parse para seguridad de la URL
         url = urllib.parse.quote(url_raw, safe=':/?=')
         feed = feedparser.parse(url)
         
-        # Seleccionamos una muestra aleatoria si hay muchas noticias
-        entradas = feed.entries
-        if len(entradas) > 10:
-            entradas = random.sample(entradas, 10)
+        # Selección aleatoria para dinamismo
+        entradas = random.sample(feed.entries, min(len(feed.entries), 12))
 
         for entry in entradas:
             try:
@@ -69,24 +67,23 @@ def ejecutar_cerebro():
             
             doc = nlp(texto_es.lower())
             
-            # Usamos Counter para medir la densidad de conceptos científicos
-            conteo_conceptos = Counter([t.text for t in doc if t.text in TESAURO or t.lemma_ in TESAURO])
-            
-            # Filtro de Pseudociencia
+            # Counter para identificar conceptos del tesauro
+            conteo = Counter([t.text for t in doc if t.text in TESAURO or t.lemma_ in TESAURO])
             es_basura = any(t.text in PSEUDOCIENCIA for t in doc)
             
-            if conteo_conceptos and not es_basura:
+            if conteo and not es_basura:
                 noticias_finales.append({
                     "titulo": texto_es,
-                    "resumen": entry.summary[:250] + "..." if 'summary' in entry else "",
+                    "resumen": entry.summary[:200] + "..." if 'summary' in entry else "",
                     "fecha": datetime.now().year,
-                    "conceptos": [c[0] for c in conteo_conceptos.most_common(4)],
+                    "conceptos": [c[0] for c in conteo.most_common(4)],
                     "link": entry.link
                 })
     
+    # Escritura del archivo para GitHub
     with open('noticias.json', 'w', encoding='utf-8') as f:
         json.dump(noticias_finales, f, ensure_ascii=False, indent=4)
-    print(f"✅ Cerebro sincronizado: {len(noticias_finales)} noticias validadas.")
+    print(f"✅ Éxito: {len(noticias_finales)} hallazgos científicos procesados.")
 
 if __name__ == "__main__":
     ejecutar_cerebro()
