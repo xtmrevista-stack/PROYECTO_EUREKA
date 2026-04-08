@@ -2,21 +2,19 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>SCIENCE WORLD NEWS - Interfaz Maestra</title>
+    <title>SCIENCE WORLD NEWS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Roboto:wght@300;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Roboto', sans-serif; background: #fff; }
-        .masonry { column-count: 1; column-gap: 20px; padding: 20px; }
-        @media (min-width: 768px) { .masonry { column-count: 3; } }
         .card { break-inside: avoid; margin-bottom: 25px; border: 4px solid #000; transition: 0.3s; background: #fff; }
-        .card:hover { transform: translate(-8px, -8px); box-shadow: 12px 12px 0px #000; cursor: pointer; }
-        input[type=range] { accent-color: #000; }
+        .card:hover { transform: translate(-8px, -8px); box-shadow: 12px 12px 0px #000; }
+        input[type=range] { accent-color: #000; cursor: pointer; }
     </style>
 </head>
 <body>
     <header class="py-12 border-b-[12px] border-black text-center mx-6">
-        <h1 class="text-7xl font-black italic tracking-tighter" style="font-family:'Playfair Display'">SCIENCE WORLD NEWS</h1>
+        <h1 class="text-6xl md:text-8xl font-black italic tracking-tighter" style="font-family:'Playfair Display'">SCIENCE WORLD NEWS</h1>
         <p class="font-bold text-[10px] tracking-[0.5em] mt-4 uppercase">Archivo Científico e Histórico 1980 — 2026</p>
     </header>
 
@@ -24,28 +22,28 @@
         <div class="bg-white border-4 border-black p-8 grid grid-cols-1 md:grid-cols-2 gap-10 shadow-[8px_8px_0px_#000]">
             <div>
                 <label class="block text-[10px] font-black uppercase mb-2">Buscador Universal</label>
-                <input type="text" id="search" onkeyup="filtrar()" placeholder="Goce, Nitruro, Tasa de Ganancia..." class="w-full p-4 border-2 border-black font-bold outline-none focus:bg-blue-50">
+                <input type="text" id="search" onkeyup="filtrar()" placeholder="Goce, Nitruro, Tasa de Ganancia..." class="w-full p-4 border-2 border-black font-bold outline-none focus:bg-yellow-50">
             </div>
             <div>
                 <label class="block text-[10px] font-black uppercase mb-2">Línea de Tiempo: <span id="year-label" class="text-blue-600">2026</span></label>
-                <input type="range" id="slider" min="1980" max="2026" value="2026" oninput="filtrar()" class="w-full h-4 bg-gray-200 rounded-lg appearance-none">
+                <input type="range" id="slider" min="1980" max="2026" value="2026" oninput="filtrar()" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
                 <div class="flex justify-between font-black text-[9px] mt-2"><span>1980</span><span>2003</span><span>2026</span></div>
             </div>
         </div>
     </div>
 
-    <main id="galeria" class="masonry max-w-7xl mx-auto"></main>
+    <main id="galeria" class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto px-6"></main>
 
     <script>
         let db = [];
-
         async function iniciar() {
             try {
-                const r = await fetch('noticias.json');
+                // Forzamos la descarga del JSON más reciente para evitar el mensaje de "Sincronizando"
+                const r = await fetch('noticias.json?nocache=' + new Date().getTime());
                 db = await r.json();
                 renderizar(db);
             } catch(e) {
-                document.getElementById('galeria').innerHTML = "<p class='text-center py-20 font-black italic'>Sincronizando el Cerebro...</p>";
+                document.getElementById('galeria').innerHTML = "<p class='col-span-3 text-center py-20 font-black italic'>Sincronizando el Cerebro Maestro... Vuelve en un momento.</p>";
             }
         }
 
@@ -53,10 +51,7 @@
             const q = document.getElementById('search').value.toLowerCase();
             const y = document.getElementById('slider').value;
             document.getElementById('year-label').innerText = y;
-
-            const res = db.filter(n => 
-                (JSON.stringify(n).toLowerCase().includes(q)) && (n.fecha <= y)
-            );
+            const res = db.filter(n => (JSON.stringify(n).toLowerCase().includes(q)) && (n.fecha <= y));
             renderizar(res);
         }
 
@@ -68,11 +63,10 @@
                 div.className = "card p-6";
                 div.innerHTML = `
                     <div class="flex justify-between font-black text-[9px] mb-4 border-b border-black/10 pb-2">
-                        <span class="bg-black text-white px-2 py-1 uppercase">Hallazgo Confirmado</span>
+                        <span class="bg-black text-white px-2 py-1 uppercase italic">Hallazgo</span>
                         <span class="italic underline text-sm">${n.fecha}</span>
                     </div>
                     <h2 class="text-2xl font-black uppercase leading-none mb-4">${n.titulo}</h2>
-                    <p class="text-sm leading-tight mb-6 font-light">${n.resumen.substring(0, 150)}...</p>
                     <div class="flex flex-wrap gap-2 mb-6">
                         ${n.conceptos.map(c => `<span class="text-[9px] font-bold border-2 border-black px-2">#${c}</span>`).join('')}
                     </div>
