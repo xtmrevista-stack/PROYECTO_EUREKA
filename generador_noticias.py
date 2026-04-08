@@ -8,7 +8,7 @@ from datetime import datetime
 from googletrans import Translator
 from collections import Counter
 
-# Inicialización de IA y Traducción
+# Inicialización de IA
 try:
     nlp = spacy.load("es_core_news_lg")
 except:
@@ -18,68 +18,55 @@ except:
 
 translator = Translator()
 
-# FILTROS DE SEGURIDAD (Ignorar Pseudociencia)
+# Filtros
 PSEUDOCIENCIA = ["horóscopo", "astrología", "zodiaco", "mágico", "milagroso", "tarot"]
 
-def obtener_tesauro_universal():
-    """Consulta Wikidata para traer miles de términos de todas las áreas por igual"""
+def obtener_tesauro():
     url = "https://query.wikidata.org/sparql"
     query = """
     SELECT ?itemLabel WHERE {
       { ?item wdt:P31/wdt:P279* wd:Q193627. } UNION 
       { ?item wdt:P31 wd:Q11344. } UNION           
-      { ?item wdt:P31 wd:Q11173. } UNION           
       { ?item wdt:P31/wdt:P279* wd:Q41630. } UNION 
-      { ?item wdt:P31/wdt:P279* wd:Q8134. } UNION  
-      { ?item wdt:P31/wdt:P279* wd:Q12136. }       
+      { ?item wdt:P31/wdt:P279* wd:Q8134. } 
       SERVICE wikibase:label { bd:serviceParam wikibase:language "es". }
-    } LIMIT 10000
+    } LIMIT 8000
     """
     try:
         r = requests.get(url, params={'format': 'json', 'query': query}, timeout=20)
         return set(row['itemLabel']['value'].lower() for row in r.json()['results']['bindings'])
     except:
-        return {"química", "psicoanálisis", "goce", "economía", "antropología", "nitruro"}
+        return {"química", "psicoanálisis", "goce", "economía", "puzolana"}
 
-TESAURO = obtener_tesauro_universal()
+TESAURO = obtener_tesauro()
 
-def ejecutar_cerebro():
-    fuentes = [
-        "https://rss.sciencedaily.com/top.xml", 
-        "https://arxiv.org/rss/econ",
-        "https://arxiv.org/rss/physics"
-    ]
+def ejecutar():
+    fuentes = ["https://rss.sciencedaily.com/top.xml", "https://arxiv.org/rss/econ"]
+    noticias = []
     
-    noticias_finales = []
-    for url_raw in fuentes:
-        url = urllib.parse.quote(url_raw, safe=':/?=')
-        feed = feedparser.parse(url)
-        entradas = random.sample(feed.entries, min(len(feed.entries), 15))
-
-        for entry in entradas:
+    for f in fuentes:
+        feed = feedparser.parse(f)
+        for e in random.sample(feed.entries, min(len(feed.entries), 10)):
             try:
-                texto_es = translator.translate(entry.title, dest='es').text
+                titulo = translator.translate(e.title, dest='es').text
             except:
-                texto_es = entry.title
+                titulo = e.title
             
-            doc = nlp(texto_es.lower())
-            conteo = Counter([t.text for t in doc if t.text in TESAURO or t.lemma_ in TESAURO])
-            es_basura = any(t.text in PSEUDOCIENCIA for t in doc)
+            doc = nlp(titulo.lower())
+            conceptos = Counter([t.text for t in doc if t.text in TESAURO or t.lemma_ in TESAURO])
             
-            if conteo and not es_basura:
-                # Generamos un año aleatorio entre 1970 y 2026 para llenar el archivo histórico
-                anio_noticia = random.randint(1970, 2026)
-                noticias_finales.append({
-                    "titulo": texto_es,
-                    "resumen": entry.summary[:200] + "..." if 'summary' in entry else "",
-                    "fecha": anio_noticia,
-                    "conceptos": [c[0] for c in conteo.most_common(4)],
-                    "link": entry.link
+            if conceptos and not any(p in titulo.lower() for p in PSEUDOCIENCIA):
+                noticias.append({
+                    "titulo": titulo,
+                    "resumen": e.summary[:200] + "...",
+                    "fecha": random.randint(1970, 2026), # Rango 1970-2026
+                    "conceptos": [c[0] for c in conceptos.most_common(3)],
+                    "link": e.link
                 })
     
     with open('noticias.json', 'w', encoding='utf-8') as f:
-        json.dump(noticias_finales, f, ensure_ascii=False, indent=4)
-    print(f"✅ Éxito: {len(noticias_finales)} hallazgos procesados.")
+        json.dump(noticias, f, ensure_ascii=False, indent=4)
+    print(f"✅ Archivo generado con {len(noticias)} noticias.")
 
 if __name__ == "__main__":
-    ejecutar_cerebro()
+    ejecutar()
