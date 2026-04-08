@@ -18,79 +18,75 @@ except:
 
 translator = Translator()
 
-# --- FILTROS DE SEGURIDAD (PALABRAS NEGATIVAS) ---
-PSEUDOCIENCIA = ["horóscopo", "astrología", "tarot", "mágico", "milagroso", "conspiración", "zodiaco"]
+# FILTROS DE SEGURIDAD (Ignorar Pseudociencia)
+PSEUDOCIENCIA = ["horóscopo", "astrología", "zodiaco", "mágico", "milagroso", "tarot"]
 
-def alimentar_tesauro_universal():
-    """Consulta Wikidata para traer miles de términos de TODAS las áreas por igual"""
+def obtener_tesauro_universal():
+    """Consulta Wikidata para traer miles de términos de todas las áreas por igual"""
     url = "https://query.wikidata.org/sparql"
     query = """
     SELECT ?itemLabel WHERE {
-      { ?item wdt:P31/wdt:P279* wd:Q193627. } UNION # Áreas del conocimiento (UNESCO)
-      { ?item wdt:P31 wd:Q11344. } UNION           # Elementos Químicos
+      { ?item wdt:P31/wdt:P279* wd:Q193627. } UNION # Áreas UNESCO / ArXiv
+      { ?item wdt:P31 wd:Q11344. } UNION           # Elementos Químicos (Tabla Periódica)
       { ?item wdt:P31 wd:Q11173. } UNION           # Compuestos Químicos
-      { ?item wdt:P31/wdt:P279* wd:Q41630. } UNION # Psicoanálisis
-      { ?item wdt:P31/wdt:P279* wd:Q8134. }        # Economía
-      { ?item wdt:P31/wdt:P279* wd:Q35670. }       # Antropología
+      { ?item wdt:P31/wdt:P279* wd:Q41630. } UNION # Psicoanálisis (Lacan/Freud)
+      { ?item wdt:P31/wdt:P279* wd:Q8134. } UNION  # Economía
+      { ?item wdt:P31/wdt:P279* wd:Q12136. }       # Salud (PubMed)
       SERVICE wikibase:label { bd:serviceParam wikibase:language "es". }
-    } LIMIT 15000
+    } LIMIT 10000
     """
     try:
         r = requests.get(url, params={'format': 'json', 'query': query}, timeout=20)
-        datos = r.json()
-        return set(row['itemLabel']['value'].lower() for row in datos['results']['bindings'])
+        return set(row['itemLabel']['value'].lower() for row in r.json()['results']['bindings'])
     except:
-        return {"química", "psicoanálisis", "antropología", "economía", "física", "puzolana"}
+        return {"química", "psicoanálisis", "goce", "economía", "puzolana", "antropología"}
 
-CONOCIMIENTO_TOTAL = alimentar_tesauro_universal()
+TESAURO = obtener_tesauro_universal()
 
-def cerebro_maestro(noticia_raw):
-    # Traducción
-    try:
-        texto_es = translator.translate(noticia_raw["texto"], dest='es').text
-    except:
-        texto_es = noticia_raw["texto"]
-
-    doc = nlp(texto_es.lower())
-    conceptos_identificados = []
+def ejecutar_cerebro():
+    # Usamos urllib.parse para asegurar que las URLs sean válidas
+    fuentes = [
+        "https://rss.sciencedaily.com/top.xml", 
+        "https://arxiv.org/rss/econ",
+        "https://arxiv.org/rss/physics"
+    ]
     
-    # Verificación de Seguridad
-    for token in doc:
-        if token.text in PSEUDOCIENCIA or token.lemma_ in PSEUDOCIENCIA:
-            return None # Descarta basura científica
-
-    # Identificación de conceptos (Equidad Total)
-    for token in doc:
-        # Si el término está en el Tesauro Universal (sea de la rama que sea)
-        if token.text in CONOCIMIENTO_TOTAL or token.lemma_ in CONOCIMIENTO_TOTAL:
-            conceptos_identificados.append(token.text)
-
-    if conceptos_identificados:
-        return {
-            "titulo": texto_es[:90] + "...",
-            "resumen": texto_es,
-            "fecha": noticia_raw.get("fecha", datetime.now().year),
-            "conceptos": list(set(conceptos_identificados))[:5],
-            "entidades": [ent.text for ent in doc.ents if ent.label_ in ["ORG", "PER"]][:3],
-            "link": noticia_raw.get("link", "#")
-        }
-    return None
-
-# --- EJECUCIÓN ---
-def ejecutar_sistema():
-    fuentes = ["https://rss.sciencedaily.com/top.xml", "https://arxiv.org/rss/econ"]
-    base_final = []
-    
-    for url in fuentes:
+    noticias_finales = []
+    for url_raw in fuentes:
+        url = urllib.parse.quote(url_raw, safe=':/?=')
         feed = feedparser.parse(url)
-        for entry in feed.entries[:10]:
-            noticia = {"texto": entry.title + " " + entry.summary, "link": entry.link, "fecha": 2026}
-            resultado = cerebro_maestro(noticia)
-            if resultado:
-                base_final.append(resultado)
+        
+        # Seleccionamos una muestra aleatoria si hay muchas noticias
+        entradas = feed.entries
+        if len(entradas) > 10:
+            entradas = random.sample(entradas, 10)
+
+        for entry in entradas:
+            try:
+                texto_es = translator.translate(entry.title, dest='es').text
+            except:
+                texto_es = entry.title
+            
+            doc = nlp(texto_es.lower())
+            
+            # Usamos Counter para medir la densidad de conceptos científicos
+            conteo_conceptos = Counter([t.text for t in doc if t.text in TESAURO or t.lemma_ in TESAURO])
+            
+            # Filtro de Pseudociencia
+            es_basura = any(t.text in PSEUDOCIENCIA for t in doc)
+            
+            if conteo_conceptos and not es_basura:
+                noticias_finales.append({
+                    "titulo": texto_es,
+                    "resumen": entry.summary[:250] + "..." if 'summary' in entry else "",
+                    "fecha": datetime.now().year,
+                    "conceptos": [c[0] for c in conteo_conceptos.most_common(4)],
+                    "link": entry.link
+                })
     
     with open('noticias.json', 'w', encoding='utf-8') as f:
-        json.dump(base_final, f, ensure_ascii=False, indent=4)
-    print("✅ noticias.json actualizado.")
+        json.dump(noticias_finales, f, ensure_ascii=False, indent=4)
+    print(f"✅ Cerebro sincronizado: {len(noticias_finales)} noticias validadas.")
 
-# ejecutar_sistema()
+if __name__ == "__main__":
+    ejecutar_cerebro()
