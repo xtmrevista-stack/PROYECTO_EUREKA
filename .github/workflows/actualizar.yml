@@ -1,34 +1,27 @@
-name: Actualizar Océano de Noticias
-
+name: Actualización SWN
 on:
   schedule:
-    # Se ejecuta cada 24 horas para mantener el feed fresco
-    - cron: '0 0 * * *'
-  workflow_dispatch: # Esto permite que tú lo actives manualmente cuando quieras
+    - cron: '0 12 * * *'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Descargar repositorio
-        uses: actions/checkout@v3
-
-      - name: Configurar Python
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
-
-      - name: Instalar herramientas necesarias
+          python-version: '3.10'
+      - name: Instalar dependencias
         run: |
-          pip install feedparser googletrans==4.0.0-rc1
-
-      - name: Ejecutar el Buscador de Noticias
+          pip install feedparser googletrans==4.0.0-rc1 spacy requests
+          python -m spacy download es_core_news_lg
+      - name: Ejecutar Cerebro
         run: python generador_noticias.py
-
-      - name: Guardar cambios automáticamente
+      - name: Subir cambios
         run: |
-          git config --global user.name 'Robot-Eureka'
-          git config --global user.email 'robot@eureka.com'
+          git config --global user.name "Cerebro SWN"
+          git config --global user.email "swn@github.com"
           git add noticias.json
-          git commit -m "Actualización automática del océano de noticias" || exit 0
+          git commit -m "Actualización masiva de Tesauros" || echo "No hay cambios"
           git push
