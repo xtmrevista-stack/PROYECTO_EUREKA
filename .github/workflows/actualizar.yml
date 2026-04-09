@@ -11,16 +11,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      - name: Instalar herramientas
+      - name: Instalación
         run: |
           pip install feedparser googletrans==4.0.0-rc1 spacy requests
           python -m spacy download es_core_news_lg
-      - name: Ejecutar Cerebro
+      - name: Ejecutar
         run: python generador_noticias.py
-      - name: Subir cambios
+      - name: Deploy
         run: |
           git config --global user.name "Cerebro SWN"
           git config --global user.email "swn@github.com"
           git add noticias.json
-          git commit -m "Sincronización histórica 1970-2026" || echo "Sin cambios"
+          git commit -m "Sincronización 1970-2026" || echo "Sin cambios"
           git push
