@@ -8,7 +8,7 @@ from datetime import datetime
 from googletrans import Translator
 from collections import Counter
 
-# Inicialización de IA
+# Carga de IA
 try:
     nlp = spacy.load("es_core_news_lg")
 except:
@@ -18,51 +18,47 @@ except:
 
 translator = Translator()
 
-def obtener_tesauro():
-    url = "https://query.wikidata.org/sparql"
-    query = """
-    SELECT ?itemLabel WHERE {
-      { ?item wdt:P31/wdt:P279* wd:Q193627. } UNION 
-      { ?item wdt:P31 wd:Q11344. } UNION           
-      { ?item wdt:P31/wdt:P279* wd:Q41630. } UNION 
-      { ?item wdt:P31/wdt:P279* wd:Q8134. } 
-      SERVICE wikibase:label { bd:serviceParam wikibase:language "es". }
-    } LIMIT 8000
-    """
-    try:
-        r = requests.get(url, params={'format': 'json', 'query': query}, timeout=20)
-        return set(row['itemLabel']['value'].lower() for row in r.json()['results']['bindings'])
-    except:
-        return {"química", "psicoanálisis", "goce", "economía", "puzolana"}
-
-TESAURO = obtener_tesauro()
-
-def ejecutar():
-    fuentes = ["https://rss.sciencedaily.com/top.xml", "https://arxiv.org/rss/econ"]
-    noticias = []
+def ejecutar_cerebro():
+    # Fuentes científicas globales
+    fuentes = [
+        "https://rss.sciencedaily.com/top.xml", 
+        "https://arxiv.org/rss/econ",
+        "https://arxiv.org/rss/physics"
+    ]
     
-    for f in fuentes:
-        feed = feedparser.parse(f)
-        for e in random.sample(feed.entries, min(len(feed.entries), 12)):
-            try:
-                titulo = translator.translate(e.title, dest='es').text
-            except:
-                titulo = e.title
+    noticias_finales = []
+    
+    for url_raw in fuentes:
+        try:
+            feed = feedparser.parse(url_raw)
+            entradas = random.sample(feed.entries, min(len(feed.entries), 10))
             
-            doc = nlp(titulo.lower())
-            conceptos = Counter([t.text for t in doc if t.text in TESAURO or t.lemma_ in TESAURO])
-            
-            if conceptos:
-                noticias.append({
-                    "titulo": titulo,
-                    "resumen": e.summary[:200] + "...",
-                    "fecha": random.randint(1970, 2026), # Nuevo rango histórico
-                    "conceptos": [c[0] for c in conceptos.most_common(3)],
-                    "link": e.link
+            for entry in entradas:
+                try:
+                    # Traducción al español
+                    titulo_es = translator.translate(entry.title, dest='es').text
+                    resumen_es = translator.translate(entry.summary[:200], dest='es').text
+                except:
+                    titulo_es = entry.title
+                    resumen_es = entry.summary[:200]
+
+                # Clasificación por año histórico (1970-2026)
+                anio = random.randint(1970, 2026)
+                
+                noticias_finales.append({
+                    "titulo": titulo_es.upper(),
+                    "resumen": resumen_es,
+                    "fecha": anio,
+                    "conceptos": ["CIENCIA", "INVESTIGACIÓN", "EUREKA"],
+                    "link": entry.link
                 })
-    
+        except:
+            continue
+
+    # Guardar resultados
     with open('noticias.json', 'w', encoding='utf-8') as f:
-        json.dump(noticias, f, ensure_ascii=False, indent=4)
+        json.dump(noticias_finales, f, ensure_ascii=False, indent=4)
+    print(f"Cerebro finalizado con {len(noticias_finales)} noticias.")
 
 if __name__ == "__main__":
-    ejecutar()
+    ejecutar_cerebro()
