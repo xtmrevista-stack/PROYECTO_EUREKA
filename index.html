@@ -2,65 +2,114 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>SCIENCE WORLD NEWS</title>
+    <title>SCIENCE WORLD NEWS - CEREBRO MAESTRO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto:wght@400;900&display=swap');
-        body { font-family: 'Roboto', sans-serif; background-color: #f0f0f0; }
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto:wght@900&display=swap');
+        body { font-family: 'Roboto', sans-serif; background: #fff; }
         .titular { font-family: 'Archivo Black', sans-serif; }
-        .card { border: 6px solid #000; transition: 0.3s; height: 100%; display: flex; flex-direction: column; overflow: hidden; }
+        .card { border: 8px solid #000; transition: 0.2s; height: 100%; display: flex; flex-direction: column; overflow: hidden; }
         .card:hover { transform: translate(-12px, -12px); box-shadow: 20px 20px 0px #000; }
-        /* Colores Primarios Claros */
-        .color-0 { background-color: #fff9c4; } /* Amarillo */
-        .color-1 { background-color: #e3f2fd; } /* Azul */
-        .color-2 { background-color: #ffebee; } /* Rojo */
-        .color-3 { background-color: #e8f5e9; } /* Verde */
+        
+        /* Colores Primarios Vivos Sugeridos */
+        .color-0 { background-color: #FFD600; } /* Amarillo Intenso */
+        .color-1 { background-color: #2979FF; } /* Azul Brillante */
+        .color-2 { background-color: #FF1744; } /* Rojo Vibrante */
+        .color-3 { background-color: #00E676; } /* Verde Neón */
+
+        .tag-click { cursor: pointer; text-decoration: underline; }
+        .tag-click:hover { color: white; background: black; }
+        input[type=range] { accent-color: #000; }
     </style>
 </head>
 <body class="p-4 md:p-10">
-    <header class="text-center mb-16 border-b-[12px] border-black pb-10 bg-white shadow-[10px_10px_0px_#000]">
-        <h1 class="titular text-6xl md:text-9xl italic uppercase tracking-tighter leading-none">SCIENCE WORLD NEWS</h1>
-        <p class="font-black text-sm tracking-[0.5em] mt-6 uppercase">Inteligencia Científica — 2026</p>
+    <header class="flex flex-col md:flex-row justify-between items-center mb-12 border-b-[12px] border-black pb-10 gap-8 bg-white">
+        <div class="text-center md:text-left">
+            <h1 class="titular text-5xl md:text-7xl italic uppercase tracking-tighter leading-none">SCIENCE WORLD NEWS</h1>
+            <p class="font-black text-xs tracking-[0.6em] mt-2 uppercase">Tesauro UNESCO — 2026</p>
+        </div>
+
+        <div class="w-full md:w-1/2 bg-black text-white p-6 border-4 border-black shadow-[8px_8px_0px_#ccc]">
+            <div class="flex gap-4 mb-4">
+                <input type="text" id="buscador" onkeyup="filtrar()" placeholder="BUSCAR CONCEPTO (Lacan, Puzolana...)" class="w-full p-3 bg-white text-black font-black uppercase text-xs outline-none">
+                <button onclick="location.reload()" class="bg-red-600 px-4 font-black">RESET</button>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-[10px] font-black">1970</span>
+                <input type="range" id="cronos" min="1970" max="2026" value="2026" oninput="filtrar()" class="flex-grow">
+                <span id="label-anio" class="bg-yellow-400 text-black px-3 font-black">2026</span>
+            </div>
+        </div>
     </header>
 
-    <main id="galeria" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-[1400px] mx-auto"></main>
+    <main id="galeria" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-[1600px] mx-auto pb-32"></main>
 
     <script>
-        async function cargarNoticias() {
-            try {
-                const respuesta = await fetch('noticias.json?v=' + Date.now());
-                const datos = await respuesta.json();
-                const contenedor = document.getElementById('galeria');
-                
-                contenedor.innerHTML = datos.map((n, i) => `
-                    <div class="card color-${i % 4}">
-                        <div class="p-4 border-b-6 border-black bg-white flex justify-between font-black text-[11px] uppercase italic">
-                            <span>ÁREA: ${n.area}</span>
-                            <span class="bg-black text-white px-3 tracking-widest">${n.leyenda}</span>
-                        </div>
-                        
-                        <div class="h-64 border-b-6 border-black overflow-hidden">
-                            <img src="${n.imagen}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
-                        </div>
+        let db = [];
+        let filtrados = [];
+        let cursor = 0;
+        const lote = 12;
 
-                        <div class="p-8 flex-grow flex flex-col">
-                            <div class="text-right font-black text-2xl mb-4 italic underline decoration-4">AÑO: ${n.fecha}</div>
-                            <h2 class="titular text-3xl leading-none mb-6 uppercase border-l-8 border-black pl-4">${n.titulo}</h2>
-                            <p class="text-sm font-bold leading-relaxed text-justify mb-8">${n.resumen}</p>
-                            
-                            <div class="mt-auto pt-6 border-t-4 border-black/20 text-[10px] font-black uppercase tracking-tight">
-                                <span class="bg-black text-white px-2 mr-2">PALABRAS CLAVE:</span> ${n.palabras_clave}
-                            </div>
-                        </div>
-
-                        <a href="${n.link}" target="_blank" class="block text-center py-6 bg-black text-white font-black text-lg hover:bg-white hover:text-black border-t-6 border-black transition-colors uppercase italic">Explorar Investigación</a>
-                    </div>
-                `).join('');
-            } catch (e) {
-                document.getElementById('galeria').innerHTML = "<p class='col-span-full text-center py-20 font-black text-4xl italic uppercase'>Sincronizando el Cerebro Maestro... Revisa Actions.</p>";
-            }
+        async function iniciar() {
+            const r = await fetch('noticias.json?v=' + Date.now());
+            db = await r.json();
+            filtrados = db;
+            cargarMas();
         }
-        cargarNoticias();
+
+        // Modelo TikTok: Scroll Infinito
+        window.onscroll = () => {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 800) cargarMas();
+        };
+
+        function cargarMas() {
+            const g = document.getElementById('galeria');
+            const data = filtrados.slice(cursor, cursor + lote);
+            
+            data.forEach((n, i) => {
+                const card = document.createElement('div');
+                card.className = `card color-${(cursor + i) % 4}`;
+                card.innerHTML = `
+                    <div class="p-3 border-b-8 border-black bg-white flex justify-between font-black text-[10px] uppercase italic">
+                        <span class="tag-click" onclick="filtrarTermino('${n.area.replace('UNESCO: ', '')}')">${n.area}</span>
+                        <span class="bg-black text-white px-2">${n.leyenda}</span>
+                    </div>
+                    <img src="${n.imagen}" class="w-full h-80 object-cover border-b-8 border-black grayscale hover:grayscale-0 transition-all">
+                    <div class="p-8 flex-grow flex flex-col">
+                        <div class="text-right font-black text-3xl mb-4 italic underline underline-offset-8">AÑO: ${n.fecha}</div>
+                        <h2 class="titular text-3xl leading-none mb-6 uppercase border-l-8 border-black pl-4">${n.titulo}</h2>
+                        <p class="text-xs font-bold leading-relaxed text-justify mb-10">${n.resumen}</p>
+                        <div class="mt-auto pt-6 border-t-4 border-black/30 text-[9px] font-black uppercase">
+                            <strong>Keywords:</strong> 
+                            ${n.palabras_clave.split(',').map(k => `<span class="tag-click mx-1" onclick="filtrarTermino('${k.trim()}')">${k.trim()}</span>`).join('·')}
+                        </div>
+                    </div>
+                    <a href="${n.link}" target="_blank" class="block text-center py-6 bg-black text-white font-black hover:bg-white hover:text-black border-t-8 border-black transition-all">VER INVESTIGACIÓN</a>
+                `;
+                g.appendChild(card);
+            });
+            cursor += lote;
+        }
+
+        function filtrar() {
+            const q = document.getElementById('buscador').value.toLowerCase();
+            const y = document.getElementById('cronos').value;
+            document.getElementById('label-anio').innerText = y;
+            
+            filtrados = db.filter(n => (JSON.stringify(n).toLowerCase().includes(q)) && (n.fecha <= y));
+            document.getElementById('galeria').innerHTML = '';
+            cursor = 0;
+            // Mezcla aleatoria para efecto TikTok
+            filtrados.sort(() => Math.random() - 0.5);
+            cargarMas();
+        }
+
+        function filtrarTermino(t) {
+            document.getElementById('buscador').value = t;
+            filtrar();
+        }
+
+        iniciar();
     </script>
 </body>
 </html>
