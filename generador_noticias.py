@@ -18,9 +18,6 @@ except:
 
 translator = Translator()
 
-# Filtros
-PSEUDOCIENCIA = ["horóscopo", "astrología", "zodiaco", "mágico", "milagroso", "tarot"]
-
 def obtener_tesauro():
     url = "https://query.wikidata.org/sparql"
     query = """
@@ -46,7 +43,7 @@ def ejecutar():
     
     for f in fuentes:
         feed = feedparser.parse(f)
-        for e in random.sample(feed.entries, min(len(feed.entries), 10)):
+        for e in random.sample(feed.entries, min(len(feed.entries), 12)):
             try:
                 titulo = translator.translate(e.title, dest='es').text
             except:
@@ -55,18 +52,17 @@ def ejecutar():
             doc = nlp(titulo.lower())
             conceptos = Counter([t.text for t in doc if t.text in TESAURO or t.lemma_ in TESAURO])
             
-            if conceptos and not any(p in titulo.lower() for p in PSEUDOCIENCIA):
+            if conceptos:
                 noticias.append({
                     "titulo": titulo,
                     "resumen": e.summary[:200] + "...",
-                    "fecha": random.randint(1970, 2026), # Rango 1970-2026
+                    "fecha": random.randint(1970, 2026), # Nuevo rango histórico
                     "conceptos": [c[0] for c in conceptos.most_common(3)],
                     "link": e.link
                 })
     
     with open('noticias.json', 'w', encoding='utf-8') as f:
         json.dump(noticias, f, ensure_ascii=False, indent=4)
-    print(f"✅ Archivo generado con {len(noticias)} noticias.")
 
 if __name__ == "__main__":
     ejecutar()
