@@ -7,7 +7,7 @@ import os
 from googletrans import Translator
 from collections import Counter
 
-# Inicialización de IA para análisis de texto
+# Inicialización de IA
 try:
     nlp = spacy.load("es_core_news_lg")
 except:
@@ -16,80 +16,83 @@ except:
 
 translator = Translator()
 
-# Configuración de Áreas y Diccionarios Académicos
-AREAS_CIENTIFICAS = {
-    "MATEMÁTICAS": ["algoritmo", "pascal", "montecarlo", "teorema", "cálculo", "geometría", "ecuación"],
-    "ECONOMÍA": ["mercado", "precio", "finanzas", "pib", "inflación", "ganancia", "econofísica", "bangladesh"],
-    "QUÍMICA": ["molécula", "nitruro", "reacción", "átomo", "químico", "compuesto", "síntesis"],
-    "PSICOLOGÍA": ["psicoanálisis", "goce", "clínica", "terapia", "subjetividad", "mente"],
-    "FÍSICA": ["partícula", "energía", "cuántico", "materia", "universo", "astrofísica"]
-}
+def obtener_tesauro_dinamico():
+    """Consulta Wikidata para obtener conceptos de ciencias exactas, sociales y humanidades"""
+    url = "https://query.wikidata.org/sparql"
+    # Query que busca etiquetas de disciplinas científicas y académicas
+    query = """
+    SELECT ?itemLabel WHERE {
+      ?item wdt:P31/wdt:P279* wd:Q11862829. 
+      SERVICE wikibase:label { bd:serviceParam wikibase:language "es". }
+    } LIMIT 500
+    """
+    try:
+        r = requests.get(url, params={'format': 'json', 'query': query}, timeout=10)
+        datos = r.json()
+        return [row['itemLabel']['value'].upper() for row in datos['results']['bindings']]
+    except:
+        # Respaldo si falla la conexión
+        return ["QUÍMICA", "MATEMÁTICAS", "ECONOMÍA", "PSICOANÁLISIS", "FÍSICA", "INGENIERÍA"]
 
-ETIQUETAS_HALLAZGO = ["INNOVACIÓN", "DESCUBRIMIENTO", "HALLAZGO", "NUEVO", "PREMIADOS", "CONDECORADOS"]
+TESAURO = obtener_tesauro_dinamico()
+ETIQUETAS = ["INNOVACIÓN", "DESCUBRIMIENTO", "HALLAZGO", "NUEVO", "PREMIADOS", "CONDECORADOS"]
 
-def obtener_area(titulo):
-    """Detecta el área académica basada en palabras clave"""
-    t = titulo.lower()
-    for area, palabras in AREAS_CIENTIFICAS.items():
-        if any(p in t for p in palabras):
-            return area
-    return "CIENCIA GENERAL"
-
-def extraer_keywords(texto):
-    """Usa NLP para extraer las 5 palabras más importantes"""
+def clasificar_con_ia(titulo, resumen):
+    texto = (titulo + " " + resumen).lower()
     doc = nlp(texto)
-    palabras = [token.text for token in doc if token.is_alpha and not token.is_stop and len(token.text) > 3]
-    comunes = [item[0] for item in Counter(palabras).most_common(5)]
-    return ", ".join(comunes).title()
+    
+    # Buscamos coincidencias con el Tesauro de Wikipedia/UNESCO
+    for concepto in TESAURO:
+        if concepto.lower() in texto:
+            return concepto
+            
+    # Si no hay coincidencia exacta, usamos el sustantivo más relevante
+    sustantivos = [token.text.upper() for token in doc if token.pos_ == "NOUN" and len(token.text) > 4]
+    return sustantivos[0] if sustantivos else "INVESTIGACIÓN"
 
-def ejecutar_cerebro():
+def ejecutar():
+    print("Sincronizando con Tesauros Globales...")
     fuentes = [
         "https://rss.sciencedaily.com/top.xml",
         "https://arxiv.org/rss/econ",
-        "https://arxiv.org/rss/math"
+        "https://arxiv.org/rss/math",
+        "https://www.nature.com/nature.rss"
     ]
     
     noticias_finales = []
     
     for url in fuentes:
-        feed = feedparser.parse(url)
-        # Seleccionamos muestras aleatorias para que la página siempre cambie
-        entradas = random.sample(feed.entries, min(len(feed.entries), 10))
-        
-        for entry in entradas:
-            try:
-                # Traducción al español
-                t_es = translator.translate(entry.title, dest='es').text
-                r_es = translator.translate(entry.summary[:280], dest='es').text
-                
-                area = obtener_area(t_es)
-                keywords = extraer_keywords(t_es + " " + r_es)
-                
-                # Imagen dinámica (Unsplash busca por términos clave de la noticia)
-                termino_busqueda = t_es.split()[0]
-                img_url = f"https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=400" # Imagen base de ciencia por defecto
-                # Intentar buscar una específica
-                img_url = f"https://source.unsplash.com/featured/400x300?science,{area},{termino_busqueda}"
+        try:
+            feed = feedparser.parse(url)
+            for e in random.sample(feed.entries, min(len(feed.entries), 8)):
+                # Traducción
+                try:
+                    t_es = translator.translate(e.title, dest='es').text
+                    r_es = translator.translate(e.summary[:280], dest='es').text
+                except:
+                    t_es, r_es = e.title, e.summary[:280]
 
+                area = clasificar_con_ia(t_es, r_es)
+                
+                # Keywords inteligentes
+                doc_kw = nlp(t_es + " " + r_es)
+                kw = [t.text for t in doc_kw if t.is_alpha and not t.is_stop and len(t.text) > 3]
+                
                 noticias_finales.append({
                     "titulo": t_es.upper(),
                     "resumen": r_es + "...",
-                    "area_cientifica": area,
-                    "categoria": "INVESTIGACIÓN ACADÉMICA",
-                    "etiqueta": random.choice(ETIQUETAS_HALLAZGO),
-                    "fecha": 2026, # Año real actual solicitado
-                    "palabras_clave": keywords,
-                    "imagen": img_url,
-                    "link": entry.link
+                    "area": f"ÁREA CIENTÍFICA: {area}",
+                    "leyenda": random.choice(ETIQUETAS),
+                    "fecha": 2026,
+                    "palabras_clave": ", ".join(list(set(kw))[:6]).title(),
+                    "imagen": f"https://picsum.photos/seed/{random.randint(1,9999)}/600/400",
+                    "link": e.link
                 })
-            except Exception as e:
-                print(f"Error procesando noticia: {e}")
-                continue
+        except: continue
 
-    # Guardar el archivo JSON final
     with open('noticias.json', 'w', encoding='utf-8') as f:
         json.dump(noticias_finales, f, ensure_ascii=False, indent=4)
-    print(f"✅ Éxito: Se han generado {len(noticias_finales)} noticias con formato Eureka.")
+    print("✅ Cerebro Maestro actualizado con Tesauros.")
 
 if __name__ == "__main__":
-    ejecutar_cerebro()
+    ejecutar()
