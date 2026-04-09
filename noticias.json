@@ -1,63 +1,41 @@
 [
     {
-        "titulo": "LA QUÍMICA ATMOSFÉRICA MANTIENE LOS CONTAMINANTES EN EL AIRE",
-        "resumen": "Un nuevo estudio detalla los procesos que mantienen los contaminantes en el aire a pesar de una caída en las emisiones.",
-        "fecha": 1985,
+        "titulo": "EL DESCUBRIMIENTO DEL SISTEMA INMUNOLÓGICO REVELA UNA POSIBLE SOLUCIÓN AL ALZHEIMER",
+        "resumen": "Una nueva forma de pensar sobre la enfermedad de Alzheimer ha arrojado un descubrimiento que podría ser la clave para detener el deterioro cognitivo observado en la enfermedad de Alzheimer y otras enfermedades neurodegenerativas, incluida la ELA.",
+        "fecha": 1994,
         "conceptos": [
             "CIENCIA",
             "INVESTIGACIÓN",
             "EUREKA"
         ],
-        "link": "https://www.sciencedaily.com/releases/2025/06/250603115026.htm"
+        "link": "https://www.sciencedaily.com/releases/2025/06/250602154905.htm"
     },
     {
-        "titulo": "EL AUMENTO DE LAS EMISIONES DE ÁCIDO NITROSO DEL SUELO, IMPULSADAS POR EL CAMBIO CLIMÁTICO Y LA FERTILIZACIÓN, ACELERA LA CONTAMINACIÓN GLOBAL POR OZONO",
-        "resumen": "La contaminación por ozono es una preocupación ambiental global que no sólo amenaza la salud humana y la producción de cultivos, sino que también empeora el calentamiento global.Si bien la formación de ozono a menudo se atribuye a la actividad antrópica",
-        "fecha": 2024,
+        "titulo": "LA EPILEPSIA ES MÁS COMÚN DE LO ESPERADO EN PACIENTES CON DEMENCIA FRONTOTEMPORAL",
+        "resumen": "Según un estudio reciente, en pacientes con demencia frontotemporal (DFT), las crisis epilépticas son significativamente más comunes de lo que se sabía anteriormente.El descubrimiento profundiza la comprensión de los síntomas.",
+        "fecha": 2019,
         "conceptos": [
             "CIENCIA",
             "INVESTIGACIÓN",
             "EUREKA"
         ],
-        "link": "https://www.sciencedaily.com/releases/2025/05/250530123821.htm"
+        "link": "https://www.sciencedaily.com/releases/2025/06/250603115055.htm"
     },
     {
-        "titulo": "DOS ESPECIES DE PLANTAS INVENTAN LA MISMA SUSTANCIA QUÍMICAMENTE COMPLEJA Y DE INTERÉS MÉDICO",
-        "resumen": "La biosíntesis de una gran variedad de productos vegetales naturales aún no ha sido aclarada para muchas sustancias de interés médico.En un nuevo estudio, un equipo internacional de investigadores pudo",
-        "fecha": 2022,
+        "titulo": "COMER UNA VARIEDAD DE PECES MÁS PEQUEÑOS PODRÍA SER UNA SOLUCIÓN RICA EN NUTRIENTES PARA LA SOBREPESCA",
+        "resumen": "Para satisfacer las necesidades de productos del mar de miles de millones de personas, ofrecerles acceso a una variedad de peces con mayor biodiversidad crea oportunidades para mezclar y combinar especies para obtener una mejor nutrición de porti más pequeños.",
+        "fecha": 2004,
         "conceptos": [
             "CIENCIA",
             "INVESTIGACIÓN",
             "EUREKA"
         ],
-        "link": "https://www.sciencedaily.com/releases/2025/06/250603114818.htm"
-    },
-    {
-        "titulo": "LOS AGUJEROS NEGROS PODRÍAN ACTUAR COMO SUPERCOLISIONADORES NATURALES Y AYUDAR A DESCUBRIR LA MATERIA OSCURA",
-        "resumen": "Los agujeros negros supermasivos podrían replicar de forma natural las colosales energías de los colisionadores de partículas fabricados por el hombre, posiblemente incluso revelando la materia oscura, ofreciendo un atajo cósmico a descubrimientos que de otro modo no se realizarían.",
-        "fecha": 2009,
-        "conceptos": [
-            "CIENCIA",
-            "INVESTIGACIÓN",
-            "EUREKA"
-        ],
-        "link": "https://www.sciencedaily.com/releases/2025/06/250603114637.htm"
-    },
-    {
-        "titulo": "VÍNCULO MOLECULAR ENTRE LA CONTAMINACIÓN DEL AIRE Y LOS RIESGOS DEL EMBARAZO",
-        "resumen": "Un nuevo estudio encontró que la exposición a partículas diminutas específicas en la contaminación del aire durante el embarazo se asocia con un mayor riesgo de diversos resultados negativos en el parto.",
-        "fecha": 1975,
-        "conceptos": [
-            "CIENCIA",
-            "INVESTIGACIÓN",
-            "EUREKA"
-        ],
-        "link": "https://www.sciencedaily.com/releases/2025/06/250603141202.htm"
+        "link": "https://www.sciencedaily.com/releases/2025/06/250603141204.htm"
     },
     {
         "titulo": "ONDAS CEREBRALES DANZANTES: CÓMO EL SONIDO REMODELA LAS REDES CEREBRALES EN TIEMPO REAL",
         "resumen": "¿Qué sucede dentro de tu cerebro cuando escuchas un ritmo constante o un tono musical?Según un nuevo estudio, su cerebro no sólo lo escucha, sino que se reorganiza en tiempo real.",
-        "fecha": 1996,
+        "fecha": 2005,
         "conceptos": [
             "CIENCIA",
             "INVESTIGACIÓN",
@@ -66,31 +44,9 @@
         "link": "https://www.sciencedaily.com/releases/2025/06/250602155001.htm"
     },
     {
-        "titulo": "LA INMUNOTERAPIA INNOVADORA SE MUESTRA PROMETEDORA CONTRA LOS CÁNCERES DE CÉLULAS T AGRESIVOS",
-        "resumen": "Un ensayo clínico internacional muestra que una innovadora inmunoterapia con células CAR-T es prometedora contra los cánceres de células T agresivos y tiene efectos secundarios manejables.",
-        "fecha": 1983,
-        "conceptos": [
-            "CIENCIA",
-            "INVESTIGACIÓN",
-            "EUREKA"
-        ],
-        "link": "https://www.sciencedaily.com/releases/2025/05/250530123957.htm"
-    },
-    {
-        "titulo": "LOS INVESTIGADORES DESARROLLAN PRODUCTOS ELECTRÓNICOS RECICLABLES Y CURABLES",
-        "resumen": "Los dispositivos electrónicos a menudo se desechan después de su uso porque reciclarlos requiere un trabajo extenso y con poca recompensa.Los investigadores ahora han encontrado una manera de cambiar el juego.",
-        "fecha": 1978,
-        "conceptos": [
-            "CIENCIA",
-            "INVESTIGACIÓN",
-            "EUREKA"
-        ],
-        "link": "https://www.sciencedaily.com/releases/2025/06/250602190434.htm"
-    },
-    {
         "titulo": "INVESTIGADORES DESARROLLAN UN MODELO INNOVADOR PARA ESTUDIAR EL SENTIDO DEL OLFATO",
         "resumen": "Utilizando un modelo tridimensional recientemente ideado para estudiar la regeneración del tejido nervioso en la nariz, los investigadores han descubierto que un tipo de célula madre que se cree que está inactiva puede desempeñar un papel más significativo.",
-        "fecha": 2014,
+        "fecha": 2023,
         "conceptos": [
             "CIENCIA",
             "INVESTIGACIÓN",
@@ -99,64 +55,75 @@
         "link": "https://www.sciencedaily.com/releases/2025/06/250603172911.htm"
     },
     {
-        "titulo": "EL PUNTO ÓPTIMO: SENSORES A BASE DE AZÚCAR PARA REVOLUCIONAR LA DETECCIÓN DEL VENENO DE SERPIENTE",
-        "resumen": "Los investigadores han publicado el primer ejemplo de una prueba de detección de azúcar sintético para el veneno de serpiente, ofreciendo una nueva ruta para un diagnóstico rápido y mejores antídotos.",
-        "fecha": 1993,
+        "titulo": "SUPOSICIONES DE DÉCADAS DE ANTIGÜEDAD SOBRE LA PLASTICIDAD CEREBRAL REVERTIDAS",
+        "resumen": "Un nuevo estudio desafía una suposición de décadas de antigüedad en la neurociencia al mostrar que el cerebro utiliza distintos sitios de transmisión, no un sitio compartido, para lograr diferentes tipos de plasticidad.",
+        "fecha": 2018,
         "conceptos": [
             "CIENCIA",
             "INVESTIGACIÓN",
             "EUREKA"
         ],
-        "link": "https://www.sciencedaily.com/releases/2025/06/250602155505.htm"
+        "link": "https://www.sciencedaily.com/releases/2025/06/250603172903.htm"
     },
     {
-        "titulo": "CUANDO LA \"NORMALIZACIÓN SIN PÉRDIDA DE GENERALIDAD\" PIERDE GENERALIDAD",
-        "resumen": "arXiv:2603.27762v2 Tipo de anuncio: reemplazar\nResumen: La normalización es omnipresente en la economía, y una creciente literatura muestra que las \"normalizaciones\" pueden ser importantes para la interpretación y el análisis contrafactual.",
-        "fecha": 2026,
+        "titulo": "LA PROTEÍNA DE LOS INSECTOS BLOQUEA LA INFECCIÓN BACTERIANA",
+        "resumen": "Los científicos han informado sobre el uso de recubrimientos antibacterianos elaborados a partir de proteínas miméticas de resilina para impedir completamente que las bacterias se adhieran a una superficie.Se ha utilizado una proteína que da a las pulgas su rebote",
+        "fecha": 1991,
         "conceptos": [
             "CIENCIA",
             "INVESTIGACIÓN",
             "EUREKA"
         ],
-        "link": "https://arxiv.org/abs/2603.27762"
+        "link": "https://www.sciencedaily.com/releases/2025/06/250602154856.htm"
     },
     {
-        "titulo": "EQUILIBRIO LIBRE DE DISTRIBUCIÓN EN CONCURSOS DE BÚSQUEDA",
-        "resumen": "arXiv:2603.20683v2 Tipo de anuncio: reemplazar\nResumen: Estudiamos un concurso en el que $N$ jugadores sacan secuencialmente de una distribución tantas veces como quieran a un costo fijo por sorteo, sin recuperación,",
-        "fecha": 2009,
+        "titulo": "ESTUDIANTE DESCUBRE EL TAN ESPERADO HONGO MISTERIOSO BUSCADO POR EL INVENTOR DEL LSD",
+        "resumen": "Al realizar un descubrimiento con potencial para aplicaciones innovadoras en el desarrollo farmacéutico, un estudiante de microbiología ha encontrado un hongo muy buscado que produce efectos similares al semisy",
+        "fecha": 1996,
         "conceptos": [
             "CIENCIA",
             "INVESTIGACIÓN",
             "EUREKA"
         ],
-        "link": "https://arxiv.org/abs/2603.20683"
+        "link": "https://www.sciencedaily.com/releases/2025/06/250602154912.htm"
     },
     {
-        "titulo": "INTERVENCIONES POLÍTICAS PARA REDUCIR LOS PLÁSTICOS DE UN SOLO USO (SUP) Y LOS EFECTOS EN LOS PRECIOS: UN ESTUDIO DE EVENTO PARA AUSTRIA Y ALEMANIA",
-        "resumen": "arXiv:2510.15617v3 Tipo de anuncio: reemplazar\nResumen: Los plásticos de un solo uso (SUP) imponen costos ambientales sustanciales.Tras la Directiva (UE) 2019/904, Austria y Alemania introdujeron el cobro al productor.",
+        "titulo": "LOS EVENTOS DE POLVO CAUSADOS ​​POR EL HOMBRE ESTÁN RELACIONADOS CON LAS TIERRAS AGRÍCOLAS EN BARBECHO",
+        "resumen": "El Valle Central de California, conocido por la agricultura que produce gran parte de las frutas, verduras y nueces del país, es uno de los principales contribuyentes a un creciente problema de polvo que tiene profundas implicaciones.",
+        "fecha": 2001,
+        "conceptos": [
+            "CIENCIA",
+            "INVESTIGACIÓN",
+            "EUREKA"
+        ],
+        "link": "https://www.sciencedaily.com/releases/2025/06/250602154722.htm"
+    },
+    {
+        "titulo": "LOS PERFILES DE INMUNIDAD A GRAN ESCALA APORTAN INFORMACIÓN SOBRE LA EVOLUCIÓN DEL VIRUS DE LA GRIPE",
+        "resumen": "Un nuevo estudio muestra cómo la variación de persona a persona en la inmunidad de los anticuerpos juega un papel clave en la configuración de qué cepas de influenza (gripe) dominan en una población.",
+        "fecha": 2024,
+        "conceptos": [
+            "CIENCIA",
+            "INVESTIGACIÓN",
+            "EUREKA"
+        ],
+        "link": "https://www.sciencedaily.com/releases/2025/06/250603114634.htm"
+    },
+    {
+        "titulo": "¿MEJOR MEDICIÓN O MUESTRAS MÁS GRANDES?RECOPILACIÓN DE DATOS PARA EL APRENDIZAJE DE POLÍTICAS CON HETEROGENEIDAD NO OBSERVADA",
+        "resumen": "arXiv:2604.07181v1 Tipo de anuncio: nuevo\nResumen: La investigación empírica muestra que las respuestas de los individuos a los tratamientos varían según características latentes, como la capacidad innata o la motivación.Por lo tanto,",
         "fecha": 1971,
         "conceptos": [
             "CIENCIA",
             "INVESTIGACIÓN",
             "EUREKA"
         ],
-        "link": "https://arxiv.org/abs/2510.15617"
-    },
-    {
-        "titulo": "TODAS LAS REDES FINITAS SON REDES COINCIDENTES ESTABLES.",
-        "resumen": "arXiv:2504.17916v3 Tipo de anuncio: reemplazar-cruz\nResumen: Mostramos que todas las redes finitas, incluidas las no distributivas, surgen como redes coincidentes estables cuando todos los agentes tienen caminos independientes.",
-        "fecha": 2023,
-        "conceptos": [
-            "CIENCIA",
-            "INVESTIGACIÓN",
-            "EUREKA"
-        ],
-        "link": "https://arxiv.org/abs/2504.17916"
+        "link": "https://arxiv.org/abs/2604.07181"
     },
     {
         "titulo": "REPRESENTATIVIDAD Y EFICIENCIA EN IV SOBREIDENTIFICADO",
         "resumen": "arXiv:2604.07131v1 Tipo de anuncio: nuevo\nResumen: Bajo efectos de tratamiento heterogéneos, la matriz de ponderación GMM en modelos IV sobreidentificados dicta la estimación.Demostramos que el peso reducido eficiente de GMM",
-        "fecha": 2023,
+        "fecha": 1994,
         "conceptos": [
             "CIENCIA",
             "INVESTIGACIÓN",
@@ -165,9 +132,31 @@
         "link": "https://arxiv.org/abs/2604.07131"
     },
     {
+        "titulo": "INTERVENCIONES POLÍTICAS PARA REDUCIR LOS PLÁSTICOS DE UN SOLO USO (SUP) Y LOS EFECTOS EN LOS PRECIOS: UN ESTUDIO DE EVENTO PARA AUSTRIA Y ALEMANIA",
+        "resumen": "arXiv:2510.15617v3 Tipo de anuncio: reemplazar\nResumen: Los plásticos de un solo uso (SUP) imponen costos ambientales sustanciales.Tras la Directiva (UE) 2019/904, Austria y Alemania introdujeron el cobro al productor.",
+        "fecha": 2004,
+        "conceptos": [
+            "CIENCIA",
+            "INVESTIGACIÓN",
+            "EUREKA"
+        ],
+        "link": "https://arxiv.org/abs/2510.15617"
+    },
+    {
+        "titulo": "CUANDO LA \"NORMALIZACIÓN SIN PÉRDIDA DE GENERALIDAD\" PIERDE GENERALIDAD",
+        "resumen": "arXiv:2603.27762v2 Tipo de anuncio: reemplazar\nResumen: La normalización es omnipresente en la economía, y una creciente literatura muestra que las \"normalizaciones\" pueden ser importantes para la interpretación y el análisis contrafactual.",
+        "fecha": 1981,
+        "conceptos": [
+            "CIENCIA",
+            "INVESTIGACIÓN",
+            "EUREKA"
+        ],
+        "link": "https://arxiv.org/abs/2603.27762"
+    },
+    {
         "titulo": "ESTACIONALIDAD EN PROCESOS MIXTOS CAUSALES-NO CAUSALES",
         "resumen": "arXiv:2604.07040v1 Tipo de anuncio: nuevo\nResumen: Este artículo investiga el papel de las raíces complejas y negativas en modelos autorregresivos causales-no causales (MAR) mixtos.Usando descomposición en fracciones parciales",
-        "fecha": 1978,
+        "fecha": 2015,
         "conceptos": [
             "CIENCIA",
             "INVESTIGACIÓN",
@@ -176,20 +165,9 @@
         "link": "https://arxiv.org/abs/2604.07040"
     },
     {
-        "titulo": "VIOLACIONES DE PRIORIDAD JUSTIFICABLES",
-        "resumen": "arXiv:2604.06396v1 Tipo de anuncio: nuevo\nResumen: Abordar las grandes ineficiencias generadas por el mecanismo de Aceptación Diferida (DA) requiere violaciones prioritarias, pero ¿cuáles son justificables?t",
-        "fecha": 1995,
-        "conceptos": [
-            "CIENCIA",
-            "INVESTIGACIÓN",
-            "EUREKA"
-        ],
-        "link": "https://arxiv.org/abs/2604.06396"
-    },
-    {
         "titulo": "REVISANDO LA IMPOSIBILIDAD DE LA EQUIDAD CON EL COMPORTAMIENTO ENDÓGENO",
         "resumen": "arXiv:2604.06378v1 Tipo de anuncio: cruz\nResumen: En muchos entornos del mundo real, las instituciones pueden ajustar, y de hecho lo hacen, las consecuencias asociadas a las decisiones de clasificación algorítmica, como el tamaño de fi",
-        "fecha": 1999,
+        "fecha": 1973,
         "conceptos": [
             "CIENCIA",
             "INVESTIGACIÓN",
@@ -198,135 +176,157 @@
         "link": "https://arxiv.org/abs/2604.06378"
     },
     {
-        "titulo": "PRUEBAS DE ESTRATEGIAS DE EQUILIBRIO MONÓTONO EN JUEGOS DE INFORMACIÓN INCOMPLETA",
-        "resumen": "arXiv:2604.06643v1 Tipo de anuncio: nuevo\nResumen: Este artículo desarrolla un marco unificado para probar la monotonicidad de las estrategias de equilibrio bayesiano de Nash en tipos no observados en juegos de información incompleta.",
+        "titulo": "EQUILIBRIO LIBRE DE DISTRIBUCIÓN EN CONCURSOS DE BÚSQUEDA",
+        "resumen": "arXiv:2603.20683v2 Tipo de anuncio: reemplazar\nResumen: Estudiamos un concurso en el que $N$ jugadores sacan secuencialmente de una distribución tantas veces como quieran a un costo fijo por sorteo, sin recuperación,",
+        "fecha": 1993,
+        "conceptos": [
+            "CIENCIA",
+            "INVESTIGACIÓN",
+            "EUREKA"
+        ],
+        "link": "https://arxiv.org/abs/2603.20683"
+    },
+    {
+        "titulo": "RACIONALIZACIÓN CÓNCAVA CON UN PUNTO IDEAL: UN TEOREMA DE AFRIAT Y UNA APLICACIÓN AL DISEÑO DE ENCUESTAS",
+        "resumen": "arXiv:2401.03876v2 Tipo de anuncio: reemplazar\nResumen: Este artículo desarrolla una caracterización tipo Afriat de la racionalización cóncava con un punto ideal desconocido.Mostramos que un sistema de Afriat desigual",
+        "fecha": 1996,
+        "conceptos": [
+            "CIENCIA",
+            "INVESTIGACIÓN",
+            "EUREKA"
+        ],
+        "link": "https://arxiv.org/abs/2401.03876"
+    },
+    {
+        "titulo": "TODAS LAS REDES FINITAS SON REDES COINCIDENTES ESTABLES.",
+        "resumen": "arXiv:2504.17916v3 Tipo de anuncio: reemplazar-cruz\nResumen: Mostramos que todas las redes finitas, incluidas las no distributivas, surgen como redes coincidentes estables cuando todos los agentes tienen caminos independientes.",
+        "fecha": 2008,
+        "conceptos": [
+            "CIENCIA",
+            "INVESTIGACIÓN",
+            "EUREKA"
+        ],
+        "link": "https://arxiv.org/abs/2504.17916"
+    },
+    {
+        "titulo": "VIOLACIONES DE PRIORIDAD JUSTIFICABLES",
+        "resumen": "arXiv:2604.06396v1 Tipo de anuncio: nuevo\nResumen: Abordar las grandes ineficiencias generadas por el mecanismo de Aceptación Diferida (DA) requiere violaciones prioritarias, pero ¿cuáles son justificables?t",
+        "fecha": 1987,
+        "conceptos": [
+            "CIENCIA",
+            "INVESTIGACIÓN",
+            "EUREKA"
+        ],
+        "link": "https://arxiv.org/abs/2604.06396"
+    },
+    {
+        "titulo": "DETECCIÓN DEL CRECIMIENTO DE ANEURISMAS BAYESIANOS MEDIANTE MODELADO DE DESPLAZAMIENTO DE SUPERFICIE",
+        "resumen": "arXiv:2604.06649v1 Tipo de anuncio: nuevo\nResumen: Las decisiones clínicas para los aneurismas intracraneales no rotos dependen de la detección del crecimiento en la angiografía por resonancia magnética (ARM) de seguimiento.El crecimiento es típico.",
+        "fecha": 2010,
+        "conceptos": [
+            "CIENCIA",
+            "INVESTIGACIÓN",
+            "EUREKA"
+        ],
+        "link": "https://arxiv.org/abs/2604.06649"
+    },
+    {
+        "titulo": "TRANSFERENCIA DE CALOR DE PARED Y CONFIGURACIÓN DEL CAMPO DE FLUJO DE INTERACCIONES DE CAPA LÍMITE TURBULENTA Y ONDA DE CHOQUE EN UNA PARED ENFRIADA CRIOGÉNICAMENTE",
+        "resumen": "arXiv:2604.06797v1 Tipo de anuncio: nuevo\nResumen: En este estudio, investigamos experimentalmente la transferencia de calor de la pared y la configuración del campo de flujo del límite turbulento de onda de choque reflejada por incidente l.",
+        "fecha": 1978,
+        "conceptos": [
+            "CIENCIA",
+            "INVESTIGACIÓN",
+            "EUREKA"
+        ],
+        "link": "https://arxiv.org/abs/2604.06797"
+    },
+    {
+        "titulo": "CÓMO OPTIMIZAR LOS SORTEOS DE LOS TORNEOS: EL CASO DE LA COPA MUNDIAL DE LA FIFA",
+        "resumen": "arXiv:2505.13106v4 Tipo de anuncio: reemplazar-cruz\nResumen: Los organizadores de las principales competiciones deportivas utilizan diferentes políticas con respecto a las limitaciones en el sorteo de grupos.Nuestro artículo pretende racionalizar",
+        "fecha": 2001,
+        "conceptos": [
+            "CIENCIA",
+            "INVESTIGACIÓN",
+            "EUREKA"
+        ],
+        "link": "https://arxiv.org/abs/2505.13106"
+    },
+    {
+        "titulo": "LOCOMOCIÓN DE PECES OPTIMIZADA MEDIANTE DISEÑO POR TRANSFORMACIÓN Y OPTIMIZACIÓN BAYESIANA",
+        "resumen": "arXiv:2510.00044v3 Tipo de anuncio: reemplazar\nResumen: La naturaleza siempre ha inspirado a científicos e ingenieros a comprender el mecanismo subyacente que conduce al diseño óptimo en dinámicas bioinspiradas.Este",
+        "fecha": 1986,
+        "conceptos": [
+            "CIENCIA",
+            "INVESTIGACIÓN",
+            "EUREKA"
+        ],
+        "link": "https://arxiv.org/abs/2510.00044"
+    },
+    {
+        "titulo": "METAOPTIMIZACIÓN DE FUNCIONES DE WANNIER LOCALIZADAS AL MÁXIMO",
+        "resumen": "arXiv:2604.02576v2 Tipo de anuncio: reemplazar\nResumen: Las funciones de Wannier máximamente localizadas son funciones de onda cuánticas que se asemejan a orbitales atómicos y se utilizan para describir electrones en materia condensada.",
+        "fecha": 1973,
+        "conceptos": [
+            "CIENCIA",
+            "INVESTIGACIÓN",
+            "EUREKA"
+        ],
+        "link": "https://arxiv.org/abs/2604.02576"
+    },
+    {
+        "titulo": "FERMILINK: UN MARCO DE AGENTE UNIFICADO PARA SIMULACIONES CIENTÍFICAS AUTÓNOMAS MULTIDOMINIO",
+        "resumen": "arXiv:2604.03460v2 Tipo de anuncio: reemplazar\nResumen: Se han desarrollado marcos de agentes de inteligencia artificial (IA) para simulaciones científicas autónomas, pero la mayoría de los marcos de agentes actuales son de cola.",
+        "fecha": 1999,
+        "conceptos": [
+            "CIENCIA",
+            "INVESTIGACIÓN",
+            "EUREKA"
+        ],
+        "link": "https://arxiv.org/abs/2604.03460"
+    },
+    {
+        "titulo": "FLUXMC: INFERENCIA RÁPIDA Y DE ALTA FIDELIDAD PARA OBSERVACIONES DE ONDAS GRAVITACIONALES DESDE EL ESPACIO",
+        "resumen": "arXiv:2604.04957v2 Tipo de anuncio: reemplazar-cruz\nResumen: La inferencia bayesiana en las ciencias físicas enfrenta un desafío fundamental: el imperativo de un modelado físico de alta fidelidad a menudo choca con",
+        "fecha": 2001,
+        "conceptos": [
+            "CIENCIA",
+            "INVESTIGACIÓN",
+            "EUREKA"
+        ],
+        "link": "https://arxiv.org/abs/2604.04957"
+    },
+    {
+        "titulo": "LA NUEVA ERA GEOLÓGICA QUE NUNCA FUE O LAS MÚLTIPLES CAPAS DEL TRANSIENTOCENO",
+        "resumen": "arXiv:2604.06224v1 Tipo de anuncio: nuevo\nResumen: Desde sus humildes orígenes, el ser humano ha dejado huellas en la faz del planeta.De la profunda transformación desatada por la Revolución Neolítica,",
+        "fecha": 1978,
+        "conceptos": [
+            "CIENCIA",
+            "INVESTIGACIÓN",
+            "EUREKA"
+        ],
+        "link": "https://arxiv.org/abs/2604.06224"
+    },
+    {
+        "titulo": "CAPACITACIÓN SOBRE REPRODUCIBILIDAD DEL ANÁLISIS DE DATOS VÍA CONTAINERIZACIÓN CON APPTAINER",
+        "resumen": "arXiv:2604.06244v1 Tipo de anuncio: nuevo\nResumen: Presentamos el material y los recursos desarrollados para la formación de físicos en tecnologías de contenerización habilitadas por Apptainer.En el contexto de los análisis",
+        "fecha": 2016,
+        "conceptos": [
+            "CIENCIA",
+            "INVESTIGACIÓN",
+            "EUREKA"
+        ],
+        "link": "https://arxiv.org/abs/2604.06244"
+    },
+    {
+        "titulo": "PROCESAMIENTO DE SEÑALES TEÓRICAS DE CALIBRE I: EL FORMALISMO CONMUTATIVO PARA EL BLANQUEAMIENTO ADAPTATIVO CON UN SOLO DETECTOR",
+        "resumen": "arXiv:2604.06432v1 Tipo de anuncio: cruz\nResumen: Presentamos un marco geométrico para el blanqueamiento adaptativo en detectores de ondas gravitacionales, reformulando el problema a partir de una secuencia de factores espectrales.",
         "fecha": 1988,
         "conceptos": [
             "CIENCIA",
             "INVESTIGACIÓN",
             "EUREKA"
         ],
-        "link": "https://arxiv.org/abs/2604.06643"
-    },
-    {
-        "titulo": "AFRONTAR EL RIESGO INDUCTIVO CUANDO LAS TEORÍAS ESTÁN INFRADETERMINADAS: TOMA DE DECISIONES CON IDENTIFICACIÓN PARCIAL",
-        "resumen": "arXiv:2602.00355v2 Tipo de anuncio: reemplazar\nResumen: La controversia sobre la importancia de la subdeterminación de las teorías persiste en la filosofía y la conducta de la ciencia.La cuestión tiene implicaciones prácticas.",
-        "fecha": 2020,
-        "conceptos": [
-            "CIENCIA",
-            "INVESTIGACIÓN",
-            "EUREKA"
-        ],
-        "link": "https://arxiv.org/abs/2602.00355"
-    },
-    {
-        "titulo": "REDES NEURONALES QUE PRESERVAN ASINTÓTICAS PARA LA IDENTIFICACIÓN DE PARÁMETROS VISCOELÁSTICOS EN EL MODELADO DEL FLUJO SANGUÍNEO MULTIESCALA",
-        "resumen": "arXiv:2604.06287v1 Tipo de anuncio: cruz\nResumen: Los modelos matemáticos y las simulaciones numéricas ofrecen una forma no invasiva de explorar fenómenos cardiovasculares, brindando acceso a cantidades que no pueden",
-        "fecha": 2025,
-        "conceptos": [
-            "CIENCIA",
-            "INVESTIGACIÓN",
-            "EUREKA"
-        ],
-        "link": "https://arxiv.org/abs/2604.06287"
-    },
-    {
-        "titulo": "MACH: FORMACIÓN DE HACES ULTRARRÁPIDA POR ULTRASONIDOS",
-        "resumen": "arXiv:2604.06257v1 Tipo de anuncio: nuevo\nResumen: Propósito:\nLa ecografía volumétrica ultrarrápida produce conjuntos de datos masivos con altas velocidades de fotogramas, densas cuadrículas de reconstrucción y un gran número de canales.Haz",
-        "fecha": 1979,
-        "conceptos": [
-            "CIENCIA",
-            "INVESTIGACIÓN",
-            "EUREKA"
-        ],
-        "link": "https://arxiv.org/abs/2604.06257"
-    },
-    {
-        "titulo": "MECANISMOS DE ACELERACIÓN DE PARTÍCULAS EN PLASMAS RELATIVISTAS MULTIESPECIES.",
-        "resumen": "arXiv:2604.06749v1 Tipo de anuncio: cruz\nResumen: Si bien los plasmas sin colisiones están omnipresentes cerca de objetos compactos astrofísicos, el impacto que tiene su composición en las emisiones de alta energía",
-        "fecha": 1991,
-        "conceptos": [
-            "CIENCIA",
-            "INVESTIGACIÓN",
-            "EUREKA"
-        ],
-        "link": "https://arxiv.org/abs/2604.06749"
-    },
-    {
-        "titulo": "ENMARCANDO LA SINDICALIZACIÓN EN FACEBOOK: COMUNICACIÓN EN TORNO A LAS ELECCIONES DE REPRESENTACIÓN EN LOS ESTADOS UNIDOS",
-        "resumen": "arXiv:2510.01757v3 Tipo de anuncio: reemplazar-cruz\nResumen: Los medios digitales se han vuelto fundamentales para la forma en que los sindicatos se comunican, organizan y sostienen la acción colectiva.Sin embargo, se sabe poco acerca de cómo uni",
-        "fecha": 1988,
-        "conceptos": [
-            "CIENCIA",
-            "INVESTIGACIÓN",
-            "EUREKA"
-        ],
-        "link": "https://arxiv.org/abs/2510.01757"
-    },
-    {
-        "titulo": "LA ESTRUCTURA TEMPORAL MEDIA EN LA ROBUSTEZ Y EL COLAPSO DE LAS REDES DE POLINIZADORES DE PLANTAS",
-        "resumen": "arXiv:2604.07347v1 Tipo de anuncio: nuevo\nResumen: Las redes mutualistas proporcionan una manera poderosa de describir y analizar las comunidades de plantas-polinizadores y su estructura a lo largo del tiempo.Si bien estas redes ca",
-        "fecha": 1983,
-        "conceptos": [
-            "CIENCIA",
-            "INVESTIGACIÓN",
-            "EUREKA"
-        ],
-        "link": "https://arxiv.org/abs/2604.07347"
-    },
-    {
-        "titulo": "PREDICCIONES DE ONDAS KELVIN LINEALES EN EL LÍMITE $Z\\TO 0$",
-        "resumen": "arXiv:2603.14945v2 Tipo de anuncio: reemplazar\nResumen: La teoría de ondas lineales captura la física esencial de los flujos en superficie libre a una fracción del costo computacional de los métodos viscosos y no lineales, m",
-        "fecha": 1982,
-        "conceptos": [
-            "CIENCIA",
-            "INVESTIGACIÓN",
-            "EUREKA"
-        ],
-        "link": "https://arxiv.org/abs/2603.14945"
-    },
-    {
-        "titulo": "NUEVOS CONOCIMIENTOS PROCEDENTES DE ESTUDIOS DE CORRELACIÓN CRUZADA ENTRE LOS ÍNDICES DE ACTIVIDAD SOLAR Y EL FLUJO DE RAYOS CÓSMICOS DURANTE LOS EVENTOS DE DISMINUCIÓN DE FORBUSH",
-        "resumen": "arXiv:2604.06383v1 Tipo de anuncio: cruz\nResumen: La intensidad de los rayos cósmicos galácticos observada puede estar sujeta a una disminución transitoria.Estas llamadas disminuciones de Forbush son impulsadas por la eyección de masa coronal.",
-        "fecha": 2024,
-        "conceptos": [
-            "CIENCIA",
-            "INVESTIGACIÓN",
-            "EUREKA"
-        ],
-        "link": "https://arxiv.org/abs/2604.06383"
-    },
-    {
-        "titulo": "SISTEMA DE ESPECTROSCOPÍA DE THZ DE BANDA ANCHA MÁS ALLÁ DE 25 THZ UTILIZANDO CRISTALES BNA Y UN COMPRESOR DE FIBRA DE ANILLO ÚNICO SINTONIZABLE",
-        "resumen": "arXiv:2601.11764v2 Tipo de anuncio: reemplazar\nResumen: Presentamos un sistema de espectroscopía en el dominio del tiempo de terahercios (THz-TDS) que accede a un espectro de banda ancha, cubriendo eficientemente los llamados \"nuevos THz g",
-        "fecha": 2003,
-        "conceptos": [
-            "CIENCIA",
-            "INVESTIGACIÓN",
-            "EUREKA"
-        ],
-        "link": "https://arxiv.org/abs/2601.11764"
-    },
-    {
-        "titulo": "ESCALADO UNIVERSAL DE ESPESOR DE CUBO INVERSO DE LA ENERGÍA DE PENETRACIÓN DE PROYECTILES EN PELÍCULAS ULTRAFINAS",
-        "resumen": "arXiv:2603.22207v2 Tipo de anuncio: reemplazar-cruz\nResumen: Las películas ultrafinas de materiales muy diferentes exhiben una espectacular mejora de la resistencia a la penetración del proyectil bajo impacto de alta velocidad.",
-        "fecha": 2026,
-        "conceptos": [
-            "CIENCIA",
-            "INVESTIGACIÓN",
-            "EUREKA"
-        ],
-        "link": "https://arxiv.org/abs/2603.22207"
-    },
-    {
-        "titulo": "LA ESTIMACIÓN DE MÁXIMA VEROSIMILITUD PRODUCE UNA ASIGNACIÓN PRECISA DE LA LÍNEA DE RESPUESTA PARA POSITRONES + EVENTOS RÁPIDOS DE RAYOS GAMMA EN PET MULTIPLEXADO (MPET)",
-        "resumen": "arXiv:2604.06500v1 Tipo de anuncio: nuevo\nResumen: Para una caracterización precisa de la enfermedad mediante tomografía por emisión de positrones (PET), es deseable obtener imágenes de múltiples radiotrazadores en una sola exploración.convenir",
-        "fecha": 2015,
-        "conceptos": [
-            "CIENCIA",
-            "INVESTIGACIÓN",
-            "EUREKA"
-        ],
-        "link": "https://arxiv.org/abs/2604.06500"
+        "link": "https://arxiv.org/abs/2604.06432"
     }
 ]
