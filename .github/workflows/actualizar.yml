@@ -1,7 +1,7 @@
 name: Actualización Eureka
 on:
   schedule:
-    - cron: '0 12 * * *'
+    - cron: '0 */6 * * *' # Se ejecutará cada 6 horas para mantenerlo fresco
   workflow_dispatch:
 
 permissions:
@@ -12,19 +12,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+        with:
+          fetch-depth: 0
+
+      - name: Configurando Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      - name: Instalando dependencias
+
+      - name: Instalando Librerías
         run: |
           pip install feedparser googletrans==4.0.0-rc1 spacy requests
           python -m spacy download es_core_news_lg
-      - name: Ejecutando Cerebro
+
+      - name: Generando Noticias Nuevas
         run: python generador_noticias.py
-      - name: Publicando resultados
+
+      - name: Forzando actualización en Repositorio
         run: |
           git config --global user.name "Cerebro-Eureka"
           git config --global user.email "eureka@github.com"
           git add noticias.json
-          git commit -m "Sincronización de archivo histórico" || echo "Sin cambios"
-          git push
+          git commit -m "Actualización Eureka: $(date)" || echo "Sin cambios"
+          git push origin main
