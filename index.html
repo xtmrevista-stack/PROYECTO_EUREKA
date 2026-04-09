@@ -6,67 +6,67 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Roboto:wght@300;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Roboto', sans-serif; background: #fff; }
-        h1 { font-family: 'Playfair Display', serif; }
-        .card { border: 4px solid #000; transition: 0.2s; background: #fff; }
-        .card:hover { transform: translate(-4px, -4px); box-shadow: 8px 8px 0px #000; }
-        input[type=range] { accent-color: #000; height: 12px; appearance: none; background: #eee; cursor: pointer; border-radius: 10px; }
+        body { font-family: 'Roboto', sans-serif; }
+        .card { border: 4px solid #000; transition: 0.3s; background: #fff; height: 100%; display: flex; flex-direction: column; }
+        .card:hover { transform: translate(-5px, -5px); box-shadow: 10px 10px 0px #000; }
+        input[type=range] { accent-color: #000; height: 15px; appearance: none; background: #ddd; border-radius: 10px; cursor: pointer; }
     </style>
 </head>
-<body>
-    <header class="py-10 border-b-[10px] border-black text-center mx-6">
-        <h1 class="text-7xl md:text-8xl font-black italic tracking-tighter uppercase">Science World News</h1>
-        <p class="font-bold text-[10px] tracking-[0.5em] mt-4 uppercase">Archivo Histórico 1970 — 2026</p>
+<body class="bg-white">
+    <header class="py-12 border-b-[12px] border-black text-center mx-6">
+        <h1 class="text-6xl md:text-8xl font-black italic tracking-tighter uppercase" style="font-family:'Playfair Display'">Science World News</h1>
+        <p class="font-bold text-[10px] tracking-[0.5em] mt-4 uppercase">Archivo 1970 — 2026</p>
     </header>
 
-    <div class="max-w-7xl mx-auto px-6 -mt-8 mb-10">
-        <div class="bg-white border-4 border-black p-6 flex flex-col md:flex-row items-center gap-8 shadow-[6px_6px_0px_#000]">
+    <div class="max-w-7xl mx-auto px-6 -mt-8 mb-12">
+        <div class="bg-white border-4 border-black p-6 flex flex-col md:flex-row items-center gap-10 shadow-[8px_8px_0px_#000]">
             <div class="w-full md:w-1/4">
-                <label class="block text-[10px] font-black uppercase mb-1">Buscador</label>
-                <input type="text" id="search" onkeyup="filtrar()" placeholder="Buscar concepto..." class="w-full p-2 border-2 border-black font-bold outline-none">
+                <label class="block text-[10px] font-black uppercase mb-2">Buscador</label>
+                <input type="text" id="search" onkeyup="filtrar()" placeholder="Concepto..." class="w-full p-3 border-2 border-black font-bold outline-none">
             </div>
             <div class="w-full md:w-3/4">
-                <label class="block text-[10px] font-black uppercase mb-1">Línea de Tiempo: <span id="year-label" class="text-blue-600">2026</span></label>
+                <label class="block text-[10px] font-black uppercase mb-2">Línea de Tiempo: <span id="year-label" class="text-blue-600 text-xl">2026</span></label>
                 <input type="range" id="slider" min="1970" max="2026" value="2026" oninput="filtrar()" class="w-full">
-                <div class="flex justify-between font-black text-[9px] mt-1"><span>1970</span><span>1998</span><span>2026</span></div>
+                <div class="flex justify-between font-black text-[10px] mt-2 italic">
+                    <span>1970</span><span>1998</span><span>2026</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <main id="galeria" class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto px-6 pb-20"></main>
+    <main id="galeria" class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto px-6 pb-20"></main>
 
     <script>
-        let datos = [];
+        let db = [];
         async function cargar() {
             try {
-                // El ?v= evita que el navegador use datos viejos
-                const res = await fetch('noticias.json?v=' + Date.now());
-                datos = await res.json();
-                mostrar(datos);
-            } catch (e) {
-                document.getElementById('galeria').innerHTML = "<p class='col-span-3 text-center py-20 font-black italic'>INICIANDO MOTOR EUREKA... POR FAVOR EJECUTA EL WORKFLOW EN GITHUB.</p>";
+                // El parámetro ?nocache asegura que NO se queden fijas las noticias
+                const r = await fetch('noticias.json?nocache=' + Date.now());
+                db = await r.json();
+                render(db);
+            } catch(e) {
+                document.getElementById('galeria').innerHTML = "<p class='col-span-3 text-center py-20 font-black text-2xl uppercase italic'>Sincronizando Cerebro... Pulsa 'Run Workflow' en GitHub.</p>";
             }
         }
 
         function filtrar() {
-            const busqueda = document.getElementById('search').value.toLowerCase();
-            const anio = parseInt(document.getElementById('slider').value);
-            document.getElementById('year-label').innerText = anio;
-            const filtrados = datos.filter(n => (n.titulo.toLowerCase().includes(busqueda)) && (n.fecha <= anio));
-            mostrar(filtrados);
+            const q = document.getElementById('search').value.toLowerCase();
+            const y = parseInt(document.getElementById('slider').value);
+            document.getElementById('year-label').innerText = y;
+            render(db.filter(n => (n.titulo.toLowerCase().includes(q) || n.resumen.toLowerCase().includes(q)) && n.fecha <= y));
         }
 
-        function mostrar(lista) {
-            const contenedor = document.getElementById('galeria');
-            contenedor.innerHTML = lista.map(n => `
-                <div class="card p-5">
-                    <div class="flex justify-between font-black text-[10px] mb-3 border-b border-black pb-2">
+        function render(lista) {
+            const g = document.getElementById('galeria');
+            g.innerHTML = lista.map(n => `
+                <div class="card p-6">
+                    <div class="flex justify-between font-black text-[10px] mb-4 border-b-2 border-black pb-2">
                         <span class="bg-black text-white px-2 uppercase">Hallazgo</span>
-                        <span>AÑO: ${n.fecha}</span>
+                        <span class="text-lg underline">${n.fecha}</span>
                     </div>
-                    <h2 class="text-xl font-black leading-tight mb-3 uppercase">${n.titulo}</h2>
-                    <p class="text-xs mb-4 text-gray-700">${n.resumen}</p>
-                    <a href="${n.link}" target="_blank" class="block text-center py-2 border-2 border-black font-bold text-[10px] hover:bg-black hover:text-white transition-colors">LEER INVESTIGACIÓN</a>
+                    <h2 class="text-2xl font-black leading-none mb-4 uppercase">${n.titulo}</h2>
+                    <p class="text-xs mb-6 flex-grow">${n.resumen}</p>
+                    <button onclick="window.open('${n.link}','_blank')" class="w-full py-3 border-4 border-black font-black text-xs hover:bg-black hover:text-white transition-all uppercase">Explorar Investigación</button>
                 </div>
             `).join('');
         }
