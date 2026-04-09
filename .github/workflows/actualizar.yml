@@ -1,8 +1,12 @@
-name: Actualización SWN
+name: Actualización Eureka
 on:
   schedule:
     - cron: '0 12 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,16 +15,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      - name: Instalación
+      - name: Instalando dependencias
         run: |
           pip install feedparser googletrans==4.0.0-rc1 spacy requests
           python -m spacy download es_core_news_lg
-      - name: Ejecutar
+      - name: Ejecutando Cerebro
         run: python generador_noticias.py
-      - name: Deploy
+      - name: Publicando resultados
         run: |
-          git config --global user.name "Cerebro SWN"
-          git config --global user.email "swn@github.com"
+          git config --global user.name "Cerebro-Eureka"
+          git config --global user.email "eureka@github.com"
           git add noticias.json
-          git commit -m "Sincronización 1970-2026" || echo "Sin cambios"
+          git commit -m "Sincronización de archivo histórico" || echo "Sin cambios"
           git push
