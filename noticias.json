@@ -1,354 +1,332 @@
 [
     {
-        "titulo": "INMOLACIÓN",
-        "resumen": "<p>Naturaleza, Publicado en línea: 08 de abril de 2026;<a href=\"https://www.nature.com/articles/d41586-026-01039-0\">doi:10.1038/d41586-026-01039-0</a></p>Oferta y demanda....",
-        "fecha": 2005,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://www.nature.com/articles/d41586-026-01039-0"
-    },
-    {
-        "titulo": "RESILIENCIA DE LA BIODIVERSIDAD EN UNA SELVA TROPICAL",
-        "resumen": "<p>Naturaleza, Publicado en línea: 08 de abril de 2026;<a href=\"https://www.nature.com/articles/s41586-026-10365-2\">doi:10.1038/s41586-026-10365-2</a></p>Evaluación de cómo 16 grupos taxonómicos en un bosque tropical de tierras bajas resisten y se recuperan de la degradación antropogénica...",
-        "fecha": 2025,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://www.nature.com/articles/s41586-026-10365-2"
-    },
-    {
-        "titulo": "MINIMODELOS DEL CEREBRO HUMANO REVELAN CÓMO TOMA FORMA ESTE COMPLEJO ÓRGANO",
-        "resumen": "<p>Naturaleza, Publicado en línea: 08 de abril de 2026;<a href=\"https://www.nature.com/articles/d41586-026-01025-6\">doi:10.1038/d41586-026-01025-6</a></p>Los organoides cultivados en laboratorio están impulsando el estudio del desarrollo y las enfermedades del cerebro humano....",
-        "fecha": 2024,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://www.nature.com/articles/d41586-026-01025-6"
-    },
-    {
-        "titulo": "LA MULTIÓMICA Y EL APRENDIZAJE PROFUNDO ANALIZAN LA SINTAXIS REGULATORIA EN EL DESARROLLO HUMANO",
-        "resumen": "<p>Naturaleza, Publicado en línea: 08 de abril de 2026;<a href=\"https://www.nature.com/articles/s41586-026-10326-9\">doi:10.1038/s41586-026-10326-9</a></p>El Atlas Multiómico de Desarrollo Humano cataloga datos de expresión genética y accesibilidad unicelular de hu...",
-        "fecha": 2012,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://www.nature.com/articles/s41586-026-10326-9"
-    },
-    {
-        "titulo": "TRAMPA TUMORAL: SECUENCIAS POTENCIADORAS DISEÑADAS PARA MATAR CÉLULAS CANCEROSAS",
-        "resumen": "<p>Naturaleza, Publicado en línea: 08 de abril de 2026;<a href=\"https://www.nature.com/articles/d41586-026-00812-5\">doi:10.1038/d41586-026-00812-5</a></p>Se necesitan nuevas terapias contra el cáncer que no dañen el tejido sano.Una secuencia de ADN diseñada parece prometedora...",
-        "fecha": 2024,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://www.nature.com/articles/d41586-026-00812-5"
-    },
-    {
-        "titulo": "LA IMPORTANCIA DE LA COMPETENCIA Y LA FACILITACIÓN PARA LA DIVERSIDAD MUNDIAL DE ÁRBOLES",
-        "resumen": "<p>Naturaleza, Publicado en línea: 08 de abril de 2026;<a href=\"https://www.nature.com/articles/s41586-026-10349-2\">doi:10.1038/s41586-026-10349-2</a></p>En 17 parcelas forestales (2,7 millones de árboles, 5.400 especies), la competencia dominó en general, pero la facilitación...",
-        "fecha": 2012,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://www.nature.com/articles/s41586-026-10349-2"
-    },
-    {
-        "titulo": "METABOLÓMICA A TRAVÉS DE ESCALAS: DESDE CÉLULAS INDIVIDUALES HASTA ESTUDIOS DE POBLACIONES",
-        "resumen": "<p>Naturaleza, Publicado en línea: 08 de abril de 2026;<a href=\"https://www.nature.com/articles/s41586-026-10277-1\">doi:10.1038/s41586-026-10277-1</a></p>Esta perspectiva revisa el potencial y los desafíos de los enfoques metabolómicos, abarcando tanto el pecado...",
-        "fecha": 1972,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://www.nature.com/articles/s41586-026-10277-1"
-    },
-    {
-        "titulo": "SU NARIZ CONTIENE MULTITUD DE CÉLULAS INMUNES DE LARGA VIDA",
-        "resumen": "<p>Naturaleza, Publicado en línea: 09 de abril de 2026;<a href=\"https://www.nature.com/articles/d41586-026-01111-9\">doi:10.1038/d41586-026-01111-9</a></p>El tejido nasal alberga células T que \"recuerdan\" un patógeno mucho después de que ha pasado la infección....",
-        "fecha": 2011,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://www.nature.com/articles/d41586-026-01111-9"
-    },
-    {
         "titulo": "EL TÉ, LAS BAYAS, EL CHOCOLATE NEGRO Y LAS MANZANAS PODRÍAN PROLONGAR LA VIDA ÚTIL, SEGÚN UN ESTUDIO",
         "resumen": "Una nueva investigación ha descubierto que quienes consumen una amplia gama de alimentos ricos en flavonoides, como té, bayas, chocolate amargo y manzanas, podrían reducir su riesgo de desarrollar problemas de salud graves y tener el potencial de vivir más tiempo....",
-        "fecha": 2009,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "HALLAZGO",
+        "fecha": 2026,
+        "palabras_clave": "Bayas, Chocolate, Manzanas, Negro, Prolongar",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,El",
         "link": "https://www.sciencedaily.com/releases/2025/06/250603115028.htm"
     },
     {
-        "titulo": "EL AUMENTO DE LAS EMISIONES DE ÁCIDO NITROSO DEL SUELO, IMPULSADAS POR EL CAMBIO CLIMÁTICO Y LA FERTILIZACIÓN, ACELERA LA CONTAMINACIÓN GLOBAL POR OZONO",
-        "resumen": "La contaminación por ozono es una preocupación ambiental global que no sólo amenaza la salud humana y la producción de cultivos, sino que también empeora el calentamiento global.Si bien la formación de ozono a menudo se atribuye a contaminantes antropogénicos, se revela que las emisiones del suelo son...",
-        "fecha": 2012,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://www.sciencedaily.com/releases/2025/05/250530123821.htm"
-    },
-    {
-        "titulo": "LOS PERFILES DE INMUNIDAD A GRAN ESCALA APORTAN INFORMACIÓN SOBRE LA EVOLUCIÓN DEL VIRUS DE LA GRIPE",
-        "resumen": "Un nuevo estudio muestra cómo la variación de persona a persona en la inmunidad de los anticuerpos juega un papel clave en la configuración de qué cepas de influenza dominan en una población....",
-        "fecha": 1996,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://www.sciencedaily.com/releases/2025/06/250603114634.htm"
-    },
-    {
-        "titulo": "ESTAR EN LA NATURALEZA PUEDE AYUDAR A LAS PERSONAS CON DOLOR DE ESPALDA CRÓNICO A CONTROLAR SU AFECCIÓN",
-        "resumen": "Los investigadores preguntaron a los pacientes, algunos de los cuales habían experimentado dolor lumbar durante hasta 40 años, si estar en la naturaleza les ayudaba a afrontar mejor su dolor lumbar.Descubrieron que las personas que podían pasar tiempo en sus propios jardines disfrutaban de cierta salud y nosotros...",
-        "fecha": 2007,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://www.sciencedaily.com/releases/2025/06/250603115020.htm"
-    },
-    {
-        "titulo": "UN JUEGO DE ENTRENAMIENTO CEREBRAL OFRECE UNA NUEVA ESPERANZA PARA EL TRATAMIENTO DEL DOLOR SIN FÁRMACOS",
-        "resumen": "Una prueba de un juego interactivo que entrena a las personas para alterar sus ondas cerebrales se ha mostrado prometedora como tratamiento para el dolor nervioso, ofreciendo esperanza para una nueva generación de tratamientos sin medicamentos....",
-        "fecha": 2012,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://www.sciencedaily.com/releases/2025/06/250602155330.htm"
-    },
-    {
-        "titulo": "EL DESCUBRIMIENTO DEL SISTEMA INMUNOLÓGICO REVELA UNA POSIBLE SOLUCIÓN AL ALZHEIMER",
-        "resumen": "Una nueva forma de pensar sobre la enfermedad de Alzheimer ha producido un descubrimiento que podría ser la clave para detener el deterioro cognitivo observado en la enfermedad de Alzheimer y otras enfermedades neurodegenerativas, incluidas la ELA y el Parkinson....",
-        "fecha": 2013,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://www.sciencedaily.com/releases/2025/06/250602154905.htm"
-    },
-    {
-        "titulo": "INVESTIGADORES DESARROLLAN UN MODELO INNOVADOR PARA ESTUDIAR EL SENTIDO DEL OLFATO",
-        "resumen": "Utilizando un modelo tridimensional recientemente ideado para estudiar la regeneración del tejido nervioso en la nariz, los investigadores han descubierto que un tipo de célula madre que se cree que está inactiva puede desempeñar un papel más importante en la preservación del sentido del olfato que el...",
+        "titulo": "LOS EVENTOS DE POLVO CAUSADOS ​​POR EL HOMBRE ESTÁN RELACIONADOS CON LAS TIERRAS AGRÍCOLAS EN BARBECHO",
+        "resumen": "El Valle Central de California, conocido por la agricultura que produce gran parte de las frutas, verduras y nueces del país, es uno de los principales contribuyentes a un creciente problema de polvo que tiene profundas implicaciones para la salud, la seguridad y el bienestar de las personas....",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "INNOVACIÓN",
         "fecha": 2026,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://www.sciencedaily.com/releases/2025/06/250603172911.htm"
+        "palabras_clave": "Polvo, Eventos, Causados, Hombre, Relacionados",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,Los",
+        "link": "https://www.sciencedaily.com/releases/2025/06/250602154722.htm"
     },
     {
-        "titulo": "LOS INGENIEROS DESARROLLAN MÚSCULOS AUTOCURATIVOS PARA ROBOTS",
-        "resumen": "Los estudiantes dieron a conocer recientemente su invención de un actuador robótico (el \"músculo\" que convierte la energía en el movimiento físico de un robot) que tiene la capacidad de detectar pinchazos o presión, curar la lesión y reparar su \"piel\" que detecta daños....",
-        "fecha": 1985,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://www.sciencedaily.com/releases/2025/05/250530151849.htm"
+        "titulo": "EVITAR QUE LA INFLAMACIÓN CRÓNICA SE CONVIERTA EN CÁNCER",
+        "resumen": "La enfermedad inflamatoria intestinal crónica es difícil de tratar y conlleva un riesgo de complicaciones, incluido el desarrollo de cáncer de intestino.Los jóvenes se ven especialmente afectados: cuando coinciden la predisposición genética y determinados factores, enfermedades como la colitis ulcerosa o la enfermedad de Croh...",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "INNOVACIÓN",
+        "fecha": 2026,
+        "palabras_clave": "Crónica, Cáncer, Enfermedad, Evitar, Inflamación",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,Evitar",
+        "link": "https://www.sciencedaily.com/releases/2025/06/250602155806.htm"
     },
     {
-        "titulo": "PREDICCIÓN CONFORME BAYESIANA PONDERADA",
-        "resumen": "arXiv:2604.06464v1 Tipo de anuncio: cruz\nResumen: La predicción conforme proporciona intervalos de predicción sin distribución con garantías de cobertura de muestras finitas, y un trabajo reciente de Snell \\& Griffiths la reformula como cuadratura bayesiana (BQ-CP), lo que produce...",
-        "fecha": 2005,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://arxiv.org/abs/2604.06464"
+        "titulo": "LA PROTEÍNA DE LOS INSECTOS BLOQUEA LA INFECCIÓN BACTERIANA",
+        "resumen": "Los científicos han informado sobre el uso de recubrimientos antibacterianos elaborados a partir de proteínas miméticas de resilina para impedir completamente que las bacterias se adhieran a una superficie.Se ha utilizado una proteína que les da a las pulgas su rebote para expulsar las células bacterianas, y los resultados de laboratorio demuestran el potencial del material....",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "INNOVACIÓN",
+        "fecha": 2026,
+        "palabras_clave": "Proteína, Insectos, Bloquea, Infección, Bacteriana",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,La",
+        "link": "https://www.sciencedaily.com/releases/2025/06/250602154856.htm"
     },
     {
-        "titulo": "APROXIMACIÓN DE GRADIENTE METAGENERALIZADA AUTOCONSISTENTE A NIVEL DE HESSE",
-        "resumen": "arXiv:2604.07046v1 Tipo de anuncio: nuevo\nResumen: La clase $\\vartheta$-MGGA de funcionales de densidad se reformula formalmente como aproximaciones de gradiente metageneralizadas de nivel hessiano (HL-MGGA).A diferencia de los meta-GGA estándar que dependen de la órbita...",
-        "fecha": 1987,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://arxiv.org/abs/2604.07046"
+        "titulo": "LA NUEVA VACUNA DE ARNM ES MÁS EFICAZ Y MENOS COSTOSA DE DESARROLLAR",
+        "resumen": "Según un nuevo estudio, un nuevo tipo de vacuna de ARNm es más escalable y adaptable a virus en continua evolución como el SARS-CoV-2 y el H5N1....",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "HALLAZGO",
+        "fecha": 2026,
+        "palabras_clave": "Vacuna, Arnm, Eficaz, Costosa, Desarrollar",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,La",
+        "link": "https://www.sciencedaily.com/releases/2025/06/250603114825.htm"
     },
     {
-        "titulo": "MEZCLADO GRANULAR Y DINÁMICA DE FLUJO EN REACTORES DE LECHO AGITADO HORIZONTAL.",
-        "resumen": "arXiv:2604.07082v1 Tipo de anuncio: nuevo\nResumen: Los reactores de lecho agitado horizontal (HSBR) se utilizan en la producción de poliolefinas en fase gaseosa, donde la mezcla eficiente de sólidos y las distribuciones controladas del tiempo de residencia son esenciales para la calidad del producto y el estado del producto....",
-        "fecha": 2017,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://arxiv.org/abs/2604.07082"
+        "titulo": "LOS CIENTÍFICOS ENCUENTRAN UNA NUEVA FORMA DE AYUDAR A LAS PLANTAS A COMBATIR ENFERMEDADES",
+        "resumen": "El laboratorio podría mejorar la resiliencia de los cultivos En un descubrimiento que lleva tres décadas en desarrollo, los científicos han adquirido conocimientos detallados sobre las estructuras internas y el modo de regulación de una proteína especializada y están procediendo a desarrollar herramientas que puedan aprovechar su capacidad para...",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "NUEVO",
+        "fecha": 2026,
+        "palabras_clave": "Científicos, Encuentran, Forma, Ayudar, Plantas",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,Los",
+        "link": "https://www.sciencedaily.com/releases/2025/05/250530123947.htm"
     },
     {
-        "titulo": "¿QUÉ HAY EN EL ESPACIO LATENTE?EXPLORANDO LA VARIABILIDAD ACOPLADA DEL PACÍFICO TROPICAL DENTRO DE UN CODIFICADOR AUTOMÁTICO VARIACIONAL $\\BETA$ DE MÚLTIPLES RAMAS",
-        "resumen": "arXiv:2604.07137v1 Tipo de anuncio: nuevo\nResumen: ¿Qué está codificado en el espacio latente de un codificador automático $\\beta$-variacional de múltiples ramas entrenado en campos climáticos acoplados del Pacífico tropical?Para responder a esta pregunta, entrenamos el modelo sobre la temperatura de la superficie del mar....",
-        "fecha": 1998,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://arxiv.org/abs/2604.07137"
+        "titulo": "PÉRDIDA DE NITRÓGENO EN COSTAS ARENOSAS: EL GRAN IMPACTO DE LAS PEQUEÑAS BOLSAS ANÓXICAS",
+        "resumen": "Algunos microbios que viven en los granos de arena consumen todo el oxígeno que los rodea.Sus vecinos, que se quedaron sin oxígeno, lo aprovechan al máximo: utilizan nitrato en el agua circundante para la desnitrificación, un proceso difícilmente posible cuando hay oxígeno presente.Esta desnitrificación en sedimentos arenosos....",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "HALLAZGO",
+        "fecha": 2026,
+        "palabras_clave": "Oxígeno, Desnitrificación, Pérdida, Nitrógeno, Costas",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,Pérdida",
+        "link": "https://www.sciencedaily.com/releases/2025/06/250602155328.htm"
     },
     {
-        "titulo": "EMISIÓN ÓPTICA DIRECCIONAL Y CORRELACIONADA DE UNA MOLÉCULA DISEÑADA CON GUÍA DE ONDAS CON CONTROL LOCAL",
-        "resumen": "arXiv:2604.06410v1 Tipo de anuncio: cruz\nResumen: El acoplamiento radiativo entre emisores cuánticos conduce a una serie de fenómenos de emisión espectaculares.Dicke estudió los fundamentos de la decadencia colectivamente mejorada y suprimida, comúnmente conocida como su...",
-        "fecha": 2017,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://arxiv.org/abs/2604.06410"
+        "titulo": "¿SIGUES EN EL CAMINO CORRECTO?LOS INVESTIGADORES PERMITEN UN SEGUIMIENTO FIABLE DE LOS OBJETIVOS CLIMÁTICOS DE PARÍS",
+        "resumen": "El calentamiento global avanza continuamente.Ahora se puede predecir con mayor precisión que nunca la rapidez con la que sucederá esto, gracias a un método desarrollado por investigadores del clima.Se espera que el calentamiento global antropogénico supere los 1,5 grados Celsius para 2028 y, por lo tanto, se mejorarán las cuantificaciones....",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "CONDECORADOS",
+        "fecha": 2026,
+        "palabras_clave": "Investigadores, Calentamiento, Global, Sigues, Camino",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,¿Sigues",
+        "link": "https://www.sciencedaily.com/releases/2025/06/250602155340.htm"
     },
     {
-        "titulo": "NUEVOS CONOCIMIENTOS PROCEDENTES DE ESTUDIOS DE CORRELACIÓN CRUZADA ENTRE LOS ÍNDICES DE ACTIVIDAD SOLAR Y EL FLUJO DE RAYOS CÓSMICOS DURANTE LOS EVENTOS DE DISMINUCIÓN DE FORBUSH",
-        "resumen": "arXiv:2604.06383v1 Tipo de anuncio: cruz\nResumen: La intensidad de los rayos cósmicos galácticos observada puede estar sujeta a una disminución transitoria.Estas llamadas disminuciones de Forbush son impulsadas por ondas de choque inducidas por eyección de masa coronal en la heliosfera.por combinar...",
-        "fecha": 1972,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://arxiv.org/abs/2604.06383"
+        "titulo": "LA CÁPSULA DEL TIEMPO GEOLÓGICO DESTACA LA RESILIENCIA DE LA GRAN BARRERA DE CORAL",
+        "resumen": "Una nueva investigación amplía nuestra comprensión de cómo el rápido aumento del nivel del mar debido al cambio climático presagia el fin de la Gran Barrera de Coral tal como la conocemos.Los hallazgos sugieren que el arrecife puede soportar el aumento del nivel del mar de forma aislada, pero es vulnerable a las tensiones ambientales asociadas....",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "HALLAZGO",
+        "fecha": 2026,
+        "palabras_clave": "Barrera, Coral, Aumento, Nivel, Cápsula",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,La",
+        "link": "https://www.sciencedaily.com/releases/2025/06/250602155513.htm"
     },
     {
-        "titulo": "MEDICIÓN DE TOPOLOGÍA Y GEOMETRÍA CUÁNTICA NO ABELIANA EN UNA RED FOTÓNICA DE MÚLTIPLES ESPACIOS",
-        "resumen": "arXiv:2511.03894v2 Tipo de anuncio: reemplazar-cruz\nResumen: Los recientes descubrimientos en sistemas semimetálicos de múltiples espacios que presentan singularidades de banda han despertado un enorme interés, en particular debido a la aparición de propiedades de trenzado no abeliano de b...",
-        "fecha": 2001,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://arxiv.org/abs/2511.03894"
-    },
-    {
-        "titulo": "REDES NEURONALES QUE PRESERVAN ASINTÓTICAS PARA LA IDENTIFICACIÓN DE PARÁMETROS VISCOELÁSTICOS EN EL MODELADO DEL FLUJO SANGUÍNEO MULTIESCALA",
-        "resumen": "arXiv:2604.06287v1 Tipo de anuncio: cruz\nResumen: Los modelos matemáticos y las simulaciones numéricas ofrecen una forma no invasiva de explorar fenómenos cardiovasculares, brindando acceso a cantidades que no se pueden medir directamente.En este estudio, comenzamos con...",
-        "fecha": 2019,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://arxiv.org/abs/2604.06287"
+        "titulo": "PEQUEÑAS CORRIENTES, GRAN IMPACTO: EL AVANCE DE UN SATÉLITE REVELA FUERZAS OCEÁNICAS OCULTAS",
+        "resumen": "Si bien los científicos han estudiado durante mucho tiempo las corrientes de grandes remolinos, los más pequeños, llamados remolinos de submesoescala, son notoriamente difíciles de detectar.Estas corrientes, que varían desde varios kilómetros hasta 100 kilómetros de ancho, han sido las \"piezas faltantes\" del rompecabezas del océano....",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "INNOVACIÓN",
+        "fecha": 2026,
+        "palabras_clave": "Corrientes, Remolinos, Kilómetros, Pequeñas, Impacto",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,Pequeñas",
+        "link": "https://www.sciencedaily.com/releases/2025/05/250530123950.htm"
     },
     {
         "titulo": "VIOLACIONES DE PRIORIDAD JUSTIFICABLES",
-        "resumen": "arXiv:2604.06396v1 Tipo de anuncio: nuevo\nResumen: Abordar las grandes ineficiencias generadas por el mecanismo de Aceptación Diferida (DA) requiere violaciones prioritarias, pero ¿cuáles son justificables?El enfoque principal es preguntar a las personas si...",
-        "fecha": 1995,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
+        "resumen": "arXiv:2604.06396v1 Tipo de anuncio: nuevo\nResumen: Abordar las grandes ineficiencias generadas por el mecanismo de Aceptación Diferida (DA) requiere violaciones prioritarias, pero ¿cuáles son justificables?El enfoque principal es preguntar a las personas si aceptan renunciar a su prioridad....",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "NUEVO",
+        "fecha": 2026,
+        "palabras_clave": "Prioridad, Violaciones, Justificables, Tipo, Anuncio",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,Violaciones",
         "link": "https://arxiv.org/abs/2604.06396"
     },
     {
-        "titulo": "TODAS LAS REDES FINITAS SON REDES COINCIDENTES ESTABLES.",
-        "resumen": "arXiv:2504.17916v3 Tipo de anuncio: reemplazar-cruz\nResumen: Mostramos que todas las redes finitas, incluidas las no distributivas, surgen como redes coincidentes estables cuando todos los agentes tienen funciones de elección independientes de la ruta.Este resultado responde a una pregunta abierta....",
-        "fecha": 1981,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://arxiv.org/abs/2504.17916"
-    },
-    {
-        "titulo": "EQUILIBRIO LIBRE DE DISTRIBUCIÓN EN CONCURSOS DE BÚSQUEDA",
-        "resumen": "arXiv:2603.20683v2 Tipo de anuncio: reemplazar\nResumen: Estudiamos un concurso en el que $N$ jugadores sortean secuencialmente de una distribución tantas veces como quieran a un costo fijo por sorteo, sin recuperación, y el valor más alto aceptado gana un premio.en el...",
-        "fecha": 1990,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://arxiv.org/abs/2603.20683"
-    },
-    {
-        "titulo": "UN PUNTO DE REFERENCIA DE MODELOS CLÁSICOS Y DE APRENDIZAJE PROFUNDO PARA LA PREDICCIÓN DE PRECIOS DE PRODUCTOS BÁSICOS AGRÍCOLAS EN UN NUEVO CONJUNTO DE DATOS DE PRECIOS DE MERCADO DE BANGLADESH",
-        "resumen": "arXiv:2604.06227v1 Tipo de anuncio: cruz\nResumen: La previsión precisa a corto plazo de los precios de los productos básicos agrícolas es fundamental para la planificación de la seguridad alimentaria y la estabilización de los ingresos de los pequeños agricultores en las economías en desarrollo, pero los datos están listos para el aprendizaje automático....",
-        "fecha": 1988,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://arxiv.org/abs/2604.06227"
-    },
-    {
-        "titulo": "AFRONTAR EL RIESGO INDUCTIVO CUANDO LAS TEORÍAS ESTÁN INFRADETERMINADAS: TOMA DE DECISIONES CON IDENTIFICACIÓN PARCIAL",
-        "resumen": "arXiv:2602.00355v2 Tipo de anuncio: reemplazar\nResumen: La controversia sobre la importancia de la subdeterminación de las teorías persiste en la filosofía y la conducta de la ciencia.La cuestión tiene importancia práctica cuando la investigación se utiliza para informar la toma de decisiones....",
-        "fecha": 1976,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://arxiv.org/abs/2602.00355"
-    },
-    {
-        "titulo": "SUBASTA DE PRECIOS UNIFORMES CON RESTRICCIONES DE CANTIDAD.",
-        "resumen": "arXiv:2409.04047v2 Tipo de anuncio: reemplazar\nResumen: Estudiamos los equilibrios de subastas de precio uniforme donde muchos postores asimétricos tienen demandas planas hasta sus respectivas restricciones cuantitativas.Presentamos un procedimiento iterativo que sistemáticamente...",
-        "fecha": 1991,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
-        "link": "https://arxiv.org/abs/2409.04047"
+        "titulo": "PONDERACIÓN EPISTÉMICA ENDÓGENA BAJO INFORMACIÓN HETEROGÉNEA",
+        "resumen": "arXiv:2602.13499v2 Tipo de anuncio: reemplazar\nResumen: La toma de decisiones colectiva requiere agregar múltiples canales de información ruidosos sobre un estado desconocido del mundo.Las justificaciones epistémicas clásicas del gobierno de la mayoría se basan en supuestos de homogeneidad que a menudo se violan cuando se trata de...",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "DESCUBRIMIENTO",
+        "fecha": 2026,
+        "palabras_clave": "Información, Ponderación, Epistémica, Endógena, Heterogénea",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,Ponderación",
+        "link": "https://arxiv.org/abs/2602.13499"
     },
     {
         "titulo": "REPRESENTATIVIDAD Y EFICIENCIA EN IV SOBREIDENTIFICADO",
-        "resumen": "arXiv:2604.07131v1 Tipo de anuncio: nuevo\nResumen: Bajo efectos de tratamiento heterogéneos, la matriz de ponderación GMM en modelos IV sobreidentificados dicta la estimación.Mostramos que el GMM eficiente reduce los instrumentos de alta varianza y asigna con frecuencia...",
-        "fecha": 2005,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
+        "resumen": "arXiv:2604.07131v1 Tipo de anuncio: nuevo\nResumen: Bajo efectos de tratamiento heterogéneos, la matriz de ponderación GMM en modelos IV sobreidentificados dicta la estimación.Mostramos que un GMM eficiente reduce la ponderación de los instrumentos de alta varianza y asigna con frecuencia ponderaciones negativas que bajo...",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "INNOVACIÓN",
+        "fecha": 2026,
+        "palabras_clave": "Ponderación, Representatividad, Eficiencia, Sobreidentificado, Tipo",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,Representatividad",
         "link": "https://arxiv.org/abs/2604.07131"
     },
     {
+        "titulo": "ESTACIONALIDAD EN PROCESOS MIXTOS CAUSALES-NO CAUSALES",
+        "resumen": "arXiv:2604.07040v1 Tipo de anuncio: nuevo\nResumen: Este artículo investiga el papel de las raíces complejas y negativas en modelos autorregresivos causales-no causales (MAR) mixtos.Usando descomposiciones en fracciones parciales, demostramos que las raíces estacionales siempre pueden aislarse en el promedio móvil r...",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "CONDECORADOS",
+        "fecha": 2026,
+        "palabras_clave": "Mixtos, Causales, Raíces, Estacionalidad, Procesos",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,Estacionalidad",
+        "link": "https://arxiv.org/abs/2604.07040"
+    },
+    {
+        "titulo": "RACIONALIZACIÓN CÓNCAVA CON UN PUNTO IDEAL: UN TEOREMA DE AFRIAT Y UNA APLICACIÓN AL DISEÑO DE ENCUESTAS",
+        "resumen": "arXiv:2401.03876v2 Tipo de anuncio: reemplazar\nResumen: Este artículo desarrolla una caracterización tipo Afriat de la racionalización cóncava con un punto ideal desconocido.Mostramos que un sistema de desigualdades de Afriat - donde el pico desconocido entra como una observación virtual con el valor más alto...",
+        "area_cientifica": "MATEMÁTICAS",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "CONDECORADOS",
+        "fecha": 2026,
+        "palabras_clave": "Afriat, Cóncava, Punto, Ideal, Desconocido",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,MATEMÁTICAS,Racionalización",
+        "link": "https://arxiv.org/abs/2401.03876"
+    },
+    {
         "titulo": "PRUEBAS DE ESTRATEGIAS DE EQUILIBRIO MONÓTONO EN JUEGOS DE INFORMACIÓN INCOMPLETA",
-        "resumen": "arXiv:2604.06643v1 Tipo de anuncio: nuevo\nResumen: Este artículo desarrolla un marco unificado para probar la monotonicidad de las estrategias de equilibrio bayesiano de Nash en tipos no observados en juegos de información incompleta.Demostramos que, bajo independencia simétrica...",
-        "fecha": 2000,
-        "conceptos": [
-            "CIENCIA",
-            "EUREKA",
-            "INVESTIGACIÓN"
-        ],
+        "resumen": "arXiv:2604.06643v1 Tipo de anuncio: nuevo\nResumen: Este artículo desarrolla un marco unificado para probar la monotonicidad de las estrategias de equilibrio bayesiano de Nash en tipos no observados en juegos de información incompleta.Mostramos que, bajo tipos privados independientes simétricos, la monotonicidad...",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "CONDECORADOS",
+        "fecha": 2026,
+        "palabras_clave": "Estrategias, Equilibrio, Juegos, Información, Incompleta",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,Pruebas",
         "link": "https://arxiv.org/abs/2604.06643"
+    },
+    {
+        "titulo": "EL COSTO DE SELECCIÓN DE LA LIQUIDEZ",
+        "resumen": "arXiv:2604.06447v1 Tipo de anuncio: nuevo\nResumen: Un principal con capital barato obliga de manera óptima a su contraparte a pedir prestado a tasas superiores a las del mercado.La razón: la forma de financiación es un dispositivo de control.Los anticipos proporcionan liquidez pero son de tipo pool;transferencias contingentes tipos separados...",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "NUEVO",
+        "fecha": 2026,
+        "palabras_clave": "Liquidez, Costo, Selección, Tipo, Anuncio",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,El",
+        "link": "https://arxiv.org/abs/2604.06447"
+    },
+    {
+        "titulo": "¿MEJOR MEDICIÓN O MUESTRAS MÁS GRANDES?RECOPILACIÓN DE DATOS PARA EL APRENDIZAJE DE POLÍTICAS CON HETEROGENEIDAD NO OBSERVADA",
+        "resumen": "arXiv:2604.07181v1 Tipo de anuncio: nuevo\nResumen: La investigación empírica muestra que las respuestas de los individuos a los tratamientos varían según características latentes, como la capacidad innata o la motivación.Por lo tanto, un formulador de políticas que busque maximizar el bienestar puede considerar diseñar políticas basadas en...",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "CONDECORADOS",
+        "fecha": 2026,
+        "palabras_clave": "Políticas, Medición, Muestras, Datos, Aprendizaje",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,¿Mejor",
+        "link": "https://arxiv.org/abs/2604.07181"
+    },
+    {
+        "titulo": "CUANDO LA \"NORMALIZACIÓN SIN PÉRDIDA DE GENERALIDAD\" PIERDE GENERALIDAD",
+        "resumen": "arXiv:2603.27762v2 Tipo de anuncio: reemplazar\nResumen: La normalización es omnipresente en economía, y una creciente literatura muestra que las \"normalizaciones\" pueden ser importantes para la interpretación, el análisis contrafáctico, la especificación errónea y la inferencia.Este artículo proporciona un marco general para...",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "DESCUBRIMIENTO",
+        "fecha": 2026,
+        "palabras_clave": "Normalización, Generalidad, Pérdida, Pierde, Tipo",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,Cuando",
+        "link": "https://arxiv.org/abs/2603.27762"
+    },
+    {
+        "titulo": "INTERVENCIONES POLÍTICAS PARA REDUCIR LOS PLÁSTICOS DE UN SOLO USO (SUP) Y LOS EFECTOS EN LOS PRECIOS: UN ESTUDIO DE EVENTO PARA AUSTRIA Y ALEMANIA",
+        "resumen": "arXiv:2510.15617v3 Tipo de anuncio: reemplazar\nResumen: Los plásticos de un solo uso (SUP) imponen costos ambientales sustanciales.Tras la Directiva (UE) 2019/904, Austria y Alemania introdujeron cargos a los productores y pagos de fondos para financiar la limpieza.Usando un panel de venta minorista de alta frecuencia...",
+        "area_cientifica": "ECONOMÍA",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "CONDECORADOS",
+        "fecha": 2026,
+        "palabras_clave": "Plásticos, Austria, Alemania, Intervenciones, Políticas",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,ECONOMÍA,Intervenciones",
+        "link": "https://arxiv.org/abs/2510.15617"
+    },
+    {
+        "titulo": "COHOMOLOGÍA DE HOCHSCHILD PARA FUNCTORES EN CATEGORÍAS MONOIDALES SIMÉTRICAS LINEALES",
+        "resumen": "arXiv:2311.12269v3 Tipo de anuncio: reemplazar\nResumen: Sea $R$ un anillo conmutativo con unidad.Desarrollamos una teoría de cohomología de Hochschild en la categoría $\\mathcal{F}$ de functores lineales definidos a partir de una categoría monoide simétrica esencialmente pequeña enriquecida en $R$-Mod, a $R$-Mod....",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "DESCUBRIMIENTO",
+        "fecha": 2026,
+        "palabras_clave": "Hochschild, Functores, Lineales, Categoría, Cohomología",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,Cohomología",
+        "link": "https://arxiv.org/abs/2311.12269"
+    },
+    {
+        "titulo": "SUERTE Y MAGIA PARA LOS POLITOPOS Y FUNCIONES DE ESTACIONAMIENTO DE PITMAN-STANLEY",
+        "resumen": "arXiv:2603.19194v2 Tipo de anuncio: reemplazar\nResumen: Motivados por la combinatoria de las funciones de estacionamiento y sus diversas generalizaciones, estudiamos la teoría de Ehrhart de los politopos de Pitman-Stanley.Probamos un fuerte fenómeno de positividad llamado \\emph{positividad mágica} para el Ehr...",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "CONDECORADOS",
+        "fecha": 2026,
+        "palabras_clave": "Politopos, Funciones, Estacionamiento, Suerte, Magia",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,Suerte",
+        "link": "https://arxiv.org/abs/2603.19194"
+    },
+    {
+        "titulo": "LAS HÉLICES CLOTOIDES OBTENIDAS MEDIANTE EL MÉTODO DE LIE-DARBOUX.",
+        "resumen": "arXiv:2604.06577v1 Tipo de anuncio: nuevo\nResumen: Las hélices clotoides que tienen curvatura y torsión directamente proporcionales a la longitud del arco se obtienen mediante el método de Lie-Darboux y se estudian con cierto detalle.Las contrapartes desplazadas también se introducen y presentan en el mismo...",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "HALLAZGO",
+        "fecha": 2026,
+        "palabras_clave": "Hélices, Clotoides, Método, Obtenidas, Tipo",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,Las",
+        "link": "https://arxiv.org/abs/2604.06577"
+    },
+    {
+        "titulo": "NOTAS SOBRE PAQUETES ACEPTABLES I",
+        "resumen": "arXiv:2511.00760v2 Tipo de anuncio: reemplazar\nResumen: La noción de cestas aceptables juega un papel fundamental en la teoría de Simpson-Mochizuki.Este artículo presenta un estudio detallado de los haces aceptables en un disco perforado.Además de sus aspectos expositivos, presentamos un n...",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "DESCUBRIMIENTO",
+        "fecha": 2026,
+        "palabras_clave": "Aceptables, Notas, Paquetes, Tipo, Anuncio",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,Notas",
+        "link": "https://arxiv.org/abs/2511.00760"
+    },
+    {
+        "titulo": "EL LÍMITE SUPERIOR DEL DOMO Y UNA PRUEBA DE LA CONJETURA Z2 DE LA MÁQUINA DE RAMANUJAN",
+        "resumen": "arXiv:2604.06239v1 Tipo de anuncio: nuevo\nResumen: Probamos que la relación $B_n/D_n$ de la secuencia tipo Ap\\'ery $B_n$ a los números Domb $D_n$ converge a $(7/24)\\zeta(3)$, y que $\\sum_{n=1}^{\\infty} 64^n/(n^3 D_n D_{n-1}) = (56/3)\\zeta(3)$.Como corolario establecemos la v...",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "HALLAZGO",
+        "fecha": 2026,
+        "palabras_clave": "Límite, Superior, Domo, Prueba, Conjetura",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,El",
+        "link": "https://arxiv.org/abs/2604.06239"
+    },
+    {
+        "titulo": "CURVAS DE TANGENCIAS DE PARES DE FOLIACIÓN Y TRANSFORMACIONES NORMALIZADORAS.",
+        "resumen": "arXiv:2604.06640v1 Tipo de anuncio: nuevo\nResumen: En este trabajo damos una descripción completa del conjunto de curvas de tangencias inducidas por gérmenes de pares de foliación -no dicríticas y dicríticas- dadas por ecuaciones diferenciales analíticas con ecuaciones diferenciales degeneradas no dicríticas....",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "DESCUBRIMIENTO",
+        "fecha": 2026,
+        "palabras_clave": "Tangencias, Pares, Foliación, Dicríticas, Ecuaciones",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,Curvas",
+        "link": "https://arxiv.org/abs/2604.06640"
+    },
+    {
+        "titulo": "MATRIZ DE INFORMACIÓN QUANTUM FISHER A TRAVÉS DE SU CONTRAPARTE CLÁSICA A PARTIR DE MEDICIONES ALEATORIAS",
+        "resumen": "arXiv:2509.08196v4 Tipo de anuncio: reemplazar-cruz\nResumen: El precondicionamiento con la matriz de información cuántica de Fisher (QFIM) es un enfoque popular en los algoritmos variacionales cuánticos.Sin embargo, el QFIM es costoso de obtener directamente y generalmente requiere más preparación estatal que su clase....",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "HALLAZGO",
+        "fecha": 2026,
+        "palabras_clave": "Información, Fisher, Qfim, Matriz, Quantum",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,Matriz",
+        "link": "https://arxiv.org/abs/2509.08196"
+    },
+    {
+        "titulo": "EN SECUENCIAS $\\DELTA$ Y SUPERFICIES EN EL INFINITO",
+        "resumen": "arXiv:2408.15931v2 Tipo de anuncio: reemplazar\nResumen: En la mayoría de los casos, el semigrupo en el infinito $S$ de una curva $C$ con un solo lugar en el infinito es generado por una secuencia $\\delta$.Esta secuencia proporciona información geométrica sobre $C$ como la gráfica dual de la resolución de t...",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "HALLAZGO",
+        "fecha": 2026,
+        "palabras_clave": "Infinito, Secuencia, Secuencias, Superficies, Tipo",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,En",
+        "link": "https://arxiv.org/abs/2408.15931"
+    },
+    {
+        "titulo": "ÍNDICE DE MOSTAR EXTREMO DE GRÁFICOS CON UN NÚMERO DETERMINADO DE BORDES CORTADOS",
+        "resumen": "arXiv:2604.06839v1 Tipo de anuncio: nuevo\nResumen: El índice de Mostar de un gráfico conexo \\(G\\) se define como \\[ Mo(G\\)=\\sum_{uv\\in E(G)}\\bigl|n_u(uv)-n_v(uv)\\bigr|, \\] donde para una arista \\(e=uv\\), \\(n_u(e)\\) denota el número de vértices de \\(G\\) que están más cerca de \\(u\\) que de \\(v...",
+        "area_cientifica": "CIENCIA GENERAL",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "HALLAZGO",
+        "fecha": 2026,
+        "palabras_clave": "Mostar, Número, Índice, Extremo, Gráficos",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,CIENCIA GENERAL,Índice",
+        "link": "https://arxiv.org/abs/2604.06839"
+    },
+    {
+        "titulo": "ANÁLISIS DE ESTABILIDAD DE MÉTODOS ALE-HDG MONOLÍTICOS GLOBALMENTE LIBRES DE DIVERGENCIA PARA LA INTERACCIÓN FLUIDO-ESTRUCTURA",
+        "resumen": "arXiv:2603.27594v2 Tipo de anuncio: reemplazar\nResumen: En este artículo, proponemos dos métodos monolíticos de elementos finitos totalmente discretos para la interacción fluido-estructura (FSI) basados en un novedoso mapeo arbitrario lagrangiano-euleriano (ALE) de tipo Piola.Para la discretización temporal, tenemos un...",
+        "area_cientifica": "PSICOLOGÍA",
+        "categoria": "INVESTIGACIÓN ACADÉMICA",
+        "etiqueta": "INNOVACIÓN",
+        "fecha": 2026,
+        "palabras_clave": "Métodos, Monolíticos, Interacción, Análisis, Estabilidad",
+        "imagen": "https://source.unsplash.com/featured/400x300?science,PSICOLOGÍA,Análisis",
+        "link": "https://arxiv.org/abs/2603.27594"
     }
 ]
