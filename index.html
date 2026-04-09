@@ -11,21 +11,22 @@
         .card { break-inside: avoid; margin-bottom: 25px; border: 4px solid #000; transition: 0.3s; background: #fff; }
         .card:hover { transform: translate(-8px, -8px); box-shadow: 12px 12px 0px #000; }
         input[type=range] { 
-            accent-color: #000; height: 14px; border-radius: 10px; background: #eee; appearance: none; cursor: pointer;
+            accent-color: #000; height: 16px; border-radius: 10px; background: #eee; appearance: none; cursor: pointer;
         }
+        input[type=range]::-webkit-slider-runnable-track { height: 16px; border-radius: 10px; }
     </style>
 </head>
 <body>
     <header class="py-12 border-b-[12px] border-black text-center mx-6">
         <h1 class="text-6xl md:text-8xl font-black italic tracking-tighter uppercase">Science World News</h1>
-        <p class="font-bold text-[10px] tracking-[0.5em] mt-4 uppercase">Archivo Científico e Histórico 1970 — 2026</p>
+        <p class="font-bold text-[10px] tracking-[0.5em] mt-4 uppercase text-center">Archivo Científico e Histórico 1970 — 2026</p>
     </header>
 
     <div class="max-w-7xl mx-auto px-6 -mt-8 mb-10">
         <div class="bg-white border-4 border-black p-6 flex flex-col md:flex-row items-center gap-10 shadow-[8px_8px_0px_#000]">
             <div class="w-full md:w-1/4">
                 <label class="block text-[10px] font-black uppercase mb-2 italic">Buscador</label>
-                <input type="text" id="search" onkeyup="filtrar()" placeholder="Goce, Nitruro..." class="w-full p-3 border-2 border-black font-bold outline-none">
+                <input type="text" id="search" onkeyup="filtrar()" placeholder="Goce, Nitruro..." class="w-full p-3 border-2 border-black font-bold outline-none focus:bg-yellow-50">
             </div>
             <div class="w-full md:w-3/4">
                 <label class="block text-[10px] font-black uppercase mb-2 italic">Línea de Tiempo: <span id="year-label" class="text-blue-600 text-lg">2026</span></label>
