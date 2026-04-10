@@ -1,7 +1,8 @@
 import feedparser, json, random, requests, spacy, os
 from googletrans import Translator
+from datetime import datetime
 
-# Inicialización de IA
+# Carga de IA
 try:
     nlp = spacy.load("es_core_news_lg")
 except:
@@ -10,46 +11,71 @@ except:
 
 translator = Translator()
 
-def clasificar_unesco(texto):
-    """Consulta rápida a Wikidata para validar áreas académicas reales"""
-    doc = nlp(texto.lower())
-    sustantivos = [t.text for t in doc if t.pos_ == "NOUN" and len(t.text) > 5]
-    
-    # Intentamos validar el primer sustantivo fuerte como disciplina
-    for s in sustantivos[:3]:
-        url = f"https://www.wikidata.org/w/api.php?action=wbsearchentities&search={s}&language=es&format=json"
-        try:
-            r = requests.get(url, timeout=2).json()
-            if r.get('search'):
-                return r['search'][0]['label'].upper()
-        except: continue
-    return "CIENCIA GENERAL"
+def consulta_cerebro_unesco(termino):
+    """
+    Simula el pensamiento del Tesauro UNESCO consultando la jerarquía 
+    académica real en Wikidata para cualquier término detectado.
+    """
+    url = "https://query.wikidata.org/sparql"
+    # Query para buscar la disciplina de nivel superior (P279) del término
+    query = f"""
+    SELECT ?claseLabel ?subclaseLabel WHERE {{
+      ?item rdfs:label "{termino.lower()}"@es.
+      ?item wdt:P279* ?subclase.
+      ?subclase wdt:P279* ?clase.
+      ?clase wdt:P31 wd:Q11862829. # Es una disciplina académica
+      SERVICE wikibase:label {{ bd:serviceParam wikibase:language "es". }}
+    }} LIMIT 1
+    """
+    try:
+        r = requests.get(url, params={'format': 'json', 'query': query}, timeout=4)
+        datos = r.json()['results']['bindings']
+        if datos:
+            area = datos[0]['claseLabel']['value'].upper()
+            sub = datos[0]['subclaseLabel']['value'].upper()
+            return area, sub
+    except: pass
+    return "CIENCIAS MULTIDISCIPLINARIAS", termino.upper()
 
 def ejecutar():
-    fuentes = ["https://rss.sciencedaily.com/top.xml", "https://arxiv.org/rss/econ", "https://arxiv.org/rss/math"]
+    fuentes = [
+        {"url": "https://rss.sciencedaily.com/top.xml", "nombre": "ScienceDaily.com"},
+        {"url": "https://arxiv.org/rss/econ", "nombre": "ArXiv Research"},
+        {"url": "https://www.nature.com/nature.rss", "nombre": "Nature Journal"}
+    ]
+    
     biblioteca = []
-    etiquetas = ["INNOVACIÓN", "HALLAZGO", "DESCUBRIMIENTO", "PREMIADOS"]
+    # Estas son solo leyendas decorativas, no afectan la clasificación
+    leyendas = ["INNOVACIÓN", "HALLAZGO", "DESCUBRIMIENTO", "AVANCE CIENTÍFICO", "AVANCE TECNOLÓGICO"]
 
-    for url in fuentes:
-        feed = feedparser.parse(url)
-        for e in random.sample(feed.entries, min(len(feed.entries), 10)):
+    for f in fuentes:
+        feed = feedparser.parse(f["url"])
+        for e in random.sample(feed.entries, min(len(feed.entries), 15)):
             try:
                 t_es = translator.translate(e.title, dest='es').text
-                r_es = translator.translate(e.summary[:250], dest='es').text
-                area = clasificar_unesco(t_es)
+                r_es = translator.translate(e.summary[:280], dest='es').text
                 
-                # Keywords vía NLP
-                doc_kw = nlp(t_es + " " + r_es)
-                kw = [t.text for t in doc_kw if t.is_alpha and not t.is_stop and len(t.text) > 4]
+                # El Cerebro extrae el sustantivo más técnico
+                doc = nlp(t_es + " " + r_es)
+                sustantivos = [t.text for t in doc if t.pos_ == "NOUN" and len(t.text) > 5]
+                
+                # Clasificación dinámica vía Tesauro/Wikidata
+                area, sub = consulta_cerebro_unesco(sustantivos[0] if sustantivos else "Investigación")
+                
+                # Extracción de procedencia
+                entidades = [ent.text for ent in doc.ents if ent.label_ == "ORG"]
+                inst = entidades[0] if entidades else "Centro de Investigación"
+                fecha_full = datetime.now().strftime("%d de %B de %Y")
 
                 biblioteca.append({
                     "titulo": t_es.upper(),
+                    "procedencia": f"{f['nombre']}, {inst}, {fecha_full}",
                     "resumen": r_es + "...",
                     "area": area,
-                    "leyenda": random.choice(etiquetas),
+                    "subcategoria": sub,
+                    "leyenda": random.choice(leyendas),
                     "fecha": random.randint(1970, 2026),
-                    "keywords": ", ".join(list(set(kw))[:5]).title(),
-                    "img": f"https://picsum.photos/seed/{random.randint(1,999)}/400/600",
+                    "img": f"https://picsum.photos/seed/{random.randint(1,9999)}/600/800",
                     "link": e.link
                 })
             except: continue
