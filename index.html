@@ -5,65 +5,50 @@
     <title>SCIENCE WORLD NEWS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto:wght@900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto:wght@400;900&display=swap');
         body { font-family: 'Roboto', sans-serif; background: #fff; }
         .titular { font-family: 'Archivo Black', sans-serif; }
-        .card { border: 6px solid #000; transition: 0.2s; height: 100%; display: flex; flex-direction: column; }
+        .card { border: 6px solid #000; transition: 0.2s; height: 100%; display: flex; flex-direction: column; background: white; }
         .card:hover { transform: translate(-8px, -8px); box-shadow: 15px 15px 0px #000; }
-        
-        /* Colores Primarios Vivos */
-        .color-0 { background-color: #FFD600; } 
-        .color-1 { background-color: #2979FF; } 
-        .color-2 { background-color: #FF1744; } 
-        .color-3 { background-color: #00E676; }
-
-        .tag { cursor: pointer; text-decoration: underline; }
-        input[type=range] { accent-color: #000; }
+        .color-0 { background-color: #FFD600; } .color-1 { background-color: #2979FF; } 
+        .color-2 { background-color: #FF1744; } .color-3 { background-color: #00E676; }
+        .tag-click { cursor: pointer; }
+        .tag-click:hover { background: black; color: white; }
     </style>
 </head>
 <body class="p-4 md:p-10">
     <header class="flex flex-col md:flex-row justify-between items-center mb-16 border-b-[12px] border-black pb-10 gap-8">
-        <div>
-            <h1 class="titular text-6xl md:text-8xl italic uppercase tracking-tighter leading-none">SCIENCE WORLD NEWS</h1>
-            <p class="font-black text-xs tracking-[0.5em] mt-2 uppercase">Tesauro UNESCO — 2026</p>
+        <div class="cursor-pointer" onclick="location.reload()">
+            <h1 class="titular text-5xl md:text-7xl italic uppercase tracking-tighter leading-none">SCIENCE WORLD NEWS</h1>
+            <p class="font-black text-[10px] tracking-[0.5em] mt-2 uppercase">Inteligencia Científica — 2026</p>
         </div>
 
-        <div class="w-full md:w-1/2 bg-white border-[6px] border-black p-6 shadow-[10px_10px_0px_#000]">
+        <div class="w-full md:w-1/2 border-[6px] border-black p-6 shadow-[10px_10px_0px_#000]">
             <div class="flex gap-4 mb-4">
-                <input type="text" id="buscador" onkeyup="filtrar()" placeholder="Buscador Universal (Lacan, Química...)" class="w-full p-3 border-4 border-black font-black uppercase text-xs outline-none">
-                <button onclick="location.reload()" class="bg-red-600 text-white px-4 font-black border-4 border-black">RESET</button>
+                <input type="text" id="buscador" onkeyup="filtrar()" placeholder="ÁREA, SUBCATEGORÍA O CONCEPTO..." class="w-full p-3 border-4 border-black font-black uppercase text-xs outline-none">
+                <button onclick="resetear()" class="bg-black text-white px-6 font-black border-4 border-black hover:bg-red-600">RESET</button>
             </div>
             <div class="flex items-center gap-4">
-                <span class="text-[10px] font-black uppercase">Desde 1970</span>
+                <span class="text-[10px] font-black uppercase">Archivo Histórico</span>
                 <input type="range" id="cronos" min="1970" max="2026" value="2026" oninput="filtrar()" class="flex-grow">
-                <span id="label-anio" class="bg-black text-white px-3 font-black text-xl">2026</span>
+                <span id="label-anio" class="bg-black text-white px-4 font-black text-xl">2026</span>
             </div>
         </div>
     </header>
 
-    <main id="galeria" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-[1600px] mx-auto pb-32"></main>
+    <main id="galeria" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-[1700px] mx-auto pb-32"></main>
 
     <script>
-        let db = [];
-        let filtrados = [];
-        let cursor = 0;
+        let db = []; let filtrados = []; let cursor = 0;
 
         async function iniciar() {
-            try {
-                const r = await fetch('noticias.json?v=' + Date.now());
-                db = await r.json();
-                filtrados = db;
-                cargarNoticias();
-            } catch (e) {
-                console.error("Error al cargar noticias:", e);
-                document.getElementById('galeria').innerHTML = "<p class='col-span-full text-center font-black text-2xl'>Sincronizando... Ejecuta 'Actions' en GitHub.</p>";
-            }
+            const r = await fetch('noticias.json?v=' + Date.now());
+            db = await r.json();
+            filtrados = db;
+            cargarNoticias();
         }
 
-        // Infinite Scroll
-        window.onscroll = () => {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 600) cargarNoticias();
-        };
+        window.onscroll = () => { if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 800) cargarNoticias(); };
 
         function cargarNoticias() {
             const g = document.getElementById('galeria');
@@ -71,42 +56,56 @@
             
             data.forEach((n, i) => {
                 const card = document.createElement('div');
-                card.className = `card color-${(cursor + i) % 4}`;
+                card.className = `card`;
                 card.innerHTML = `
-                    <div class="p-3 border-b-6 border-black bg-white flex justify-between font-black text-[10px] uppercase">
-                        <span class="tag" onclick="filtrarTermino('${n.area}')">UNESCO: ${n.area}</span>
-                        <span class="bg-black text-white px-2">${n.leyenda}</span>
+                    <div class="p-3 border-b-6 border-black font-black text-[10px] uppercase bg-white">
+                        <span class="tag-click" onclick="addFiltro('${n.area}')">ÁREA CIENTÍFICA: ${n.area}</span><br>
+                        <span class="tag-click text-blue-800" onclick="addFiltro('${n.subcategoria}')">SUBCATEGORÍA: ${n.subcategoria}</span>
                     </div>
-                    <img src="${n.img}" class="w-full h-72 object-cover border-b-6 border-black">
-                    <div class="p-6 flex-grow flex flex-col">
-                        <div class="text-right font-black text-2xl mb-4 italic underline underline-offset-4">${n.fecha}</div>
-                        <h2 class="titular text-2xl leading-none mb-4 uppercase border-l-8 border-black pl-3">${n.titulo}</h2>
-                        <p class="text-xs font-bold text-justify mb-6">${n.resumen}</p>
-                        <div class="mt-auto pt-4 border-t-2 border-black/20 text-[9px] font-black uppercase italic">
-                            Keywords: ${n.keywords.split(',').map(k => `<span class="tag mx-1" onclick="filtrarTermino('${k.trim()}')">${k.trim()}</span>`).join('·')}
+                    <img src="${n.img}" class="w-full h-80 object-cover border-b-6 border-black grayscale hover:grayscale-0 transition-all">
+                    <div class="p-6 flex-grow flex flex-col color-${(cursor + i) % 4}">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="bg-black text-white text-[9px] px-2 font-black py-1">${n.leyenda}</span>
+                            <span class="font-black text-3xl italic underline decoration-4">${n.fecha}</span>
+                        </div>
+                        <h2 class="titular text-2xl leading-none mb-6 uppercase border-l-8 border-black pl-3">${n.titulo}</h2>
+                        <div class="bg-white/80 p-4 border-2 border-black mb-4 flex-grow">
+                            <p class="text-[9px] font-black mb-2 uppercase border-b border-black/20 pb-1">${n.procedencia}</p>
+                            <p class="text-[11px] font-bold text-justify leading-tight"><strong>RESUMEN:</strong> ${n.resumen}</p>
                         </div>
                     </div>
-                    <a href="${n.link}" target="_blank" class="block text-center py-4 bg-black text-white font-black hover:bg-white hover:text-black border-t-6 border-black transition-all">EXPLORAR</a>
+                    <a href="${n.link}" target="_blank" class="block text-center py-4 bg-black text-white font-black border-t-6 border-black hover:bg-white hover:text-black transition-all">EXPLORAR INVESTIGACIÓN</a>
                 `;
                 g.appendChild(card);
             });
             cursor += 12;
         }
 
+        function addFiltro(termino) {
+            const b = document.getElementById('buscador');
+            b.value = b.value ? b.value + ", " + termino : termino;
+            filtrar();
+        }
+
         function filtrar() {
-            const q = document.getElementById('buscador').value.toLowerCase();
+            const q = document.getElementById('buscador').value.toLowerCase().split(',').map(s => s.trim());
             const y = document.getElementById('cronos').value;
             document.getElementById('label-anio').innerText = y;
             
-            filtrados = db.filter(n => (JSON.stringify(n).toLowerCase().includes(q)) && (n.fecha <= y));
+            filtrados = db.filter(n => {
+                const cumpleAnio = n.fecha <= y;
+                const matchTexto = q.every(term => JSON.stringify(n).toLowerCase().includes(term));
+                return cumpleAnio && matchTexto;
+            });
+            
             document.getElementById('galeria').innerHTML = '';
             cursor = 0;
-            filtrados.sort(() => Math.random() - 0.5); // Mezcla TikTok
             cargarNoticias();
         }
 
-        function filtrarTermino(t) {
-            document.getElementById('buscador').value = t;
+        function resetear() {
+            document.getElementById('buscador').value = '';
+            document.getElementById('cronos').value = 2026;
             filtrar();
         }
 
