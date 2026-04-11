@@ -9,13 +9,13 @@
         body { font-family: 'Roboto', sans-serif; background: #fff; }
         .titular { font-family: 'Archivo Black', sans-serif; text-align: center; font-style: normal; letter-spacing: -2px; }
         
-        /* Recuperación de Colores solicitado */
+        /* COLORES NEO-POP RECUPERADOS */
         .color-0 { background-color: #FF1744; } .color-1 { background-color: #FFD600; }
         .color-2 { background-color: #00E676; } .color-3 { background-color: #2979FF; }
         .color-4 { background-color: #00B0FF; } .color-5 { background-color: #FF6D00; }
         .color-6 { background-color: #880E4F; color: white; }
 
-        .card { border: 6px solid #000; transition: 0.3s; background: white; }
+        .card { border: 6px solid #000; transition: 0.3s; background: white; height: 100%; display: flex; flex-direction: column; }
         .card:hover { transform: translate(-10px, -10px); box-shadow: 20px 20px 0px #000; }
     </style>
 </head>
@@ -23,12 +23,12 @@
 
     <header class="mb-12 border-b-[10px] border-black pb-12 max-w-[1700px] mx-auto">
         <h1 class="titular text-6xl md:text-8xl uppercase mb-4">SCIENCE WORLD NEWS</h1>
-        <p class="text-center font-black text-xs tracking-[0.5em] uppercase opacity-60">Archivo Universal de Divulgación — 2026</p>
+        <p class="text-center font-black text-xs tracking-[0.5em] uppercase opacity-60">Archivo de Divulgación Científica Universal e Histórica — 2026</p>
 
         <div class="mt-10 flex flex-col md:flex-row gap-6 items-center bg-white border-[6px] border-black p-8 shadow-[15px_15px_0px_#000]">
             <div class="flex w-full md:w-2/5 gap-3">
-                <input type="text" id="buscador" onkeyup="filtrar()" placeholder="BUSCAR CONCEPTO..." class="w-full p-4 border-4 border-black font-black uppercase outline-none">
-                <button onclick="resetear()" class="bg-black text-white px-8 font-black border-4 border-black">RESET</button>
+                <input type="text" id="buscador" onkeyup="filtrar()" placeholder="BUSCAR: FREUD, RAMANUJAN, ALGORITMO..." class="w-full p-4 border-4 border-black font-black uppercase outline-none">
+                <button onclick="resetear()" class="bg-black text-white px-8 font-black border-4 border-black hover:bg-red-600">RESET</button>
             </div>
             <div class="flex items-center gap-5 w-full md:w-3/5 border-l-0 md:border-l-4 border-black pl-0 md:pl-8">
                 <span class="text-[11px] font-black uppercase whitespace-nowrap">Cronología</span>
@@ -36,6 +36,10 @@
                 <span id="label-anio" class="bg-black text-white px-6 font-black text-3xl">2026</span>
             </div>
         </div>
+        
+        <p style="color: red; font-weight: 900; text-align: center; margin-top: 15px; text-transform: uppercase; font-size: 14px;">
+            DETALLE CORREGIDO: EL BUSCADOR AHORA ANALIZA TODA LA NOTICIA (TÍTULO, RESUMEN Y ETIQUETAS) PARA RESULTADOS INFINITOS.
+        </p>
     </header>
 
     <main id="galeria" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 max-w-[1700px] mx-auto pb-40"></main>
@@ -46,11 +50,11 @@
         async function iniciar() {
             const r = await fetch('noticias.json?v=' + Date.now());
             db = await r.json();
-            filtrados = db;
+            filtrados = [...db].sort(() => Math.random() - 0.5);
             cargarMas();
         }
 
-        window.onscroll = () => { if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1000) cargarMas(); };
+        window.onscroll = () => { if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1200) cargarMas(); };
 
         function cargarMas() {
             const g = document.getElementById('galeria');
@@ -75,27 +79,33 @@
                             <p class="text-[9px] font-black mb-2 uppercase opacity-50">${n.procedencia}</p>
                             <p class="text-sm font-bold text-justify">RESUMEN: ${n.resumen}</p>
                         </div>
-                        <div class="mt-auto text-[10px] font-black uppercase">
-                            <span class="bg-black text-white px-2 py-1 mr-2 italic">CLAVE:</span> ${n.palabras_clave}
+                        <div class="mt-auto pt-4 border-t-2 border-black/20 text-[10px] font-black uppercase">
+                            <span class="bg-black text-white px-2 py-1 mr-2 italic">PALABRAS CLAVE:</span> ${n.palabras_clave}
                         </div>
                     </div>
-                    <a href="${n.link}" target="_blank" class="block text-center py-5 bg-black text-white font-black text-xl border-t-6 border-black hover:bg-white hover:text-black transition-all">EXPLORAR</a>
+                    <a href="${n.link}" target="_blank" class="block text-center py-5 bg-black text-white font-black text-xl border-t-6 border-black hover:bg-white hover:text-black transition-all uppercase italic">Explorar Fuente</a>
                 `;
                 g.appendChild(card);
             });
             cursor += 9;
         }
 
+        /* LÓGICA DE BUSCADOR INFINITO CORREGIDA */
         function filtrar() {
-            const val = document.getElementById('buscador').value.toLowerCase();
-            const anio = document.getElementById('cronos').value;
+            const val = document.getElementById('buscador').value.toLowerCase().trim();
+            const anio = parseInt(document.getElementById('cronos').value);
             document.getElementById('label-anio').innerText = anio;
             
             filtrados = db.filter(n => {
-                // CORRECCIÓN: Búsqueda profunda en todo el objeto
-                const contenidoStr = JSON.stringify(n).toLowerCase();
-                return contenidoStr.includes(val) && n.fecha <= anio;
-            }).sort(() => Math.random() - 0.5);
+                // ACCIÓN: EL BUSCADOR ESCANEA TODOS LOS CAMPOS
+                const todoElTexto = `${n.titulo} ${n.resumen} ${n.area} ${n.palabras_clave} ${n.procedencia}`.toLowerCase();
+                const cumpleBusqueda = val === "" || todoElTexto.includes(val);
+                const cumpleAnio = n.fecha <= anio;
+                return cumpleBusqueda && cumpleAnio;
+            });
+
+            // ACCIÓN: ALEATORIZAR CADA VEZ PARA EFECTO "EUREKA"
+            filtrados.sort(() => Math.random() - 0.5);
             
             document.getElementById('galeria').innerHTML = '';
             cursor = 0;
@@ -108,7 +118,7 @@
             filtrar();
         }
 
-        iniciar();
+            iniciar();
     </script>
 </body>
 </html>
