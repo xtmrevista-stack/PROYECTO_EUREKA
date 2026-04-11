@@ -5,14 +5,16 @@
     <title>SCIENCE WORLD NEWS | ARCHIVO UNIVERSAL</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* ACCIÓN: Estilo Visual Recto y Centralizado */
         @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto:wght@400;900&display=swap');
-        body { font-family: 'Roboto', sans-serif; background: #fff; }
+        body { font-family: 'Roboto', sans-serif; background: #fff; color: #000; }
         
+        /* Título Centrado y Recto solicitado */
         .titular { 
             font-family: 'Archivo Black', sans-serif; 
             text-align: center; 
-            font-style: normal; /* Recto */
-            letter-spacing: -1px;
+            font-style: normal; /* Sin inclinación */
+            letter-spacing: -2px;
         }
 
         .subtitulo {
@@ -22,10 +24,11 @@
             font-style: normal;
         }
 
-        .card { border: 6px solid #000; transition: 0.3s; background: white; }
-        .card:hover { transform: translate(-8px, -8px); box-shadow: 16px 16px 0px #000; }
+        /* Tarjeta con efecto Neo-Pop de tres columnas */
+        .card { border: 6px solid #000; transition: 0.3s; display: flex; flex-direction: column; background: white; }
+        .card:hover { transform: translate(-10px, -10px); box-shadow: 20px 20px 0px #000; }
         
-        /* Colores de Categorías */
+        /* Paleta Eureka ampliada */
         .bg-rojo { background-color: #FF1744; } .bg-amarillo { background-color: #FFD600; }
         .bg-verde { background-color: #00E676; } .bg-azul-f { background-color: #2979FF; }
         .bg-azul-c { background-color: #00B0FF; } .bg-naranja { background-color: #FF6D00; }
@@ -35,28 +38,29 @@
         .btn-tag:hover { background: #000; color: #fff; }
     </style>
 </head>
-<body class="p-6">
-
-    <header class="mb-12 border-b-[10px] border-black pb-12 max-w-[1700px] mx-auto">
-        <h1 class="titular text-5xl md:text-8xl uppercase mb-4">SCIENCE WORLD NEWS</h1>
-        <p class="subtitulo font-black text-xs md:text-sm tracking-[0.4em] uppercase mb-12 opacity-70">
-            Archivo Universal de Divulgación: 160 Fuentes Globales — 2026
+<body class="p-4 md:p-12">
+    
+    <header class="mb-16 border-b-[10px] border-black pb-10 max-w-[1700px] mx-auto">
+        <h1 class="titular text-5xl md:text-8xl uppercase mb-3">SCIENCE WORLD NEWS</h1>
+        <p class="subtitulo font-black text-xs md:text-sm tracking-[0.5em] uppercase mb-10 opacity-60">
+            Archivo Universal de Divulgación: Psique, Ciencia y Tecnología — 2026
         </p>
 
         <div class="flex flex-col md:flex-row gap-6 items-center bg-white border-[6px] border-black p-8 shadow-[15px_15px_0px_#000]">
-            <div class="flex w-full md:w-2/3 gap-3">
-                <input type="text" id="buscador" onkeyup="filtrar()" placeholder="EXPLORAR 160 FUENTES: PSICOANÁLISIS, FÍSICA, ARTE, CHINA..." class="w-full p-5 border-4 border-black font-black uppercase outline-none">
-                <button onclick="resetear()" class="bg-black text-white px-10 font-black border-4 border-black hover:bg-red-600 transition-all">RESET</button>
+            <div class="flex w-full md:w-2/5 gap-3">
+                <input type="text" id="buscador" onkeyup="filtrar()" placeholder="BUSCAR: LACAN, PUZOLANA, FÍSICA..." class="w-full p-4 border-4 border-black font-black uppercase outline-none bg-gray-50">
+                <button onclick="resetear()" class="bg-black text-white px-8 font-black border-4 border-black hover:bg-red-600 transition-all">RESET</button>
             </div>
-            <div class="flex items-center gap-5 w-full md:w-1/3 border-l-0 md:border-l-4 border-black pl-0 md:pl-8">
-                <span class="text-[11px] font-black uppercase">Cronos</span>
+            
+            <div class="flex items-center gap-5 w-full md:w-3/5 border-l-0 md:border-l-4 border-black pl-0 md:pl-8">
+                <span class="text-[10px] font-black uppercase whitespace-nowrap">Cronología</span>
                 <input type="range" id="cronos" min="1970" max="2026" value="2026" oninput="filtrar()" class="flex-grow accent-black">
-                <span id="label-anio" class="bg-black text-white px-6 py-1 font-black text-2xl">2026</span>
+                <span id="label-anio" class="bg-black text-white px-6 font-black text-3xl tracking-tighter decoration-double">2026</span>
             </div>
         </div>
     </header>
 
-    <main id="galeria" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-[1700px] mx-auto pb-40"></main>
+    <main id="galeria" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 max-w-[1700px] mx-auto pb-40"></main>
 
     <script>
         let db = []; let filtrados = []; let cursor = 0;
@@ -64,42 +68,48 @@
 
         async function iniciar() {
             const r = await fetch('noticias.json?v=' + Date.now());
-            db = await r.json();
+            const data = await r.json();
+            // Mezcla aleatoria total al inicio
+            db = data.sort(() => Math.random() - 0.5);
             filtrados = db;
             cargarMas();
         }
 
-        window.onscroll = () => { if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1000) cargarMas(); };
+        /* ACCIÓN: Motor de Scroll Infinito */
+        window.onscroll = () => { if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1200) cargarMas(); };
 
         function cargarMas() {
             const g = document.getElementById('galeria');
             const data = filtrados.slice(cursor, cursor + 9);
             
             data.forEach((n, i) => {
-                const color = colores[(cursor + i) % colores.length];
+                const colorIndex = (cursor + i) % 7;
                 const card = document.createElement('div');
-                card.className = `card flex flex-col`;
+                card.className = `card`;
                 card.innerHTML = `
-                    <div class="p-4 border-b-6 border-black font-black text-[11px] uppercase bg-white">
+                    <div class="p-4 border-b-6 border-black font-black text-[10px] uppercase bg-white">
                         <span class="btn-tag text-lg" onclick="addFiltro('${n.area}')">ÁREA: ${n.area}</span><br>
+                        <span class="btn-tag text-blue-800" onclick="addFiltro('${n.subcategoria}')">SUB: ${n.subcategoria}</span>
                     </div>
-                    <img src="${n.img}" class="w-full h-72 object-cover border-b-6 border-black">
-                    <div class="p-8 flex-grow flex flex-col ${color}">
+                    <img src="${n.img}" class="w-full h-72 object-cover border-b-6 border-black grayscale hover:grayscale-0 transition-all duration-700">
+                    <div class="p-8 flex-grow flex flex-col color-${colorIndex}">
                         <div class="flex justify-between items-center mb-6">
-                            <span class="bg-black text-white text-[9px] px-3 py-2 font-black uppercase">${n.leyenda}</span>
+                            <span class="bg-black text-white text-[9px] px-3 font-black py-2 tracking-widest uppercase">${n.leyenda}</span>
                             <span class="font-black text-4xl italic underline decoration-8 underline-offset-4">${n.fecha}</span>
                         </div>
+                        
                         <h2 class="titular !text-left text-2xl leading-tight mb-6 uppercase border-l-[10px] border-black pl-4" style="font-style: normal;">${n.titulo}</h2>
-                        <div class="bg-white/95 p-6 border-4 border-black mb-6 flex-grow shadow-[6px_6px_0px_rgba(0,0,0,0.1)] text-black">
-                            <p class="text-[10px] font-black mb-3 uppercase border-b-2 border-black/20 pb-2">${n.procedencia}</p>
-                            <p class="text-sm font-bold text-justify">RESUMEN: ${n.resumen}</p>
+                        
+                        <div class="bg-white/90 p-5 border-4 border-black mb-6 flex-grow shadow-[6px_6px_0px_rgba(0,0,0,0.1)] text-black">
+                            <p class="text-[9px] font-black mb-3 uppercase border-b-2 border-black/20 pb-2">${n.procedencia}</p>
+                            <p class="text-sm font-bold text-justify leading-relaxed italic">RESUMEN: ${n.resumen}</p>
                         </div>
-                        <div class="mt-auto pt-6 border-t-2 border-black/30 text-[10px] font-black uppercase">
-                            <span class="bg-black text-white px-2 py-1 mr-2 italic">CLAVE:</span> 
+                        <div class="mt-auto pt-5 border-t-2 border-black/30 text-[10px] font-black uppercase">
+                            <span class="bg-black text-white px-2 py-1 mr-1 italic">PALABRAS CLAVE:</span> 
                             ${n.palabras_clave.split(',').map(k => `<span class="btn-tag mx-1" onclick="addFiltro('${k.trim()}')">${k.trim()}</span>`).join(' • ')}
                         </div>
                     </div>
-                    <a href="${n.link}" target="_blank" class="block text-center py-6 bg-black text-white font-black text-xl border-t-6 border-black hover:bg-white hover:text-black transition-all uppercase">Explorar Investigación</a>
+                    <a href="${n.link}" target="_blank" class="block text-center py-5 bg-black text-white font-black text-lg border-t-6 border-black hover:bg-white hover:text-black transition-all uppercase italic">Explorar Investigación</a>
                 `;
                 g.appendChild(card);
             });
@@ -112,6 +122,7 @@
             filtrar();
         }
 
+        /* ACCIÓN CORRECCIÓN 2: Lógica de Búsqueda Aleatoria e Infinita */
         function filtrar() {
             const query = document.getElementById('buscador').value.toLowerCase().split(',').map(s => s.trim());
             const anio = document.getElementById('cronos').value;
@@ -120,7 +131,7 @@
             filtrados = db.filter(n => {
                 const matchTexto = query.every(term => JSON.stringify(n).toLowerCase().includes(term));
                 return matchTexto && n.fecha <= anio;
-            }).sort(() => Math.random() - 0.5);
+            }).sort(() => Math.random() - 0.5); // Acción: Aleatorizar los resultados
             
             document.getElementById('galeria').innerHTML = '';
             cursor = 0;
