@@ -7,9 +7,9 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto:wght@400;900&display=swap');
         body { font-family: 'Roboto', sans-serif; background: #fff; }
-        .titular { font-family: 'Archivo Black', sans-serif; text-align: center; font-style: normal; letter-spacing: -2px; }
+        .titular { font-family: 'Archivo Black', sans-serif; text-align: center; letter-spacing: -2px; }
         
-        /* COLORES NEO-POP RECUPERADOS */
+        /* COLORES NEO-POP */
         .color-0 { background-color: #FF1744; } .color-1 { background-color: #FFD600; }
         .color-2 { background-color: #00E676; } .color-3 { background-color: #2979FF; }
         .color-4 { background-color: #00B0FF; } .color-5 { background-color: #FF6D00; }
@@ -23,11 +23,11 @@
 
     <header class="mb-12 border-b-[10px] border-black pb-12 max-w-[1700px] mx-auto">
         <h1 class="titular text-6xl md:text-8xl uppercase mb-4">SCIENCE WORLD NEWS</h1>
-        <p class="text-center font-black text-xs tracking-[0.5em] uppercase opacity-60">Archivo de Divulgación Científica Universal e Histórica — 2026</p>
+        <p class="text-center font-black text-xs tracking-[0.5em] uppercase opacity-60">Archivo de Divulgación Universal e Histórica — 2026</p>
 
         <div class="mt-10 flex flex-col md:flex-row gap-6 items-center bg-white border-[6px] border-black p-8 shadow-[15px_15px_0px_#000]">
             <div class="flex w-full md:w-2/5 gap-3">
-                <input type="text" id="buscador" onkeyup="filtrar()" placeholder="BUSCAR: FREUD, RAMANUJAN, ALGORITMO..." class="w-full p-4 border-4 border-black font-black uppercase outline-none">
+                <input type="text" id="buscador" onkeyup="filtrar()" placeholder="BUSCAR CONCEPTO (FREUD, RAMANUJAN, LACAN)..." class="w-full p-4 border-4 border-black font-black uppercase outline-none focus:bg-yellow-50">
                 <button onclick="resetear()" class="bg-black text-white px-8 font-black border-4 border-black hover:bg-red-600">RESET</button>
             </div>
             <div class="flex items-center gap-5 w-full md:w-3/5 border-l-0 md:border-l-4 border-black pl-0 md:pl-8">
@@ -36,10 +36,6 @@
                 <span id="label-anio" class="bg-black text-white px-6 font-black text-3xl">2026</span>
             </div>
         </div>
-        
-        <p style="color: red; font-weight: 900; text-align: center; margin-top: 15px; text-transform: uppercase; font-size: 14px;">
-            DETALLE CORREGIDO: EL BUSCADOR AHORA ANALIZA TODA LA NOTICIA (TÍTULO, RESUMEN Y ETIQUETAS) PARA RESULTADOS INFINITOS.
-        </p>
     </header>
 
     <main id="galeria" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 max-w-[1700px] mx-auto pb-40"></main>
@@ -58,55 +54,46 @@
 
         function cargarMas() {
             const g = document.getElementById('galeria');
-            const data = filtrados.slice(cursor, cursor + 9);
+            const data = filtrados.slice(cursor, cursor + 12);
             
             data.forEach((n, i) => {
                 const colorClase = `color-${(cursor + i) % 7}`;
                 const card = document.createElement('div');
                 card.className = `card`;
                 card.innerHTML = `
-                    <div class="p-4 border-b-6 border-black font-black text-[10px] uppercase bg-white">
-                        AREA: ${n.area}
-                    </div>
-                    <img src="${n.img}" class="w-full h-72 object-cover border-b-6 border-black">
+                    <div class="p-4 border-b-6 border-black font-black text-[10px] uppercase bg-white">AREA: ${n.area}</div>
+                    <img src="${n.img}" class="w-full h-72 object-cover border-b-6 border-black grayscale hover:grayscale-0 transition-all">
                     <div class="p-8 flex-grow flex flex-col ${colorClase}">
                         <div class="flex justify-between items-center mb-6">
                             <span class="bg-black text-white text-[9px] px-3 py-2 font-black uppercase">${n.leyenda}</span>
                             <span class="font-black text-4xl italic underline decoration-8 underline-offset-4">${n.fecha}</span>
                         </div>
-                        <h2 class="titular !text-left text-2xl leading-tight mb-6 uppercase border-l-[10px] border-black pl-4" style="font-style: normal;">${n.titulo}</h2>
+                        <h2 class="titular !text-left text-2xl leading-tight mb-6 uppercase border-l-[10px] border-black pl-4">${n.titulo}</h2>
                         <div class="bg-white/95 p-6 border-4 border-black mb-6 flex-grow shadow-[6px_6px_0px_rgba(0,0,0,0.1)] text-black">
                             <p class="text-[9px] font-black mb-2 uppercase opacity-50">${n.procedencia}</p>
                             <p class="text-sm font-bold text-justify">RESUMEN: ${n.resumen}</p>
                         </div>
                         <div class="mt-auto pt-4 border-t-2 border-black/20 text-[10px] font-black uppercase">
-                            <span class="bg-black text-white px-2 py-1 mr-2 italic">PALABRAS CLAVE:</span> ${n.palabras_clave}
+                            <span class="bg-black text-white px-2 py-1 mr-2 italic">CLAVE:</span> ${n.palabras_clave}
                         </div>
                     </div>
-                    <a href="${n.link}" target="_blank" class="block text-center py-5 bg-black text-white font-black text-xl border-t-6 border-black hover:bg-white hover:text-black transition-all uppercase italic">Explorar Fuente</a>
+                    <a href="${n.link}" target="_blank" class="block text-center py-5 bg-black text-white font-black text-xl border-t-6 border-black hover:bg-white hover:text-black transition-all">EXPLORAR</a>
                 `;
                 g.appendChild(card);
             });
-            cursor += 9;
+            cursor += 12;
         }
 
-        /* LÓGICA DE BUSCADOR INFINITO CORREGIDA */
         function filtrar() {
             const val = document.getElementById('buscador').value.toLowerCase().trim();
             const anio = parseInt(document.getElementById('cronos').value);
             document.getElementById('label-anio').innerText = anio;
             
             filtrados = db.filter(n => {
-                // ACCIÓN: EL BUSCADOR ESCANEA TODOS LOS CAMPOS
-                const todoElTexto = `${n.titulo} ${n.resumen} ${n.area} ${n.palabras_clave} ${n.procedencia}`.toLowerCase();
-                const cumpleBusqueda = val === "" || todoElTexto.includes(val);
-                const cumpleAnio = n.fecha <= anio;
-                return cumpleBusqueda && cumpleAnio;
-            });
+                const searchTxt = `${n.titulo} ${n.resumen} ${n.area} ${n.palabras_clave}`.toLowerCase();
+                return searchTxt.includes(val) && n.fecha <= anio;
+            }).sort(() => Math.random() - 0.5);
 
-            // ACCIÓN: ALEATORIZAR CADA VEZ PARA EFECTO "EUREKA"
-            filtrados.sort(() => Math.random() - 0.5);
-            
             document.getElementById('galeria').innerHTML = '';
             cursor = 0;
             cargarMas();
@@ -118,7 +105,7 @@
             filtrar();
         }
 
-            iniciar();
+        iniciar();
     </script>
 </body>
 </html>
